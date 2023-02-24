@@ -18,20 +18,23 @@ import {
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import path from "path";
-import customHelpers from "@helpers/index";
-import homeRoute from "@routes/home";
-import aboutRoute from "@routes/about";
-import contactRoute from "@routes/contact";
-import teamsRoute from "@routes/team";
-import posts1Route from "@routes/posts-1";
-import posts2Route from "@routes/posts-2";
-import loginRoute from "@routes/login";
-import userRoute from "@routes/user";
-import apiRoute from "@routes/api";
-import productRoute from "@routes/products";
-import error404Route from "@routes/404";
-import utils from "@utils/index";
-import middlewares from "@middlewares/index";
+import { customHelpers } from "@helpers/customHelper";
+import { fileUtil } from "@utils/file/file.util";
+import { httpMiddleware } from "@middlewares/http/http.middleware";
+import { authMiddleware } from "@middlewares/auth/auth.middleware";
+import { htmxMiddleware } from "@middlewares/htmx/htmx.middleware";
+import { sessionMiddleware } from "@middlewares/session/session.middleware";
+import { envConfig } from "@configs/env/env.config";
+import { homeController } from "@controllers/home/home.controller";
+import { aboutController } from "@controllers/about/about.controller";
+import { contactController } from "@controllers/contact/contact.controller";
+import { posts1Controller } from "@controllers/posts-1/posts-1.controller";
+import { posts2Controller } from "@controllers/posts-2/posts-2.controller";
+import { teamsController } from "@controllers/teams/teams.controller";
+import { productsController } from "@controllers/products/products.controller";
+import { loginController } from "@controllers/login/login.controller";
+import { usersController } from "@controllers/users/users.controller";
+import { apiController } from "@controllers/api/api.controller";
 config();
 
 const app = express();
@@ -65,37 +68,37 @@ app.use(
 app.engine(
 	".hbs",
 	hbs.express4({
-		partialsDir: utils.file.dirname + "/src/views/partials",
-		layoutsDir: utils.file.dirname + "/src/views/layouts",
+		partialsDir: fileUtil.dirname + "/src/views/partials",
+		layoutsDir: fileUtil.dirname + "/src/views/layouts",
 	})
 );
 app.set("view engine", ".hbs");
-app.set("views", path.join(utils.file.dirname, "src/views"));
+app.set("views", path.join(fileUtil.dirname, "src/views"));
 
-app.use("/public", express.static(path.join(utils.file.dirname, "public")));
+app.use("/public", express.static(path.join(fileUtil.dirname, "public")));
 
-app.use(middlewares.http.popupalteCurrentURLInContext);
-app.use(middlewares.htmx.checkHTMXRequest);
-app.use(middlewares.session.populateUserSessionInContext);
-app.use("/", middlewares.auth.setCheckAuthAsHxTrigger, homeRoute);
-app.use("/about", middlewares.auth.setCheckAuthAsHxTrigger, aboutRoute);
-app.use("/contact", middlewares.auth.setCheckAuthAsHxTrigger, contactRoute);
-app.use("/posts-1", middlewares.auth.setCheckAuthAsHxTrigger, posts1Route);
-app.use("/posts-2", middlewares.auth.setCheckAuthAsHxTrigger, posts2Route);
-app.use("/team", middlewares.auth.setCheckAuthAsHxTrigger, teamsRoute);
-app.use("/products", middlewares.auth.setCheckAuthAsHxTrigger, productRoute);
+app.use(httpMiddleware.popupalteCurrentURLInContext);
+app.use(htmxMiddleware.checkHTMXRequest);
+app.use(sessionMiddleware.populateUserSessionInContext);
+app.use("/", authMiddleware.setCheckAuthAsHxTrigger, homeController);
+app.use("/about", authMiddleware.setCheckAuthAsHxTrigger, aboutController);
+app.use("/contact", authMiddleware.setCheckAuthAsHxTrigger, contactController);
+app.use("/posts-1", authMiddleware.setCheckAuthAsHxTrigger, posts1Controller);
+app.use("/posts-2", authMiddleware.setCheckAuthAsHxTrigger, posts2Controller);
+app.use("/team", authMiddleware.setCheckAuthAsHxTrigger, teamsController);
+app.use("/products", authMiddleware.setCheckAuthAsHxTrigger, productsController);
 app.use(
 	"/login",
-	middlewares.auth.checkAuthenticatedUserAndRedirect,
-	middlewares.auth.setCheckAuthAsHxTrigger,
-	loginRoute
+	authMiddleware.checkAuthenticatedUserAndRedirect,
+	authMiddleware.setCheckAuthAsHxTrigger,
+	loginController
 );
-app.use("/users", middlewares.auth.setCheckAuthAsHxTrigger, userRoute);
-app.use("/api", apiRoute);
-app.use(middlewares.http.error404NotFound);
-// app.use('*', error404Route);
-app.use(middlewares.http.error500Handler);
+app.use("/users", authMiddleware.setCheckAuthAsHxTrigger, usersController);
+app.use("/api", apiController);
+app.use(httpMiddleware.error404NotFound);
+// app.use('*', error404Controller);
+app.use(httpMiddleware.error500Handler);
 
-app.listen(utils.env.port, () => {
+app.listen(envConfig.port, () => {
 	console.log("Server running");
 });

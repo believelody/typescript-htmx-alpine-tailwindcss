@@ -14,13 +14,14 @@
 		"skipLibCheck": true,
 		"resolveJsonModule": true,
 		"paths": {
-			"@middlewares*": ["src/middlewares/*"],
-			"@helpers*": ["src/helpers/*"],
-			"@routes*": ["src/routes/*"],
-			"@services*": ["src/services/*"],
-			"@interfaces*": ["src/interfaces/*"],
-			"@enum*": ["src/enum/*"],
-			"@utils*": ["src/utils/*"],
+			"@configs/*": ["src/configs/*"],
+			"@middlewares/*": ["src/middlewares/*"],
+			"@helpers/*": ["src/helpers/*"],
+			"@controllers/*": ["src/controllers/*"],
+			"@services/*": ["src/services/*"],
+			"@interfaces/*": ["src/interfaces/*"],
+			"@enums/*": ["src/enums/*"],
+			"@utils/*": ["src/utils/*"],
 		}
 	}
 }
