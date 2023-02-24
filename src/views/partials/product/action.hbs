@@ -1,0 +1,15 @@
+<div id="product-action" class="flex flex-col gap-y-4" hx-get="/api/products/update-action" hx-trigger="update-context from:body" hx-swap="outerHTML">
+  <p class="flex items-center justify-center">{{cond (lt meta.count meta.total) meta.count meta.total }} items over {{ meta.total }}</p>
+  {{#unless (gte meta.count meta.total)}}
+    <div class="flex items-center justify-center">
+      {{> button/simple
+            hx-get=(urlPath (urlFromParams (chain (baseUrl) "/products") limit=meta.limit count=(add meta.count meta.limit)))
+            hx-trigger="click"
+            hx-target="#product-list"
+            hx-push-url="true"
+            hx-swap="beforeend scroll:bottom"
+            label="See more"
+      }}
+    </div>
+  {{/unless}}
+</div>

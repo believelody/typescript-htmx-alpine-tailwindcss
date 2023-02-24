@@ -1,0 +1,31 @@
+<div>
+    <img class="w-auto h-12 mx-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+        alt="Your Company">
+    <h2 class="mt-6 text-3xl font-bold tracking-tight text-center text-gray-900">Sign in to your account</h2>
+    <p class="mt-2 text-sm text-center text-gray-600">
+        Or
+        {{> link/primary href="/register" label="Register now !" text-size="lg" bold="medium" }}
+    </p>
+</div>
+<form hx-post="/api/auth/login" {{#if fromModal}}@submit.prevent="lock = true;" hx-vals='{ "stay_on_current_url" : true }'{{/if}} hx-swap="innerHTML" hx-trigger="submit" class="mt-8 space-y-6" hx-target="#content">
+    <div x-show="errorMap.has('login')" x-transition>
+        <p class="text-danger-500 text-center text-xl" x-text="errorMap.get('login')"></p>
+    </div>
+    
+    <div class="rounded-md shadow-sm">
+        {{> field/email name="login-email" id=(chain "login-email-" (uuid)) placeholder="Email address" required=true label-class="sr-only" }}
+        {{> field/password-2 name="password" id=(chain "password-" (uuid)) placeholder="Password" required=true label-class="sr-only" }}
+    </div>
+
+    <div class="flex items-center justify-between">
+        {{> field/checkbox-2 class="flex items-center" color="primary" size=6 label="Remember Me" id=(chain "remember-" (uuid)) name="remember" }}
+        <div class="text-sm">
+            {{> link/secondary href="/forgotten-password" label="Forgot your password ?" bold="medium" }}
+        </div>
+    </div>
+
+    {{> button/info-3 block=true label="Sign In" x-on:click="error = null" icon=(partial 'icon/lock-closed' color="text-info-500" stroke="none" size=6)
+        icon-class="absolute inset-y-0 left-0 flex items-center pl-3"
+        data-loading-disable=true data-loading-text="Authentication..." data-loading-aria-busy=true data-loading-icon="lottie/loading-1"
+    }}
+</form>

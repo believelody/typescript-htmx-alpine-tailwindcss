@@ -1,0 +1,7 @@
+<div x-data="drawer" x-effect="open = errorMap.has('not-found');">
+  {{> element/modal
+    modal=(object
+        component=(partial 'error/not-found'))
+    class="p-24"
+  }}
+</div>

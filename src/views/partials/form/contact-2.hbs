@@ -1,0 +1,33 @@
+<form x-data="{ loading: false }" class="flex flex-wrap" @submit.prevent="
+    loading = true;
+    form = new FormData($el);
+    res = await fetch('/api/contact/2', {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        },
+        bode: JSON.stringify({
+            name: form.get('name'),
+            email: form.get('email'),
+            message: form.get('message')
+        })
+    });
+    json = await res.json();
+    $dispatch('notify', json.notify);
+    $el.reset();
+    loading = false;
+">
+    <div class="w-full md:w-1/2 p-2">
+        {{> field/text label="Name" id="name" name="name" class="relative" placeholder="Your name" color="primary" required=true }}
+    </div>
+    <div class="w-full md:w-1/2 p-2">
+        {{> field/email label="Email" id="contact-email" name="contact-email" class="relative" placeholder="Your email" color="primary" required=true }}
+    </div>
+    <div class="w-full p-2">
+        {{> field/textarea class="relative" height=32 id="message" name="message" transition=true placeholder="Tell us everything..." label="Message" no-resize=true required=true }}
+    </div>
+    <div class="flex justify-center w-full p-2">
+        {{> button/secondary-2 label="Send" block=true outlined=true data-loading-text="Envoi en cours..." data-loading-icon="lottie/loading-1"}}
+    </div>
+</form>

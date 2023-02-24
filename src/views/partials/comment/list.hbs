@@ -1,0 +1,11 @@
+<h4>Comments : {{length comments}}</h4>
+<ul>
+  {{#each comments as |comment|}}
+    <li class="py-2">
+      <label>
+        {{> link/default href=(append "users/" comment.user.id) label=comment.user.username}} <i>said :</i>
+      </label>
+      <p class="pl-4 border-l-2">"{{ comment.body }}"</p>
+    </li>
+  {{/each}}
+</ul>

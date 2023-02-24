@@ -1,0 +1,5 @@
+<div class="px-8 py-6 xl:w-1/4 lg:w-1/2 md:w-full border-opacity-60">
+    <h2 class="mb-2 text-lg font-medium text-gray-900 sm:text-xl title-font">{{ title }}</h2>
+    <p class="mb-4 text-base leading-relaxed">{{ text }}</p>
+    {{#if link}}{{> (append 'link/' (withDefault link.color 'default')) href=link.url label=link.label icon=(partial 'icon/arrow-right')}}{{/if}}
+</div>

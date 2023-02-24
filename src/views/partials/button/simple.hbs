@@ -1,0 +1,28 @@
+{{#button spread=this}}
+  {{#if data-loading-text}}
+      <span id="loading-text"
+        data-loading
+      >
+        {{ data-loading-text }}
+      </span>
+  {{/if}}
+  {{#if label}}
+      <span {{#if data-loading-text}}data-loading-class="hidden"{{/if}}>{{ label }}</span>
+  {{/if}}
+  {{#if data-loading-icon}}
+      <span id="loading-icon"
+        data-loading
+      >
+          {{partial (toString data-loading-icon) }}
+      </span>
+  {{/if}}
+  {{#if icon}}
+      <span class="{{ icon.class }}" {{#if data-loading-icon}}data-loading-class="hidden"{{/if}}>{{ icon.component }}</span>
+  {{/if}}
+  {{#if sr-only}}
+      <span class="sr-only">{{ sr-only }}</span>
+  {{/if}}
+  {{#if image}}
+      <span {{#if (or data-loading-text data-loading-icon)}}data-loading-class="hidden"{{/if}}>{{ image }}</span>
+  {{/if}}
+{{/button}}

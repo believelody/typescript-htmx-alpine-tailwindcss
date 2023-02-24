@@ -1,0 +1,7 @@
+<div class="hidden md:flex">
+    <nav class="flex-wrap flex justify-center text-base list-none items-center md:ml-auto md:mr-auto">
+        {{#each (routes) as |route|}}
+            {{> nav/item route=route }}
+        {{/each}}
+    </nav>
+</div>

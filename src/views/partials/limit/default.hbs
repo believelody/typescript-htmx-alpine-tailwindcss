@@ -1,0 +1,10 @@
+{{#let spread=this }}
+  {{#each group as |limit|}}
+    {{#if (gte ../meta.total limit)}}
+      {{> button/radio class="px-4 py-2 btn rounded-md disabled:text-black"
+              name="limit" id=(append "limit-" limit) label=limit disabled=(eq ../meta.limit limit)
+              href=(urlPath (urlFromParams ../href limit=limit)) target=../target
+            }}
+    {{/if}}
+  {{/each}}
+{{/let}}

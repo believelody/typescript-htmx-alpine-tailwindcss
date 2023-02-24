@@ -1,0 +1,6 @@
+<button class="{{ class }}"
+  hx-get="{{ href }}" hx-target="{{ withDefault target "#content" }}" hx-trigger="click" hx-push-url="true"
+  name="{{ name }}" id="{{ id }}" {{#if disabled}}disabled{{/if}}
+>
+  <span>{{ label }}</span>
+</button>

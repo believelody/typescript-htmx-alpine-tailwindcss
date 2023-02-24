@@ -1,0 +1,39 @@
+<div x-show="open"
+    id="drawer-example"
+    class="fixed top-0 left-0 z-40"
+>
+    <div x-show="open"
+        x-transition:enter="transition ease-in-out duration-1000 sm:duration-700"
+        x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-1"
+        x-transition:leave="transition ease-in-out duration-1000 sm:duration-700"
+        x-transition:leave-start="opacity-1"
+        x-transition:leave-end="opacity-0"
+        class="fixed w-screen h-screen bg-black/60 dark:bg-white/60"
+    >
+    </div>
+    <div x-bind="dialogue"
+        x-transition:enter="transform transition ease-in-out duration-1000 sm:duration-700"
+        x-transition:enter-start="-translate-x-full"
+        x-transition:enter-end="translate-x-0"
+        x-transition:leave="transform transition ease-in-out duration-1000 sm:duration-700"
+        x-transition:leave-start="translate-x-0"
+        x-transition:leave-end="-translate-x-full"
+        class="fixed max-w-lg flex flex-col h-screen overflow-y-hidden bg-white"
+    >
+       <div class="flex items-center justify-between w-full border-b min-h-[3em]">
+            {{#if title }}
+             {{ title }}
+            {{/if}}
+            <section class="flex justify-end">
+                {{> button/simple x-bind="closer" icon=(object component=(partial "icon/close")) sr-only="Close menu" class="inline-flex items-center p-1 text-sm text-gray-700 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white" }}
+            </section>
+       </div>
+        <div class="block overflow-y-auto">
+            {{#each components as |component| }}
+                {{> (toString component) user=../user isAuthenticated=../isAuthenticated }}
+                {{!-- {{ component }} --}}
+            {{/each}}
+        </div>
+   </div>
+</div>

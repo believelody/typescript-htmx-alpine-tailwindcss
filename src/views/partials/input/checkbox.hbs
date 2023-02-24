@@ -1,0 +1,8 @@
+<input
+  id="{{ id }}"
+  name="{{ name }}"
+  {{#if data-loading-disable}}data-loading-disable{{/if}}
+  type="checkbox"
+  x-model="checked"
+  class="w-{{size}} h-{{size}} checkbox {{#if color}}checkbox-{{color}}{{/if}}"
+/>

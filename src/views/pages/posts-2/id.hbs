@@ -1,0 +1,67 @@
+{{#*inline 'nav-prev-next'}}
+  {{#if post.url.prev }}
+    <div class="flex items-center grow">
+      {{> link/default href=post.url.prev label="Previous post"
+          icon=(object component=(partial "icon/chevron-left" size=8 stroke="none") position="left") }}
+    </div>
+  {{/if}}
+  {{#if post.url.next }}
+    <div class="flex items-center justify-end grow">
+      {{> link/default href=post.url.next label="Next post"
+          icon=(object component=(partial "icon/chevron-right" size=8 stroke="none") position="right") }}
+    </div>
+  {{/if}}
+{{/inline}}
+
+{{!< main }}
+{{> element/seo }}
+<section x-data="drawer" class="flex flex-col max-w-xl mx-auto h-full">
+  <div class="flex items-center justify-center my-4">
+    {{> link/default href=post.url.back label=(chain "Back to " (cond me "my posts" (cond (test currentURLPathname (toRegex "^/users")) (chain author.username "'s posts") "posts"))) icon=(object component=(partial "icon/arrow-left") position="left") }}
+  </div>
+  <div class="flex items-center justify-between my-4">
+    {{> nav-prev-next}}
+  </div>
+  <div class="p-8 border h-full rounded-md shadow-md mx-auto flex flex-col gap-y-4">
+    <h3 class="flex items-center justify-between">
+      {{#if author}}
+        <div>by {{> link/primary href=(chain "/users/" (numberIntoString author.id)) label=author.username }}</div>
+      {{/if}}
+      <div class="flex items-center grow justify-end gap-x-2">
+        {{#if isAuthenticated}}
+          {{> button/heart-circle class="flex disabled:cursor-not-allowed disabled:bg-neutral-200"
+                hx-post=(append "/api/reaction/post/" (numberIntoString post.id)) hx-trigger="click" data-loading-target="#loading-3"
+                data-loading-busy=true data-loading-disable=true data-loading-icon="lottie/loading-1" liked=post.liked
+                hx-target="#content" hx-vals=(JSONstringify (object reaction=post.reactions)) data-loading-path=(append "/api/reaction/post/" (numberIntoString post.id))
+                bg-icon-color="bg-secondary"}}
+        {{else}}
+          {{> button/heart-circle x-bind="trigger" bg-icon-color="bg-secondary" class="flex disabled:cursor-not-allowed disabled:bg-neutral-200"}}
+        {{/if}}
+        {{!-- {{button hx-post=(append "/reactions/" (numberIntoString post.id)) hx-trigger="click" hx-swap="outerHTML"}} --}}
+        <span>{{ post.reactions }}</span>
+      </div>
+    </h3>
+    <h2 class="font-medium mb-8">{{ post.title }}</h2>
+    <p class="text-base">{{ post.body }}</p>
+    {{#if post.tags}}
+      <div class="flex flex-wrap gap-2">
+        <span>Tags: </span> {{> element/tags items=post.tags limit=(length post.tags)}}
+      </div>
+    {{/if}}
+  </div>
+  <div class="flex items-center justify-between my-4">
+    {{> nav-prev-next}}
+  </div>
+  <hr>
+  <div class="my-4 px-4">
+    {{#if isAuthenticated}}
+      {{> form/comment }}
+    {{else}}
+      <div class="text-xl flex flex-wrap gap-2 items-end">Please {{> button/link-3 label="log in" class="link link-primary text-3xl" x-bind="trigger" }} before comment.</div>    
+    {{/if}}
+  </div>
+  <div hx-get="/api/comments/post/{{ post.id }}" hx-swap="innerHTML" hx-push-url="false" hx-trigger="load, add-comment from:body" data-loading-class="hidden" class="mb-4 px-4">
+    <div id="comment-loader" data-loading class="justify-center">{{> lottie/loading-1 size=16 }}</div>
+  </div>
+  {{> element/modal modal=(object component=(partial 'form/login' fromModal=true)) class="p-8"}}
+</section>

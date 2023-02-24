@@ -1,0 +1,17 @@
+{{!< main }}
+<section class="text-gray-600 body-font">
+  {{> element/seo }}
+  <div class="container px-5 py-24 mx-auto">
+    <div class="flex flex-col w-full mb-20 text-center">
+      <h1 class="mb-4 text-2xl font-medium text-gray-900 sm:text-3xl title-font">Our Team</h1>
+      <p class="mx-auto text-base leading-relaxed lg:w-2/3">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them.</p>
+    </div>
+    <ul class="box-border grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {{#each teams as |team|}}
+        <li>
+          {{> block/small-with-avatar team=team color="primary" }}
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+</section>

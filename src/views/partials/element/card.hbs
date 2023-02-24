@@ -1,0 +1,21 @@
+<div class="bg-gray-100 rounded-lg">
+    {{#if image}}
+        <div class="{{#unless image-full}}px-6 pt-6{{/unless}}">
+            <img class="object-cover object-center w-full rounded" src="{{image.src}}" alt="{{image.alt}}">
+        </div>
+    {{/if}}
+    <div class="p-6">
+        {{#if subtitle}}
+        <h5 class="font-medium tracking-widest text-indigo-500 title-font">{{subtitle}}</h3>
+    {{/if}}
+    {{#if title}}
+        <h3 class="mb-4 font-medium text-gray-900 title-font">{{title}}</h2>
+    {{/if}}
+    {{#if content}}
+        <p class="text-base leading-relaxed">{{content}}</p>
+    {{/if}}
+    </div>
+    {{#if extra}}
+        {{ extra }}
+    {{/if}}
+</div>

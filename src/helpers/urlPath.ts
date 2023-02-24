@@ -1,0 +1,1 @@
+export default (url) => `${url.pathname}${url.search || ''}`

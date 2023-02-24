@@ -1,0 +1,9 @@
+<div class="{{ class }}">
+    {{#if (is label-position "left")}}
+        <label for="{{ id }}" class="block mr-2 text-{{withDefault label-size 'sm'}} text-{{withDefault label-color 'neutral'}}">{{ label }}</label>
+    {{/if}}
+    {{> input/checkbox-2 }}
+    {{#if (or (not (isTruthy label-position)) (is label-position "right"))}}
+        <label for="{{ id }}" class="block ml-2 text-{{withDefault label-size 'sm'}} text-{{withDefault label-color 'neutral'}}">{{ label }}</label>
+    {{/if}}
+</div>

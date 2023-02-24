@@ -1,0 +1,4 @@
+<form hx-post="/api/comments/post" hx-vals='{ "userId" : "{{ user.id }}", "post" : {{JSONstringify post }} }' hx-swap="outerHTML">
+  {{> field/textarea class="relative" label="Your comment" name="comment" id="your-comment" placeholder="Write your thought" height=32 required=true }}
+  {{> button/primary-3 type="submit" label="Submit" data-loading-disable=true data-loading-text="Loading..." data-loading-aria-busy=true data-loading-icon="lottie/loading-1" }}
+</form>

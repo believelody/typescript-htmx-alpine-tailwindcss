@@ -1,0 +1,23 @@
+{{#let spread=this nb=5}}
+  <a href="/products/{{ id }}" class="block relative h-48 xl:h-64">
+    <img alt="{{ title }}" class="object-cover object-center w-full h-full block" src="{{ thumbnail }}">
+  </a>
+  <div class="mt-4 flex flex-col gap-y-1 px-2">
+    <h4 class="tracking-widest flex gap-x-2 items-center">
+      <span class="text-xs text-gray-500 ">Category:</span>
+      {{> link/base href=(chain "/categories/" category) class="text-sm text-primary-500 font" label=category}}
+    </h4>
+    <h2 class="text-gray-900 title-font text-lg font-medium">
+      <span>{{ title }}</span>
+      <span class="text-xs">by</span>
+      <span class="text-sm text-primary-500">{{ brand }}</span>
+    </h2>
+    <section class="flex items-end justify-between">
+      <div class="font-medium">${{toFixed price 2}}</div>
+      <div class="relative flex gap-x-1 items-end">
+        {{> element/rating icon="star" apply-defs="linear-gradient" nb=nb value=(divide (multiply rating 100) nb) fill="none" stroke="none" size=8 }}
+        <span>{{ rating }}</span>
+      </div>
+    </section>
+  </div>
+{{/let}}

@@ -1,0 +1,27 @@
+{{!< main }}
+<section class="relative text-gray-600 body-font">
+  {{> element/seo }}
+  <div class="container py-4 mx-auto">
+    <div class="flex px-5 flex-col w-full mb-6 text-center">
+      <h2 class="mb-4 font-medium text-gray-900 title-font">Contact Us</h2>
+      <p class="mx-auto text-base leading-relaxed lg:w-2/3">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify.</p>
+    </div>
+    <div class="mx-auto lg:px-0 xs:px-5 xl:w-1/2 lg:w-2/3 w-full">
+      {{> form/contact-2 }}
+    </div>
+    <div class="w-full px-2 pt-6 mt-6 text-center border-t border-gray-200">
+      <a class="text-indigo-500">example@email.com</a>
+      <p class="leading-normal">
+        <span>49 Smith St.</span>
+        <br>
+        <span>Saint Cloud, MN 56301</span>
+      </p>
+      <div class="inline-flex gap-x-4">
+        {{> element/socials }}
+      </div>
+      <div class="flex justify-center w-full p-2">
+        {{> button/primary-3 label="Add notification" x-on:click="$dispatch(\"notify\")"}}
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,15 @@
+<nav class="flex my-8 items-center justify-center px-2">
+  {{#unless (eq page 1)}}
+    <section class="flex flex-wrap sm:flex-row-reverse shrink gap-2 items-center justify-center">
+      {{> link/base href=(chain href '&page=' (numberIntoString (subtract page 1))) label="Prev" class="bg-neutral-700 text-white py-2 px-4 rounded-md" }}
+      {{> link/base href=(chain href "&page=1") label="First" class="bg-neutral-700 text-white py-2 px-4 rounded-md" }}
+    </section>
+  {{/unless}}
+  {{> @partial-block }}
+  {{#unless (eq page pages)}}
+    <section class="flex flex-wrap shrink gap-2 items-center justify-center">
+      {{> link/base href=(chain href '&page=' (numberIntoString (add page 1))) label="Next" class="bg-neutral-700 text-white py-2 px-4 rounded-md" }}
+      {{> link/base href=(chain href '&page=' (numberIntoString pages)) label="Last" class="bg-neutral-700 text-white py-2 px-4 rounded-md" }}
+    </section>
+  {{/unless}}
+</nav>

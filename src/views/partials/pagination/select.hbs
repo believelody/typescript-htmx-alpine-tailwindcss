@@ -1,0 +1,11 @@
+{{#> pagination/default href=href page=page pages=pages}}
+  <section class="w-2/3 sm:w-auto text-center text-lg mx-auto sm:mx-8">
+    {{!-- Pagination with select --}}
+    <select name="page" hx-get="{{ href }}" hx-push-url="true" hx-target="#content" hx-swap="innerHTML show:top" hx-trigger="change" aria-valuenow="{{ page }}" aria-valuemin="1" aria-valuemax="{{ pages }}">
+      {{#each (arrayFrom pages)}}
+        <option {{#if (eq ../page (add @index 1))}}class="bg-neutral-700 text-white"{{/if}} {{#if (eq ../page (add @index 1))}}selected{{/if}} value="{{add @index 1}}">{{add @index 1}}</option>
+      {{/each}}
+    </select>
+    <span>/ {{ pages }}</span>
+  </section>
+{{/pagination/default}}

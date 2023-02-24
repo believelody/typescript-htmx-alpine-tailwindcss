@@ -1,0 +1,6 @@
+<div class="input flex items-center {{#if color}}input-{{color}}{{/if}} {{#if transition}}color-transition{{/if}}">
+    <input type="text" {{#if id}}id="{{ id }}" {{/if}} name="{{ name }}" {{#if required}}required{{/if}}
+        placeholder="{{ placeholder }}" x-model="value" {{#if data-loading-disable}}data-loading-disable{{/if}} {{#if
+        autocomplete}}autocomplete="{{ autocomplete }}" {{/if}} class="flex-1 w-auto">
+    <button type="button" x-on:click="value = ''" class="w-18 flex items-center justify-center">{{> icon/x-mark size=6 }}</button>
+</div>

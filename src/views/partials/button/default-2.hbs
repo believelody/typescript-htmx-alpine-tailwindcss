@@ -1,0 +1,38 @@
+<button
+    {{#unless bind }}
+        {{#if type }}
+            type="{{ type }}"
+        {{/if }}
+    {{/unless}}
+    {{#if click }}@click="{{ click }}"{{/if}}
+    {{#if bind }}x-bind="{{ bind }}"{{/if}}
+    :disabled="loading"
+    class="{{withDefault class 'relative px-4 py-2 rounded btn'}} {{#if color}}{{cond outlined (append 'btn-' color '-outlined') (append 'btn-' color)}}{{else}}{{cond outlined 'btn-outlined' ''}}{{/if}} {{#if block}}w-full{{/if}}"
+>
+    {{#if data-loading-text}}
+        <template x-if="loading">
+            <span id="loading-text" class="text-neutral-600">
+                {{data-loading-text}}
+            </span>
+        </template>
+    {{/if}}
+    {{#if label}}
+        <span x-show="!loading">{{ label }}</span>
+    {{/if}}
+    {{#if data-loading-icon}}
+        <template x-if="loading">
+            <span id="loading-icon" class="text-neutral-600">
+                {{partial (toString data-loading-icon) }}
+            </span>
+        </template>
+    {{/if}}
+    {{#if icon}}
+        <span x-show="!loading">{{ icon }}</span>
+    {{/if}}
+    {{#if sr-only}}
+        <span class="sr-only">{{ sr-only }}</span>
+    {{/if}}
+    {{#if image}}
+        <span x-show="!loading">{{ image }}</span>
+    {{/if}}
+</button>

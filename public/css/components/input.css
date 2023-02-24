@@ -1,0 +1,43 @@
+.input {
+  @apply w-full px-3 py-1 text-base leading-8 bg-opacity-50 border rounded outline-none text-neutral-700 bg-neutral-100 border-neutral-500 focus:ring-1 disabled:cursor-not-allowed disabled:text-neutral-200 disabled:focus:text-neutral-200 disabled:border-transparent;
+}
+.input-primary {
+  @apply focus:ring-2 focus:ring-primary-500 focus:border-primary-500;
+}
+.input-secondary {
+  @apply focus:ring-2 focus:ring-secondary focus:border-secondary;
+}
+.input-success {
+  @apply focus:ring-2 focus:ring-success-500 focus:border-success-500;
+}
+.input-danger {
+  @apply focus:ring-2 focus:ring-danger-500 focus:border-danger-500;
+}
+.input-warning {
+  @apply focus:ring-2 focus:ring-warning-500 focus:border-warning-500;
+}
+.input-info {
+  @apply focus:ring-2 focus:ring-info-500 focus:border-info-500;
+}
+
+.checkbox {
+  @apply border rounded-sm;
+}
+.checkbox-primary {
+  @apply accent-primary-500;
+}
+.checkbox-secondary {
+  @apply accent-secondary;
+}
+.checkbox-success {
+  @apply accent-success-500;
+}
+.checkbox-danger {
+  @apply accent-danger-500;
+}
+.checkbox-warning {
+  @apply accent-warning-500;
+}
+.checkbox-info {
+  @apply accent-info-500;
+}

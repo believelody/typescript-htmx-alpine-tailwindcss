@@ -1,0 +1,6 @@
+<div class="{{ class }}" x-data="{ value: '{{ value }}' }">
+    {{#if label}}
+        <label for="{{ id }}" class="{{ label-class }} text-sm leading-7 text-gray-600">{{ label }}</label>
+    {{/if}}
+    {{> (append 'input/' type) value=value}}
+</div>

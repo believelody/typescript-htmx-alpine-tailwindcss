@@ -1,0 +1,14 @@
+<defs>
+  <linearGradient id="{{ id }}">
+    {{#if (eq value 100)}}
+      <stop offset="0%" stop-color="{{ color.fill }}" />
+    {{else if (eq value 0)}}
+      <stop offset="0%" stop-color="{{ color.empty }}" />
+    {{else}}
+      <stop offset="0%" stop-color="{{ color.fill }}" />
+      <stop offset="{{value}}%" stop-color="{{ color.fill }}" />
+      <stop offset="{{value}}%" stop-color="{{ color.empty }}" />
+      <stop offset="100%" stop-color="{{ color.empty }}" stop-opacity="1" />
+    {{/if}}
+  </linearGradient>
+</defs>

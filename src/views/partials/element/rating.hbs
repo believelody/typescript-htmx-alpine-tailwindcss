@@ -1,0 +1,24 @@
+{{#let spread=this chunk=(divide 100 nb)}}
+  <ul class="list-none flex items-center">
+    {{#each (arrayFrom nb)}}
+      <li>
+        {{> (chain "icon/" ../icon)
+            id=(chain (numberIntoString @index) "-" (numberIntoString ../id))
+            stroke="none" size="6"
+            apply-defs=../apply-defs
+            value=(divide
+                    (multiply
+                      (cond
+                        (gte (subtract ../value (multiply ../chunk (add @index 1))) 0)
+                        ../chunk
+                        (cond
+                          (gte (subtract (multiply ../chunk (add @index 1)) ../value) ../chunk)
+                          0
+                          (subtract ../value (multiply ../chunk @index))))
+                      100)
+                    ../chunk)
+      }}
+      </li>
+    {{/each}}
+  </ul>
+{{/let}}

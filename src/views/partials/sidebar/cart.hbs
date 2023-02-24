@@ -1,0 +1,4 @@
+<div x-data="drawer" class="flex items-center">
+  {{> button/cart x-bind="trigger" sr-only="Open Cart" class="inline-flex items-center text-sm text-black" size=7 }}
+  {{> element/sidebar title=(partial 'title/default' tag='h3' text='Cart') components=(toArray 'nav/menu-sidebar' 'auth/sidebar' 'nav/external-list') }}
+</div>

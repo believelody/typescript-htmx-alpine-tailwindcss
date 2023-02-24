@@ -1,0 +1,5 @@
+<div class="flex flex-col w-full text-center {{ class }}">
+    {{#if subtitle}}<h5 class="mb-1 font-medium tracking-widest text-{{withDefault subtitle.color 'neutral' }}-500 title-font">{{ subtitle.text }}</h5>{{/if}}
+    <h2 class="mb-4 font-medium text-neutral-900 title-font">{{ title }}</h2>
+    <p class="mx-auto text-base leading-relaxed lg:w-2/3">{{ text }}</p>
+</div>

@@ -1,0 +1,15 @@
+<nav class="flex mb-8 items-center justify-center px-2">
+  {{#unless (eq page 1)}}
+    <section class="flex shrink gap-2 items-center justify-center">
+      {{> link/base href=(urlPath (urlFromParams href page="1")) icon=(object component=(partial 'icon/double-chevron-left' color="text-secondary" fill="none")) class="sm:border sm:border-neutral-700 py-2 sm:px-4 rounded-md" }}
+      {{> link/base href=(urlPath (urlFromParams href page=(numberIntoString (subtract page 1)))) icon=(object component=(partial 'icon/chevron-left' color="text-secondary" fill="none")) class="sm:border sm:border-neutral-700 py-2 sm:px-4 rounded-md" }}
+    </section>
+  {{/unless}}
+  {{> @partial-block }}
+  {{#unless (eq page pages)}}
+    <section class="flex shrink gap-2 items-center justify-center">
+      {{> link/base href=(urlPath (urlFromParams href page=(numberIntoString (add page 1)))) icon=(object component=(partial 'icon/chevron-right' color="text-secondary" fill="none")) class="sm:border sm:border-neutral-700 py-2 sm:px-4 rounded-md" }}
+      {{> link/base href=(urlPath (urlFromParams href page=(numberIntoString pages))) icon=(object component=(partial 'icon/double-chevron-right' color="text-secondary" fill="none")) class="sm:border sm:border-neutral-700 py-2 sm:px-4 rounded-md" }}
+    </section>
+  {{/unless}}
+</nav>

@@ -1,0 +1,50 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "./base/typography.css";
+@import "./components/button.css";
+@import "./components/input.css";
+@import "./components/link.css";
+@import "tailwindcss/utilities";
+@import "./utilities/layout.css";
+@import "./utilities/transition.css";
+
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  scroll-behavior: smooth;
+  overflow-y: hidden;
+  position: relative;
+}
+
+[data-loading] {
+  display: none;
+}
+
+.htmx-indicator {
+  display: none;
+}
+.htmx-request .htmx-indicator {
+  display: flex;
+}
+.htmx-request.htmx-indicator {
+  display: flex;
+}
+.htmx-request #content {
+  display: none;
+}
+.htmx-request#content {
+  display: none;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

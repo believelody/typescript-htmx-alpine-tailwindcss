@@ -1,0 +1,5 @@
+<div x-data="drawer" class="md:hidden flex items-center">
+    {{> button/simple x-bind="trigger" icon=(object component=(partial "icon/menu-mobile" color="text-secondary" stroke="none" size=10 viewBox="0 0 20 20") class="flex justify-center items-center border border-secondary") sr-only="Open main menu" class="inline-flex items-center text-sm text-gray-700 hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" }}
+    {{> element/sidebar title='Menu' components=(toArray 'nav/menu-sidebar' 'auth/sidebar' 'nav/external-list') }}
+    {{!-- {{> element/sidebar title='Menu' components=(toArray (partial 'nav/menu-list') (partial 'nav/external-list')) }} --}}
+</div>

@@ -1,0 +1,15 @@
+<div class="flex items-center h-full p-4 border border-{{withDefault color 'neutral'}}-200 rounded-lg">
+    {{#if image}}
+        <span class="flex-shrink-0 w-16 h-16 mr-4 bg-{{withDefault color 'neutral'}}-100 rounded-full">
+            {{> image/avatar
+                alt=image.alt
+                size=16
+                src=image.src
+            }}
+        </span>
+    {{/if}}
+    <div class="flex-grow">
+        <h2 class="font-medium text-neutral-900 title-font">{{team.name}}</h2>
+        <p class="text-{{withDefault color 'neutral'}}-500">{{team.job}}</p>
+    </div>
+</div>

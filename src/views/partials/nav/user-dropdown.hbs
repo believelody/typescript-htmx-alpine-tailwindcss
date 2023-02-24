@@ -1,0 +1,20 @@
+<nav hx-boost="true" class="block">
+    <a href="/users/me"
+    hx-target="#content" x-bind="closer" hx-swap="innerHTML"
+    aria-disabled="currentRoute.startsWith('/users/me')"
+    disabled="currentRoute.startsWith('/users/me')"
+    :class="currentRoute.startsWith('/users/me') && 'bg-gray-200'"
+    class="md:w-full text-center border md:border-none px-4 py-2"
+    >
+        My Profile
+    </a>
+    <a href="/users/me/settings" hx-target="#content" x-bind="closer" hx-swap="innerHTML"
+        :class="currentRoute.startsWith('/user/me/settings') && 'bg-gray-800 text-white'"
+        class="md:w-full text-center border md:border-none px-4 py-2"
+    >
+        Settings
+    </a>
+</nav>
+<div class="flex w-full">
+    <button x-bind="closer" hx-post="/api/auth/logout" hx-target="#content" hx-swap="innerHTML" class="link grow rounded py-2 mx-4">Sign out</button>
+</div>

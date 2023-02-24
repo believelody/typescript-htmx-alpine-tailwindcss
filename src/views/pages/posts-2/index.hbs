@@ -1,0 +1,55 @@
+{{#*inline 'extra'}}
+  <div
+      class="absolute bottom-0 left-0 flex items-center justify-center w-full py-4 mt-2 leading-none text-center text-neutral-800">
+    <section class="inline-flex items-center py-1 text-sm leading-none cursor-pointer">
+      <span class="mr-1">{{> icon/eye fill="none" }}</span>
+      <span>{{ views }}</span>
+    </section>
+    <span class="w-px h-4 mx-3 border border-neutral-700"></span>
+    <section class="inline-flex items-center text-sm leading-none cursor-pointer ">
+      <span class="mr-1">{{> icon/chat fill="none" }}</span>
+      <span>{{ comments }}</span>
+    </section>
+  </div>
+{{/inline}}
+
+{{!< main }}
+{{> element/seo}}
+<section class="text-neutral-600 body-font h-full">
+  <div class="relative container flex flex-col mx-auto h-full box-border">
+    {{#if error}}
+      <div class="flex flex-col items-center justify-center h-full sm:col-span-2 lg:col-span-3">
+        <h2 class="text-center pb-12 text-danger-500 font-semibold">{{ error }}</h2>
+        {{> button/default click="history.back()" label="Back to previous page"}}
+      </div>
+    {{else}}
+      <h2 class="text-center mt-4">{{ title }}</h2>
+      <div class="flex items-center justify-start p-4 gap-x-4">
+        {{> limit/default
+                group=(toArray 6 18 30)
+                href=(urlFromParams (chain (baseUrl) "/posts-2") page=(numberIntoString meta.page))
+                meta=meta
+          }}
+      </div>
+      <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 h-full mb-4">
+        {{#each posts as |item|}}
+          <div id="posts-content">
+            {{> post/base-1 item color="primary" extra='extra' withAuthor=(not ../me)}}
+          </div>
+        {{else if me}}
+          <div class="flex items-center justify-center sm:col-span-2 lg:col-span-3">
+            <p class="text-lg text-center">You don't have any posts yet.</p>
+            {{> button/primary-3 label="Create your first post" block=true outlined=true }}
+          </div>
+        {{else}}
+          <div class="flex items-center justify-center sm:col-span-2 lg:col-span-3">
+            <p class="text-2xl text-center">No posts found.</p>
+          </div>
+        {{/each}}
+      </div>
+      {{#if (gt meta.total meta.limit)}}
+        {{> pagination/input-2 href=(urlFromParams (chain (baseUrl) "/posts-2") limit=meta.limit) page=meta.page pages=meta.pages}}
+      {{/if}}
+    {{/if}}
+  </div>
+</section>

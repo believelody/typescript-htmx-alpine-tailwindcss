@@ -1,0 +1,6 @@
+<textarea {{#if id}}id="{{ id }}"{{/if}}
+    {{#if name}}name="{{ name }}"{{/if}}
+    {{#if required}}required{{/if}}
+    {{#if data-loading-disable}}data-loading-disable{{/if}}
+    placeholder="{{ placeholder }}"
+    class="h-{{ height }} input w-full {{#if color}}input-{{color}}{{/if}} {{#if transition}}color-transition{{/if}} {{#if no-resize}}resize-none{{/if}}"></textarea>

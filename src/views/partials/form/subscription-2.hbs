@@ -1,0 +1,38 @@
+<div x-data="{ loading: false, success: false, error: '' }">
+        <form x-show="!success" @submit.prevent="
+                        loading = true;
+                        form = new FormData($el);
+                        res = await fetch('/api/subscription/2', {
+                                method: 'post',
+                                headers: {
+                                        'Content-type': 'application/json',
+                                        Accept: 'application/json',
+                                },
+                                body: JSON.stringify({ subscription: form.get('subscription')})
+                        });
+                        json = await res.json();
+                        loading = false;
+                        if (json.error) {
+                                error = json.error;
+                        } else {
+                                success = json.success;
+                        }
+                "
+                class="flex flex-wrap items-center justify-center md:flex-nowrap md:justify-start"
+        >
+                {{> field/email class="relative w-auto mr-2 sm:w-64 sm:mr-4" 
+                        name="subscription" placeholder="Type your email here"
+                        required=true }}
+                {{> button/primary-2
+                        outlined=true
+                        type="submit"
+                        label="Subscribe"
+                }}
+        </form>
+        <section x-show="success && !error">
+                {{> success/subscription }}
+        </section>
+        <section x-show="error && !success">
+                {{partial (toString 'modal/error-500') }}
+        </section>
+</div>

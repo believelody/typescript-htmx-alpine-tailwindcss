@@ -1,0 +1,10 @@
+{{!-- Pagination with button --}}
+<section class="w-2/3 sm:w-auto text-center text-lg mx-auto sm:mx-8">
+{{#each (arrayFrom pages) as |item|}}
+  {{#if (eq ../page (add @index 1))}}
+    <span class="px-4">{{add @index 1}}</span>
+  {{else}}
+    {{> link/base href=(append ../href '?page=' (numberIntoString (add @index 1))) label=(add @index 1) class="bg-neutral-700 text-white py-2 px-4 rounded-md" }}
+  {{/if}}
+{{/each}}
+</section>

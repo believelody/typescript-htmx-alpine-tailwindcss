@@ -1,0 +1,8 @@
+<a hx-boost="true" href="{{href}}" hx-target="{{withDefault target '#content'}}" class="{{class}}" hx-push-url="true" hx-swap="innerHTML">
+  {{#if label}}
+    <span>{{label}}</span>
+  {{/if}}
+  {{#if icon}}
+    <span>{{ icon.component }}</span>
+  {{/if}}
+</a>

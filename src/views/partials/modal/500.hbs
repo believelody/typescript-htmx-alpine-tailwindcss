@@ -1,0 +1,10 @@
+<div x-data="drawer" x-effect="open = errorMap.has('500');">
+    {{> element/modal
+            modal=(object
+                title=(partial 'title/default'
+                        text="An error occured"
+                        class="text-lg text-danger-500 border rounded-lg text-center py-4")
+                component=(partial 'error/500'))
+            class="p-8"
+        }}
+</div>

@@ -1,0 +1,11 @@
+<div class="flex justify-center items-center flex-col border-t gap-y-4 py-4" hx-get="/api/auth/check?component=sidebar" hx-swap="outerHTML" hx-trigger="check-auth from:body">
+  {{#if isAuthenticated}}
+    <h4 class="text-center">Hi <b>{{ user.username }}</b></h4>
+    {{> image/avatar size=22 src=user.image border="border" }}
+    {{> nav/user-dropdown }}
+  {{else}}
+    <template x-if="!currentRoute.includes('/login')">
+      {{> modal/login trigger=(partial 'button/primary-3' label="Login" x-bind="trigger" icon=(object component=(partial 'icon/arrow-right' fill="none")) ) }}
+    </template>
+  {{/if}}
+</div>
