@@ -14,7 +14,7 @@ router.use('/me', authMiddleware.checkUnauthenticatedUserAndRedirect, authMiddle
 router.get('/:id', httpMiddleware.numericParamsValidator, async (req: Request, res: Response, next: NextFunction) => {
 	try {
 		const { id } = req.params;
-		const user = await userService.fetchById(Number(id));
+		const user = await userService.findOneById(Number(id));
 		return res.render("pages/user", { ...req.ctx, user, title: user.username });
 	} catch (error) {
 		console.log(`In ${req.originalUrl} route : ${error}`);
@@ -27,8 +27,8 @@ router.get('/:id/posts', httpMiddleware.numericParamsValidator, httpMiddleware.l
 		const id = Number(req.params.id);
 		const limit = Number(req.query.limit || queryUtil.limitQueryArray[0]);
 		const page = Number(req.query.page) || 1;
-		const { posts, total } = await userService.fetchPosts(id, limit, limit * (page - 1)) as PostsBuilderResponse;
-		const author = await userService.fetchAuthor(id);
+		const { posts, total } = await userService.findPosts(id, limit, limit * (page - 1)) as PostsBuilderResponse;
+		const author = await userService.findAuthor(id);
 		return res.render("pages/posts-1", {
 			...req.ctx,
 			posts,
@@ -45,7 +45,7 @@ router.get('/:id/posts/:postId', httpMiddleware.numericParamsValidator, async (r
 	try {
 		const { id, postId } = req.params;
 		const { author, nextPost, post, prevPost } =
-			(await userService.fetchPostById(
+			(await userService.findPostById(
 				Number(id),
 				Number(postId)
 			)) as PostResponse;

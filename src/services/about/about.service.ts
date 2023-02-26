@@ -1,4 +1,4 @@
-const fetchAll = async () => {
+const findAll = async () => {
   return new Promise((resolve) => {
     resolve(Array(12).map((_, index) => ({
       src: `https://dummyimage.com/72${index}x40${index}`,
@@ -10,4 +10,4 @@ const fetchAll = async () => {
   });
 }
 
-export const aboutService = { fetchAll };
+export const aboutService = { findAll };

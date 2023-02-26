@@ -2,7 +2,7 @@
   <span class="flex items-center justify-center"
     {{#if data-loading-icon}}data-loading-class="hidden"{{/if}}
   >
-    {{> icon/heart-circle bg-icon-color="bg-secondary" fill=(cond liked undefined "none") size=6 color="text-white"}}
+    {{> icon/heart-circle bg-icon-color=bg-icon-color fill=(cond liked undefined "none") size=6 color="text-white"}}
   </span>
   {{#if data-loading-icon}}
     <span id="loading-icon"

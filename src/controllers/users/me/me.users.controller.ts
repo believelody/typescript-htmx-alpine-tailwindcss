@@ -27,7 +27,7 @@ router.get('/posts', httpMiddleware.limitQueryValidator, async (req: Request, re
 			if (!user) {
 				throw "Error route /me/posts: user is null";
 			}
-			const { posts, total } = await userService.me.fetchPosts(
+			const { posts, total } = await userService.me.findPosts(
 				user.id,
 				limit,
 				limit * (page - 1)
@@ -51,7 +51,7 @@ router.get('/posts/:id', httpMiddleware.numericParamsValidator, async (req: Requ
 		if (!user) {
 			throw "Error route /me/post:id: user is null";
 		}
-		const { author, nextPost, post, prevPost } = await userService.me.fetchPostById(user.id, Number(id));
+		const { author, nextPost, post, prevPost } = await userService.me.findPostById(user.id, Number(id));
 		return res.render('pages/posts-2/id', {
 			...req.ctx,
 			post: {

@@ -1,6 +1,6 @@
 import { Team } from "@interfaces/team.interface";
 
-const fetchAll = async (): Promise<Team[]> => {
+const findAll = async (): Promise<Team[]> => {
   return new Promise((resolve) => {
     resolve([
       {
@@ -52,4 +52,4 @@ const fetchAll = async (): Promise<Team[]> => {
   })
 };
 
-export const teamService = { fetchAll };
+export const teamService = { findAll };

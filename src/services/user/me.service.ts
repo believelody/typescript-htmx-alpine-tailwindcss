@@ -4,13 +4,13 @@ import { fetch } from "@services/fetch";
 import { userUtil } from "@utils/user/user.util";
 import { userService } from "./user.service";
 
-const fetchPosts = async (id: number, limit: number, skip: number): Promise<PostsBuilderResponse> => {
+const findPosts = async (id: number, limit: number, skip: number): Promise<PostsBuilderResponse> => {
   const res = await fetch.auth.get(`/users/${id}/posts?limit=${limit}&skip=${skip}`) as PostsResponse;
   const posts = userUtil.constructPosts(res.posts);
   return { posts, total: res.total };
 }
 
-const fetchPostById = async (id: number, postId: number): Promise<PostResponse> => {
+const findPostById = async (id: number, postId: number): Promise<PostResponse> => {
   const { posts } = await fetch.auth.get(`/users/${id}/posts`) as PostsResponse;
   const post = posts.find((p) => p.id === postId);
   if (!post) {
@@ -19,7 +19,7 @@ const fetchPostById = async (id: number, postId: number): Promise<PostResponse> 
   const postIndex = posts.findIndex((p) => p.id === post?.id);
   const prevPost = posts[postIndex - 1];
   const nextPost = posts[postIndex + 1];
-  const author = await userService.fetchAuthor(id);
+  const author = await userService.findAuthor(id);
   delete post.userId;
 
   return { post, prevPost, nextPost, author };
@@ -35,4 +35,4 @@ const commentPost = async (body: object): Promise<CommentResponse> => {
   return await fetch.auth.post(`/comments/add`, { body });
 }
 
-export default { fetchPosts, fetchPostById, reactToPost, commentPost };
+export default { findPosts, findPostById, reactToPost, commentPost };

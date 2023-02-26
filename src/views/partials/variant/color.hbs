@@ -1,0 +1,13 @@
+{{#let spread=this colors=(map items log)}}
+  {{!-- {{log label items colors}} --}}
+  <div class="flex gap-x-3">
+    {{#if label}}
+      <span>{{ label }}</span>
+    {{/if}}
+    <div class="flex gap-x-1">
+      {{#each items as |color|}}
+        <button class="border-2 border-gray-300 {{ color }} rounded-full w-6 h-6 focus:outline-none"></button>
+      {{/each}}
+    </div>
+  </div>
+{{/let}}

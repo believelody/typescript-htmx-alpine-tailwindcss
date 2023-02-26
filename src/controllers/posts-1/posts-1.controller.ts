@@ -15,7 +15,7 @@ router.get(
 		try {
 			const limit = Number(req.query.limit || queryUtil.limitQueryArray[0]);
 			const page = Number(req.query.page) || 1;
-			const { posts, total } = await postService.fetchAll(
+			const { posts, total } = await postService.findAll(
 				limit,
 				limit * (page - 1),
 				"/posts-1"
@@ -39,7 +39,7 @@ router.get(
 	async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			const { id } = req.params;
-			const { post, prevPost, nextPost, author } = await postService.fetchById(
+			const { post, prevPost, nextPost, author } = await postService.findOneById(
 				Number(id)
 			);
 			const user = req.session?.user;

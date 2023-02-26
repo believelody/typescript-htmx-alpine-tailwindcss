@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get("/", async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		const cards = await aboutService.fetchAll();
+		const cards = await aboutService.findAll();
 		return res.render("pages/about", { ...req.ctx, cards, title: "About Us" });
 	} catch (error) {
 		console.log(`In ${req.originalUrl} route : ${error}`);

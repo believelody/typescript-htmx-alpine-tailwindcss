@@ -1,7 +1,5 @@
 {{#let spread=this nb=5}}
-  <a href="/products/{{ id }}" class="block relative h-48 xl:h-64">
-    <img alt="{{ title }}" class="object-cover object-center w-full h-full block" src="{{ thumbnail }}">
-  </a>
+  {{> link/base href=(chain "/products/" (numberIntoString id)) class="block relative h-48 xl:h-64" image=(object alt=title src=thumbnail) }}
   <div class="mt-4 flex flex-col gap-y-1 px-2">
     <h4 class="tracking-widest flex gap-x-2 items-center">
       <span class="text-xs text-gray-500 ">Category:</span>

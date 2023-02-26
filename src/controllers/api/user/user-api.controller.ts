@@ -7,7 +7,7 @@ const router = express.Router();
 router.get('/:id/author-name', httpMiddleware.numericParamsValidator, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id } = req.params;
-    const author = await userService.fetchAuthor(Number(id));
+    const author = await userService.findAuthor(Number(id));
     return res.render("partials/element/author", { ...req.ctx, author });
   } catch (error) {
     console.log(`In ${req.originalUrl} route : ${error}`);

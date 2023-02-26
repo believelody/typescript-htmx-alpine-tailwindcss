@@ -5,4 +5,7 @@
   {{#if icon}}
     <span>{{ icon.component }}</span>
   {{/if}}
+  {{#if image}}
+    <img alt="{{ image.alt }}" class="object-cover object-center w-full h-full block" src="{{ image.src }}">
+  {{/if}}
 </a>

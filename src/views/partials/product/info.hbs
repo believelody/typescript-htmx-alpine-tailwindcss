@@ -1,0 +1,37 @@
+{{#let spread=this nb=5}}
+  <div class="flex flex-col w-full lg:w-1/2 gap-y-2">
+    <div class="flex items-center justify-between">
+      <div>
+        <h2 class="text-sm tracking-widest text-gray-500 uppercase title-font">{{product.brand}}</h2>
+        <h1 class="mb-1 text-3xl font-medium text-gray-900 title-font">{{product.title}}</h1>
+        <div class="relative flex gap-x-1">
+          {{> element/rating icon="star" apply-defs="linear-gradient" nb=nb value=(divide (multiply product.rating 100) nb) id=product.id fill="none" stroke="none" size=8 }}
+          <span>{{ product.rating }} Reviews</span>
+        </div>
+      </div>
+      <div class="flex items-center justify-end gap-x-2">
+        {{#if isAuthenticated}}
+          {{> button/heart-circle class="flex disabled:cursor-not-allowed disabled:bg-neutral-200"
+                hx-post=(append "/api/reaction/post/" (numberIntoString product.id)) hx-trigger="click" data-loading-target="#loading-3"
+                data-loading-busy=true data-loading-disable=true data-loading-icon="lottie/loading-1" liked=false
+                hx-target="#content" bg-icon-color="bg-secondary" hx-vals=(JSONstringify (object reaction=145)) data-loading-path=(append "/api/reaction/post/" (numberIntoString product.id))}}
+        {{else}}
+          <div x-data="drawer">
+            {{> button/heart-circle x-bind="trigger" bg-icon-color="bg-secondary" class="flex disabled:cursor-not-allowed disabled:bg-neutral-200"}}
+            {{> element/modal modal=(object component=(partial 'form/login' fromModal=true)) class="p-8"}}
+          </div>
+        {{/if}}
+        {{!-- {{button hx-post=(append "/reactions/" (numberIntoString post.id)) hx-trigger="click" hx-swap="outerHTML"}} --}}
+        <span>145</span>
+      </div>
+    </div>
+    <p class="py-2 leading-relaxed border-gray-100 grow border-y-2">{{ product.description }}</p>
+    <div class="flex flex-col gap-y-2">
+      {{> product/variants }}
+      <div class="flex items-center justify-between">
+        <span class="text-2xl font-medium text-gray-900 title-font">${{toFixed product.price 2}}</span>
+        {{> button/primary-3 label="Add to Cart" }}
+      </div>
+    </div>
+  </div>
+{{/let}}
