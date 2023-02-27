@@ -1,3 +1,12 @@
-{{!-- {{#modal-2 title="Cart"}} --}}
-   <h3>Item successfully added to your cart.</h3>
-{{!-- {{/modal-2}} --}}
+{{#> element/modal-2 title=(partial 'title/success' class='text-center underline underline-offset-2' tag='h2' text='Cart')}}
+   <h3>You successfully added this item to your cart :</h3>
+   <ul class="pl-4 mb-8 border-l-2">
+      {{#each cartItem.products as |item|}}
+         <li>
+            <h4>{{ item.title }}</h4>
+            <p>- Total price: ${{ item.price }} x {{ item.quantity }} = ${{item.total }}</p>
+         </li>
+      {{/each}}
+   </ul>
+   {{> button/primary-3 block=true label='See cart' }}
+{{/element/modal-2}}
