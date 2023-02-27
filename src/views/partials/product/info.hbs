@@ -21,17 +21,10 @@
             {{> element/modal modal=(object component=(partial 'form/login' fromModal=true)) class="p-8"}}
           </div>
         {{/if}}
-        {{!-- {{button hx-post=(append "/reactions/" (numberIntoString post.id)) hx-trigger="click" hx-swap="outerHTML"}} --}}
         <span>145</span>
       </div>
     </div>
     <p class="py-2 leading-relaxed border-gray-100 grow border-y-2">{{ product.description }}</p>
-    <div class="flex flex-col gap-y-2">
-      {{> product/variants }}
-      <div class="flex items-center justify-between">
-        <span class="text-2xl font-medium text-gray-900 title-font">${{toFixed product.price 2}}</span>
-        {{> button/primary-3 label="Add to Cart" }}
-      </div>
-    </div>
+    {{> form/product-add-to-cart }}
   </div>
 {{/let}}

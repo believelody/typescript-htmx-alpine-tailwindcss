@@ -1,0 +1,7 @@
+<form class="flex flex-col gap-y-2" hx-post="/api/cart/add-item" hx-target="#modal" hx-trigger="submit" hx-swap="innerHTML">
+  {{> product/variants }}
+  <div class="flex items-center justify-between">
+    <span class="text-2xl font-medium text-gray-900 title-font">${{toFixed product.price 2}}</span>
+    {{> button/primary-3 type="submit" label="Add to Cart" }}
+  </div>
+</form>

@@ -1,5 +1,6 @@
 import express from 'express';
 import { authApiController } from './auth/auth-api.controller';
+import { cartApiController } from './cart/cart-api.controller';
 import { commentApiController } from './comment/comment-api.controller';
 import { contactApiController } from './contact/contact-api.controller';
 import { productsApiController } from './products/product-api.controller';
@@ -16,5 +17,6 @@ router.use('/reaction', reactionApiController);
 router.use('/auth', authApiController);
 router.use('/contact', contactApiController);
 router.use('/products', productsApiController);
+router.use('/cart', cartApiController);
 
 export const apiController = router;

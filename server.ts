@@ -62,7 +62,7 @@ app.use(
 	regex,
 	url,
 	customHelpers,
-].forEach((helper) => hbs.registerHelper(helper));
+].forEach(helper => hbs.registerHelper(helper));
 
 // => Here we expose the views so it can be rendered.
 app.engine(

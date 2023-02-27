@@ -1,0 +1,17 @@
+<div class="flex items-center lg:flex-col">
+  {{#if label}}
+    <span>{{ label }}</span>
+  {{/if}}
+  <div x-data="{ quantity: {{ min }} }" class="flex items-center lg:justify-center gap-x-4 lg:gap-x-0">
+    {{> button/simple (object type='button'
+        :disabled=(chain "quantity === " (numberIntoString min))
+        x-on:click="quantity -= 1"
+        icon=(object component=(partial 'icon/minus') class='text-white')) }}
+    <input class="w-12 text-center input out-of-range:bg-danger-500" type="number" min="{{ min }}" max="{{ max }}"
+        x-model="quantity" name="quantity" pattern="/\d/g" />
+    {{> button/simple (object type='button'
+        :disabled=(chain "quantity === " (numberIntoString max))
+        x-on:click="quantity += 1"
+        icon=(object component=(partial 'icon/plus') class='text-white')) }}
+  </div>
+</div>
