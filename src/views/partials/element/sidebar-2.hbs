@@ -2,14 +2,14 @@
 <div id="{{ id }}" class="sidebar">
     <div class="underlay" onclick="sidebar.close('{{ id }}')">
     </div>
-    <div class="sidebar-content-slide-to-right">
-        <div class="flex items-center justify-between w-full border-b min-h-[3em]">
+    <div class="sidebar-content slide-to-right">
+        <div class="flex items-center justify-between w-full p-2">
             {{#if title }}
                 {{ title }}
             {{/if}}
             <section class="flex items-center justify-end">
                 <button
-                    class="bg-white border rounded-full hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
+                    class="bg-white border rounded hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
                     onclick="sidebar.close('{{ id }}')">
                     <span sr-only="Close modal" class="inline-flex items-center p-1 text-sm text-gray-700 bg-transparent">
                         {{> icon/close size=6 stroke="none"  }}
@@ -17,8 +17,8 @@
                 </button>
             </section>
         </div>
-        <div class="block overflow-y-auto">
-            {{> @partial-block user=user isAuthenticated=isAuthenticated }}
+        <div class="flex h-auto overflow-auto">
+            {{> @partial-block }}
         </div>
     </div>
 </div>

@@ -9,9 +9,11 @@ router.get("/:id", httpMiddleware.numericParamsValidator, async (req: Request, r
 	try {
 		const id = Number(req.params.id);
     const cart = await fetch.get(`/carts/${id}`) as Cart;
-    console.log({ cart });
-    
-    return res.render('partials/sidebar/cart-2', { ...req.ctx, cart })
+    req.session.cart = cart;    
+    return res.render("partials/sidebar/cart-2", {
+			...req.ctx,
+			cart: req.session.cart,
+		});
 	} catch (error) {
 		console.log(`In ${req.originalUrl} route : ${error}`);
 		next(error);

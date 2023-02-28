@@ -1,4 +1,4 @@
-<a hx-boost="true" href="{{ href }}" hx-indicator="#loading-3" hx-push-url="true" hx-swap="innerHTML" hx-target="#content"
+<a hx-boost="true" href="{{ href }}" hx-indicator="#loading-3" hx-push-url="true" hx-swap="innerHTML" hx-target="{{withDefault target '#content' }}"
     class="{{cond bold (append 'font-' bold) '' }} {{cond text-size (chain "text-" text-size) ""}} inline-flex {{cond (eq icon.position "left") "flex-row-reverse" ""}} gap-x-2 items-center box-border link {{withDefault color ''}}"
 >
     {{#if label}}

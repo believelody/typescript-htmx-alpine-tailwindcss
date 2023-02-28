@@ -1,0 +1,17 @@
+<li hx-boost="true" class="flex border rounded h-[10rem]">
+  <a href="/product/{{ id }}" hx-get="/api/products/{{ id }}/image" hx-trigger="load" class="max-w-[6rem]"></a>
+  <div class="flex flex-col justify-between w-full p-2">
+    <div class="flex items-center justify-between">
+      {{> link/base class="text-md" href=(chain "/product/" (numberIntoString id)) label=title }}
+      {{> button/trash class="h-10 p-2 border rounded border-danger-500 text-danger-500" size=6 }}
+    </div>
+    <div class="flex items-center justify-between">
+      <span>Quantity :</span>
+      {{> variant/quantity value=quantity min=1 max=5 }}
+    </div>
+    <div class="flex items-center justify-between">
+      <span class="shrink-0">price: ${{ price }}</span>
+      <span>total: ${{ total }}</span>
+    </div>
+  </div>
+</li>

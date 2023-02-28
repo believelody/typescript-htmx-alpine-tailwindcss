@@ -6,6 +6,6 @@
     <span>{{ icon.component }}</span>
   {{/if}}
   {{#if image}}
-    <img alt="{{ image.alt }}" class="object-cover object-center w-full h-full block" src="{{ image.src }}">
+    {{> image/default alt=image.alt src=image.src }}
   {{/if}}
 </a>
