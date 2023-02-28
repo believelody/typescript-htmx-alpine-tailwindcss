@@ -5,6 +5,4 @@ import notifier from './x-data/notifier.js';
 Alpine.data('drawer', drawer);
 Alpine.data('notifier', notifier);
 
-window.Alpine = Alpine;
-
-window.Alpine.start();
+export default Alpine;

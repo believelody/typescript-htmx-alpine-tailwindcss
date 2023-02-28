@@ -1,4 +1,4 @@
-const modal = {
+export default {
   close(id) {
     const modal = document.getElementById(id);
     modal.classList.add('closing');
