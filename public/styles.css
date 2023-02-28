@@ -2254,7 +2254,7 @@ input[type=number] {
   animation:zoomIn 250ms ease;
 }
 
-.sidebar > .sidebar-content {
+.sidebar > .sidebar-content-slide-to-left {
   position: fixed;
   top: 0px;
   left: 0px;
@@ -2269,9 +2269,24 @@ input[type=number] {
   animation: slideLeftIn 500ms ease forwards;
 }
 
+.sidebar > .sidebar-content-slide-to-right {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  max-width: 28rem;
+  flex-direction: column;
+  overflow-y: hidden;
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  animation: slideRightIn 500ms ease forwards;
+}
+
 .modal.closing, .sidebar.closing {
   /* Animate when closing */
-  animation: fadeOut 250ms ease forwards;
+  animation: fadeOut 500ms ease forwards;
 }
 
 .modal.closing > .modal-content {
@@ -2279,9 +2294,14 @@ input[type=number] {
   animation: zoomOut 250ms ease forwards;
 }
 
-.sidebar.closing > .sidebar-content {
+.sidebar.closing > .sidebar-content-slide-to-left {
   /* Animate when closing */
   animation: slideLeftOut 500ms ease forwards;
+}
+
+.sidebar.closing > .sidebar-content-slide-to-right {
+  /* Animate when closing */
+  animation: slideRightOut 500ms ease forwards;
 }
 
 @keyframes fadeIn {
@@ -2341,6 +2361,26 @@ input[type=number] {
 
   100% {
     transform: translateX(-100%);
+  }
+}
+
+@keyframes slideRightIn {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideRightOut {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(100%);
   }
 }
 
