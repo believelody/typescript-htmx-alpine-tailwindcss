@@ -1,8 +1,22 @@
 import { fetch } from '@services/fetch';
 import express, { NextFunction, Request, Response } from 'express';
 import { Cart } from '@interfaces/cart.interface';
+import { httpMiddleware } from '@middlewares/http/http.middleware';
 
 const router = express.Router();
+
+router.get("/:id", httpMiddleware.numericParamsValidator, async (req: Request, res: Response, next: NextFunction) => {
+	try {
+		const id = Number(req.params.id);
+    const cart = await fetch.get(`/carts/${id}`) as Cart;
+    console.log({ cart });
+    
+    return res.render('partials/sidebar/cart-2', { ...req.ctx, cart })
+	} catch (error) {
+		console.log(`In ${req.originalUrl} route : ${error}`);
+		next(error);
+	}
+});
 
 router.post("/add-item", async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -20,6 +34,6 @@ router.post("/add-item", async (req: Request, res: Response, next: NextFunction)
     console.log(`In ${req.originalUrl} route : ${error}`);
 		next(error);
   }
-})
+});
 
 export const cartApiController = router;

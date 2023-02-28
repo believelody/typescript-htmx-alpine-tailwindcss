@@ -2211,7 +2211,7 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
-.modal {
+.modal, .sidebar {
   position: fixed;
   top: 0px;
   bottom: 0px;
@@ -2227,7 +2227,7 @@ input[type=number] {
   animation: fadeIn 150ms ease forwards;
 }
 
-.modal > .modal-underlay {
+.underlay {
   /* underlay takes up the entire viewport. This is only
 	required if you want to click to dismiss the popup */
   position: absolute;
@@ -2246,22 +2246,42 @@ input[type=number] {
   max-width: 42rem;
   flex-direction: column;
   justify-content: space-between;
-  border-radius: 0.25rem;
+  border-radius: 0.375rem;
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
   padding: 0.5rem;
   /* Animate when opening */
-  animation:zoomIn 150ms ease;
+  animation:zoomIn 250ms ease;
 }
 
-.modal.closing {
+.sidebar > .sidebar-content {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  max-width: 28rem;
+  flex-direction: column;
+  overflow-y: hidden;
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  animation: slideLeftIn 500ms ease forwards;
+}
+
+.modal.closing, .sidebar.closing {
   /* Animate when closing */
-  animation: fadeOut 150ms ease forwards;
+  animation: fadeOut 250ms ease forwards;
 }
 
 .modal.closing > .modal-content {
-  /* Aniate when closing */
-  animation: zoomOut 150ms ease forwards;
+  /* Animate when closing */
+  animation: zoomOut 250ms ease forwards;
+}
+
+.sidebar.closing > .sidebar-content {
+  /* Animate when closing */
+  animation: slideLeftOut 500ms ease forwards;
 }
 
 @keyframes fadeIn {
@@ -2301,6 +2321,26 @@ input[type=number] {
 
   100% {
     transform: scale(0.9);
+  }
+}
+
+@keyframes slideLeftIn {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideLeftOut {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-100%);
   }
 }
 
@@ -2652,6 +2692,10 @@ input[type=number] {
 
   .lg\:w-4\/5 {
     width: 80%;
+  }
+
+  .lg\:max-w-md {
+    max-width: 28rem;
   }
 
   .lg\:grid-cols-3 {

@@ -1,4 +1,4 @@
-export default function() {
-  console.log("Arguments of fn helper : ", arguments);
-  return () => console.log(...Object.values(arguments).slice(0, -1));
+export default function(nameFn: string, { hash }) {
+  const fn = eval(nameFn);
+  return () => fn(...Object.values(hash));
 }
