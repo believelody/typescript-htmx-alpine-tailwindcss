@@ -1,0 +1,28 @@
+{{#let spread=this id=(chain 'sidebar-' (uuid))}}
+<div class="sidebar">
+    <div class="underlay">
+    </div>
+    <div class="sidebar-content">
+        <div class="flex items-center justify-between w-full border-b min-h-[3em]">
+            {{#if title }}
+                {{ title }}
+            {{/if}}
+            <section class="flex justify-end">
+                <button
+                    class="absolute p-2 bg-white border rounded-full -top-4 -right-4 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
+                    onclick="modal.close('{{ id }}')">
+                    <span sr-only="Close modal" class="inline-flex items-center p-1 text-sm text-gray-700 bg-transparent">
+                        {{> icon/close size=6 stroke="none"  }}
+                    </span>
+                </button>
+            </section>
+        </div>
+        <div class="block overflow-y-auto">
+            {{#each components as |component| }}
+                {{> (toString component) user=../user isAuthenticated=../isAuthenticated }}
+                {{!-- {{ component }} --}}
+            {{/each}}
+        </div>
+    </div>
+</div>
+{{/let}}

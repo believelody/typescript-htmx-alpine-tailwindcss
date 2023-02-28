@@ -1,17 +1,21 @@
 {{#let spread=this id=(chain 'modal-' (uuid))}}
     <div id="{{ id }}" class="modal">
-        <div class="modal-underlay" onclick="modal.close('{{ id }}')"></div>
+        <div class="underlay" onclick="modal.close('{{ id }}')"></div>
         <div class="modal-content">
-            <button class="absolute p-2 bg-white border rounded-full -top-4 -right-4 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
-                onclick="modal.close('{{ id }}')">
-                <span sr-only="Close modal" class="inline-flex items-center p-1 text-sm text-gray-700 bg-transparent">
-                    {{> icon/close size=6 stroke="none"  }}
-                </span>
-            </button>
+            {{#unless noCloseButton}}
+                <button
+                    class="absolute p-2 bg-white border rounded-full -top-4 -right-4 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
+                    onclick="modal.close('{{ id }}')">
+                    <span sr-only="Close modal"
+                        class="inline-flex items-center p-1 text-sm text-gray-700 bg-transparent">
+                        {{> icon/close size=6 stroke="none"  }}
+                    </span>
+                </button>
+            {{/unless}}
             {{#if title }}
                 {{ title }}
             {{/if}}
-            <div class="pt-4 mt-4 overflow-y-auto">
+            <div class="container pt-4 mt-4 overflow-y-auto">
                 {{> @partial-block }}
             </div>
         </div>
