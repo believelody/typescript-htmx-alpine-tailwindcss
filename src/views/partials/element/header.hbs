@@ -4,8 +4,8 @@
     {{> nav/menu-list }}
     {{> sidebar/menu }}
     <div class="flex gap-x-4">
-      {{!-- {{> sidebar/cart }} --}}
-      <button class="px-4 bg-transparent" hx-get='/api/cart/2' hx-target='body' hx-swap='beforeend' hx-trigger='click'>
+      {{!-- <button class="px-4 bg-transparent" hx-get='/api/cart/2' hx-target='body' hx-swap='beforeend' hx-trigger='click'> --}}
+      <button class="px-4 bg-transparent" hx-get='/cart/2' hx-push-url="true" hx-target='body' hx-swap='beforeend' hx-trigger='click'>
         {{> icon/cart fill="none" size=8 }}
       </button>
       {{> auth/header }}

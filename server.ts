@@ -35,6 +35,7 @@ import { productsController } from "@controllers/products/products.controller";
 import { loginController } from "@controllers/login/login.controller";
 import { usersController } from "@controllers/users/users.controller";
 import { apiController } from "@controllers/api/api.controller";
+import { cartController } from "@controllers/cart/cart.controller";
 config();
 
 const app = express();
@@ -82,6 +83,7 @@ app.use(htmxMiddleware.checkHTMXRequest);
 app.use(sessionMiddleware.populateUserSessionInContext);
 app.use("/", authMiddleware.setCheckAuthAsHxTrigger, homeController);
 app.use("/about", authMiddleware.setCheckAuthAsHxTrigger, aboutController);
+app.use("/cart", cartController);
 app.use("/contact", authMiddleware.setCheckAuthAsHxTrigger, contactController);
 app.use("/posts-1", authMiddleware.setCheckAuthAsHxTrigger, posts1Controller);
 app.use("/posts-2", authMiddleware.setCheckAuthAsHxTrigger, posts2Controller);

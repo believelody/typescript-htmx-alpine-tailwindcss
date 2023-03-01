@@ -1,8 +1,10 @@
 export default {
-  close(id) {
+  close(id, back = false) {
     const sidebar = document.getElementById(id);
-    console.log({ sidebar });
     sidebar.classList.add('closing');
+    if (back) {
+      window.history.back();
+    }
     sidebar.onanimationend = () => sidebar.remove();
   }
 };
