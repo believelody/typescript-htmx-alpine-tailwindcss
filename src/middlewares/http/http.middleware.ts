@@ -54,4 +54,11 @@ const limitQueryValidator = (req: Request, res: Response, next: NextFunction) =>
   next();
 }
 
-export const httpMiddleware = { numericParamsValidator, error500Handler, error404NotFound, limitQueryValidator, popupalteCurrentURLInContext };
+const sleep = async (req: Request, res: Response, next: NextFunction) => {
+  await new Promise<void>((resolve, reject) => {
+    setTimeout(resolve, 2000);
+  })
+  next();
+}
+
+export const httpMiddleware = { numericParamsValidator, error500Handler, error404NotFound, limitQueryValidator, popupalteCurrentURLInContext, sleep };

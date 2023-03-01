@@ -20,7 +20,7 @@ router.get("/:id", httpMiddleware.numericParamsValidator, async (req: Request, r
 	}
 });
 
-router.post("/add-item", async (req: Request, res: Response, next: NextFunction) => {
+router.post("/add-item", httpMiddleware.sleep, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id, quantity } = req.body;
     
