@@ -70,7 +70,7 @@ input[type=number] {
 }
 
 .sidebar > .sidebar-content {
-	@apply fixed top-0 flex flex-col w-full h-screen max-w-md overflow-y-hidden bg-white;
+	@apply fixed top-0 flex flex-col w-full h-screen max-w-xl overflow-y-hidden bg-white;
 }
 
 .sidebar > .slide-to-left {

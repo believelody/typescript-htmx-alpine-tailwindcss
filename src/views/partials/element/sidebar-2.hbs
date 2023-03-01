@@ -1,27 +1,28 @@
 {{#let spread=this sidebar-id=(chain 'sidebar-' (uuid))}}
-<div id="{{ sidebar-id }}" class="sidebar">
-    {{!-- <div class="underlay" onclick="sidebar.close('{{ sidebar-id }}')"> --}}
-    <div class="underlay" onclick="sidebar.close('{{ sidebar-id }}')">
-    </div>
-    <div class="sidebar-content slide-to-right">
-        <div class="flex items-center justify-between w-full p-2">
-            {{#if title }}
-                {{ title }}
-            {{/if}}
-            <section class="flex items-center justify-end">
-                <button
-                    class="bg-white border rounded hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
-                    {{!-- onclick="sidebar.close('{{ sidebar-id }}')"> --}}
-                    onclick="sidebar.close('{{ sidebar-id }}')">
-                    <span sr-only="Close modal" class="inline-flex items-center p-1 text-sm text-gray-700 bg-transparent">
-                        {{> icon/close size=6 stroke="none"  }}
-                    </span>
-                </button>
-            </section>
+    <div id="{{ sidebar-id }}" class="sidebar">
+        {{!-- <div class="underlay" onclick="sidebar.close('{{ sidebar-id }}')"> --}}
+        <div class="underlay" onclick="sidebar.close('{{ sidebar-id }}')">
         </div>
-        <div class="flex h-auto overflow-auto">
-            {{> @partial-block }}
+        <div class="sidebar-content slide-to-right">
+            <div class="flex items-center justify-between w-full p-2">
+                {{#if title }}
+                    {{ title }}
+                {{/if}}
+                <section class="flex items-center justify-end">
+                    <button
+                        class="bg-white border rounded hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
+                        {{!-- onclick="sidebar.close('{{ sidebar-id }}')"> --}}
+                        onclick="sidebar.close('{{ sidebar-id }}')">
+                        <span sr-only="Close modal"
+                            class="inline-flex items-center p-1 text-sm text-gray-700 bg-transparent">
+                            {{> icon/close size=6 stroke="none"  }}
+                        </span>
+                    </button>
+                </section>
+            </div>
+            <div class="flex h-full overflow-auto">
+                {{> @partial-block }}
+            </div>
         </div>
     </div>
-</div>
 {{/let}}

@@ -1,3 +1,6 @@
-{{#button spread=this}}
-  {{> icon/cart fill="none" size=size }}
-{{/button}}
+<button class="flex items-center gap-x-2 px-4 py-2 md:py-1 bg-transparent {{cond cart 'border rounded' ''}}" hx-get='/api/cart' hx-target='body' hx-swap='beforeend' hx-trigger='click'>
+  {{> icon/cart fill="none" size=8 }}
+  {{#if cart}}
+     {{> element/badge value=cart.totalProducts padding="px-2" background="bg-warning-500" }}
+  {{/if}}
+</button>

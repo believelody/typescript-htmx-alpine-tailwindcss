@@ -1253,10 +1253,6 @@ h6 {
   height: 10rem;
 }
 
-.h-auto {
-  height: auto;
-}
-
 .h-full {
   height: 100%;
 }
@@ -1792,6 +1788,11 @@ h6 {
   background-color: rgb(254 252 232 / var(--tw-bg-opacity));
 }
 
+.bg-warning-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(234 179 8 / var(--tw-bg-opacity));
+}
+
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -2293,7 +2294,7 @@ input[type=number] {
   display: flex;
   height: 100vh;
   width: 100%;
-  max-width: 28rem;
+  max-width: 36rem;
   flex-direction: column;
   overflow-y: hidden;
   --tw-bg-opacity: 1;
@@ -2733,6 +2734,11 @@ input[type=number] {
   .md\:px-0 {
     padding-left: 0px;
     padding-right: 0px;
+  }
+
+  .md\:py-1 {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
   }
 
   .md\:pb-0 {
