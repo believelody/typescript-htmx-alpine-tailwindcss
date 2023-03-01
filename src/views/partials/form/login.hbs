@@ -7,11 +7,13 @@
         {{> link/primary href="/register" label="Register now !" text-size="lg" bold="medium" }}
     </p>
 </div>
-<form hx-post="/api/auth/login" {{#if fromModal}}@submit.prevent="lock = true;" hx-vals='{ "stay_on_current_url" : true }'{{/if}} hx-swap="innerHTML" hx-trigger="submit" class="mt-8 space-y-6" hx-target="#content">
+<form hx-post="/api/auth/login" data-loading-path="api/auth/login" {{#if fromModal}}@submit.prevent="lock = true;"
+    hx-vals='{ "stay_on_current_url" : true }'{{/if}} hx-swap="innerHTML" hx-trigger="submit" class="mt-8 space-y-6"
+    hx-target="#content">
     <div x-show="errorMap.has('login')" x-transition>
-        <p class="text-danger-500 text-center text-xl" x-text="errorMap.get('login')"></p>
+        <p class="text-xl text-center text-danger-500" x-text="errorMap.get('login')"></p>
     </div>
-    
+
     <div class="rounded-md shadow-sm">
         {{> field/email name="login-email" id=(chain "login-email-" (uuid)) placeholder="Email address" required=true label-class="sr-only" }}
         {{> field/password-2 name="password" id=(chain "password-" (uuid)) placeholder="Password" required=true label-class="sr-only" }}
