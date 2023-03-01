@@ -1,4 +1,4 @@
-<a hx-boost="true" href="{{href}}" hx-target="{{withDefault target '#content'}}" class="{{class}}" hx-push-url="true" hx-swap="innerHTML">
+<a hx-boost="true" {{#if onclick}}onclick="{{ onclick }}"{{/if}} href="{{href}}" hx-target="{{withDefault target '#content'}}" class="{{class}}" hx-push-url="true" hx-swap="innerHTML">
   {{#if label}}
     <span>{{label}}</span>
   {{/if}}

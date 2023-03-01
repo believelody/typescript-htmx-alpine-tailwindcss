@@ -2,7 +2,7 @@
   {{#if label}}
     <span>{{ label }}</span>
   {{/if}}
-  <div x-data="{ quantity: {{withDefault value min }} }" class="flex items-center lg:justify-center gap-x-4 lg:gap-x-1">
+  <div x-data="{ quantity: {{withDefault value min }} }" class="flex items-center lg:justify-center gap-x-2">
     {{> button/simple (object type='button'
         :disabled=(chain "quantity === " (numberIntoString min))
         x-on:click="quantity -= 1"

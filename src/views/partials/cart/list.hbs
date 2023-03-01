@@ -1,5 +1,5 @@
 <ul class="flex flex-col w-full overflow-auto gap-y-4">
   {{#each items as |data|}}
-    {{> cart/item data }}
+    {{> cart/item sidebar-id=../sidebar-id data=data }}
   {{/each}}
 </ul>

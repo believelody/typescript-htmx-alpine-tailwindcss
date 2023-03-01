@@ -1,7 +1,7 @@
-{{#let spread=this id=(chain 'sidebar-' (uuid))}}
-<div id="{{ id }}" class="sidebar">
-    {{!-- <div class="underlay" onclick="sidebar.close('{{ id }}')"> --}}
-    <div class="underlay" onclick="sidebar.close('{{ id }}', true)">
+{{#let spread=this sidebar-id=(chain 'sidebar-' (uuid))}}
+<div id="{{ sidebar-id }}" class="sidebar">
+    {{!-- <div class="underlay" onclick="sidebar.close('{{ sidebar-id }}')"> --}}
+    <div class="underlay" onclick="sidebar.close('{{ sidebar-id }}', true)">
     </div>
     <div class="sidebar-content slide-to-right">
         <div class="flex items-center justify-between w-full p-2">
@@ -11,8 +11,8 @@
             <section class="flex items-center justify-end">
                 <button
                     class="bg-white border rounded hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
-                    {{!-- onclick="sidebar.close('{{ id }}')"> --}}
-                    onclick="sidebar.close('{{ id }}', true)">
+                    {{!-- onclick="sidebar.close('{{ sidebar-id }}')"> --}}
+                    onclick="sidebar.close('{{ sidebar-id }}', true)">
                     <span sr-only="Close modal" class="inline-flex items-center p-1 text-sm text-gray-700 bg-transparent">
                         {{> icon/close size=6 stroke="none"  }}
                     </span>

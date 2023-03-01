@@ -2577,6 +2577,10 @@ input[type=number] {
 }
 
 @media (min-width: 375px) {
+  .xs\:block {
+    display: block;
+  }
+
   .xs\:px-5 {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
@@ -2603,6 +2607,10 @@ input[type=number] {
 
   .sm\:mt-0 {
     margin-top: 0px;
+  }
+
+  .sm\:block {
+    display: block;
   }
 
   .sm\:w-64 {
