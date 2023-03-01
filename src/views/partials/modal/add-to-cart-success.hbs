@@ -9,7 +9,6 @@
             </li>
          {{/each}}
       </ul>
-      {{!-- {{> button/primary-3 block=true onclick=(chain 'modal.close("' id '")') label='See cart' hx-get='/api/cart/1' hx-target='body' hx-swap='beforeend' hx-trigger='click' }} --}}
-      {{> button/primary-3 block=true onclick=(chain 'modal.close("' id '")') label='See cart' hx-push-url="true" hx-get='/cart/1' hx-target='body' hx-swap='beforeend' hx-trigger='click' }}
+      {{> button/primary-3 block=true onclick=(chain 'modal.close("' modal-id '")') label='See cart' hx-get='/api/cart/1' hx-target='body' hx-swap='beforeend' hx-trigger='click' }}
    </div>
 {{/element/modal-2}}

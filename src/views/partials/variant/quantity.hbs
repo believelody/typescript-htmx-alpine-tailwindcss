@@ -3,13 +3,13 @@
     <span>{{ label }}</span>
   {{/if}}
   <div x-data="{ quantity: {{withDefault value min }} }" class="flex items-center lg:justify-center gap-x-2">
-    {{> button/simple (object type='button'
+    {{> button/secondary-3 (object type='button'
         :disabled=(chain "quantity === " (numberIntoString min))
         x-on:click="quantity -= 1"
         icon=(object component=(partial 'icon/minus') class='text-white')) }}
     <input class="w-12 text-center input out-of-range:bg-danger-500" type="number" min="{{ min }}" max="{{ max }}"
         x-model="quantity" name="quantity" pattern="/\d/g" />
-    {{> button/simple (object type='button'
+    {{> button/secondary-3 (object type='button'
         :disabled=(chain "quantity === " (numberIntoString max))
         x-on:click="quantity += 1"
         icon=(object component=(partial 'icon/plus') class='text-white')) }}
