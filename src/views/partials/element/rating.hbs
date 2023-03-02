@@ -1,5 +1,5 @@
 {{#let spread=this chunk=(divide 100 nb)}}
-  <ul class="list-none flex items-center">
+  <ul class="flex items-center list-none">
     {{#each (arrayFrom nb)}}
       <li>
         {{> (chain "icon/" ../icon)

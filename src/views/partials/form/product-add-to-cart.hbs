@@ -1,8 +1,7 @@
 <form class="flex flex-col gap-y-4" hx-post="/api/cart/add-item" data-loading-path="/api/cart/add-item" hx-target="body" hx-vals='{ "id" : {{ product.id }} }' hx-trigger="submit" hx-swap="beforeend">
   {{> product/variants }}
   <div class="flex items-center justify-between">
-    <span class="text-2xl font-medium text-gray-900 title-font">${{toFixed product.price 2}}</span>
-    {{> button/primary-3 type="submit" label="Add to Cart" data-loading-disable=true data-loading-text="Adding in cart..." data-loading-aria-busy=true
+    {{> button/primary-3 type="submit" block=true label="Add to Cart" data-loading-disable=true data-loading-text="Adding in cart..." data-loading-aria-busy=true
     data-loading-icon="lottie/loading-1" }}
   </div>
 </form>
