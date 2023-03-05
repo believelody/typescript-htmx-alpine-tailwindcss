@@ -1,7 +1,7 @@
 {{!< main }}
 {{> element/seo }}
-<section class="text-gray-600 body-font" id="container">
-  <div class="container mx-auto flex flex-col gap-y-4 px-2 py-12">
+<section class="text-gray-600 body-font">
+  <div class="container flex flex-col px-2 py-12 mx-auto gap-y-4">
     <div class="flex items-center justify-start gap-x-4">
       {{> limit/default
             group=(toArray 6 18 30)
@@ -9,7 +9,7 @@
             meta=meta
       }}
     </div>
-    <ul class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 h-full" id="product-list">
+    <ul class="grid h-full gap-3 sm:grid-cols-2 lg:grid-cols-3" id="product-list">
       {{> product/list }}
     </ul>
     {{> product/action }}
