@@ -5,7 +5,8 @@ const retrieveAppropriateBackUrl = (backURL: string, backupURL: string): string 
     return backupURL;
   }
   const backURLObject = new URL(backURL);
-  return backURLObject.pathname.startsWith(`${backupURL}?`) ? `${backURLObject.pathname}${backURLObject.search}` : backupURL;
+  
+  return backURLObject.search ? `${backURLObject.pathname}${backURLObject.search}` : backupURL;
 }
 
 const baseUrl = `http://localhost:${envConfig.port}`;
