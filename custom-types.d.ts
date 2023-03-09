@@ -13,6 +13,7 @@ declare module "express-session" {
 		token?: string;
 		meta?: Meta;
 		currentURLPathname: string;
+		remember?: boolean;
 	}
 }
 
