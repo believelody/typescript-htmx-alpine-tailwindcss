@@ -15,7 +15,7 @@ const findOneById = async (id: number): Promise<PostResponse> => {
   const post = await fetch.get(`/posts/${id}`) as Post;
   const prevPost = await fetch.get(`/posts/${id - 1}?select=id`) as Post;
   const nextPost = await fetch.get(`/posts/${id + 1}?select=id`) as Post;
-  const author = await userService.findAuthor(post.userId) as Author;
+  const author = await userService.findAuthor(post.userId);
   delete post.userId;
 
   return { post, prevPost, nextPost, author };

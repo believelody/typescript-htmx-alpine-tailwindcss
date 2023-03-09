@@ -5,11 +5,11 @@ const code500 = "Error: something went wrong.";
 const handleFetchError = <T>(data: FetchError & T): FetchError & T => {
   if (data.message) {
 		console.log("Error message : ", data.message);
-		throw data.message;
+		throw new Error(data.message);
 	}
   if (data.name) {
     console.log("Error code : ", data.code);
-    throw data.name;
+    throw new Error(data.name);
   }
   return data;
 }

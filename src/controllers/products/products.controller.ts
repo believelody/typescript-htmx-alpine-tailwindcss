@@ -19,7 +19,7 @@ router.get(
 			const { products, total } = (await productService.findAll(
 				count,
 				0
-			)) as ProductResponse;
+			));
 			return res.render("pages/products", {
 				...req.ctx,
 				products,
@@ -39,7 +39,7 @@ router.get(
 	async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			const id = Number(req.params.id);
-			const product = (await productService.findOneById(id)) as Product;
+			const product = (await productService.findOneById(id));
 			const prevProductId = id - 1;
 			const nextProductId = id + 1;
 

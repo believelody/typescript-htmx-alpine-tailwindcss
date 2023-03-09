@@ -1,4 +1,3 @@
-import { PostResponse, PostsBuilderResponse } from '@interfaces/post.interface';
 import { authMiddleware } from '@middlewares/auth/auth.middleware';
 import { httpMiddleware } from '@middlewares/http/http.middleware';
 import { userService } from '@services/user/user.service';
@@ -27,7 +26,7 @@ router.get('/:id/posts', httpMiddleware.numericParamsValidator, httpMiddleware.l
 		const id = Number(req.params.id);
 		const limit = Number(req.query.limit || queryUtil.limitQueryArray[0]);
 		const page = Number(req.query.page) || 1;
-		const { posts, total } = await userService.findPosts(id, limit, limit * (page - 1)) as PostsBuilderResponse;
+		const { posts, total } = await userService.findPosts(id, limit, limit * (page - 1));
 		const author = await userService.findAuthor(id);
 		return res.render("pages/posts-1", {
 			...req.ctx,
@@ -48,7 +47,7 @@ router.get('/:id/posts/:postId', httpMiddleware.numericParamsValidator, async (r
 			(await userService.findPostById(
 				Number(id),
 				Number(postId)
-			)) as PostResponse;
+			));
 		return res.render("pages/posts-1/id", {
 			...req.ctx,
 			post: {

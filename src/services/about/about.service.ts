@@ -1,4 +1,6 @@
-const findAll = async () => {
+import { AboutContent } from "@interfaces/about.interface";
+
+const findAll = async (): Promise<AboutContent[]> => {
   return new Promise((resolve) => {
     resolve(Array(12).map((_, index) => ({
       src: `https://dummyimage.com/72${index}x40${index}`,

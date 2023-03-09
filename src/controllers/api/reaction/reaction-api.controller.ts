@@ -14,12 +14,12 @@ router.post(
 			const reactions = isPostLiked
 				? Number(req.body.reaction) - 1
 				: Number(req.body.reaction) + 1;
-			const post = await userService.me.reactToPost(id, reactions);
+			await userService.me.reactToPost(id, reactions);
 			if (req.session?.user) {
 				req.session.user.likedPosts = req.session.user.likedPosts?.length
 					? isPostLiked
-						? req.session.user.likedPosts?.filter((l) => l !== Number(id))
-						: [Number(id), ...req.session.user.likedPosts]
+						? req.session.user.likedPosts?.filter((l) => l !== id)
+						: [id, ...req.session.user.likedPosts]
 					: [];
 				if (req.cookies.session_remember) {
 					res.cookie("session_user", req.session.user);

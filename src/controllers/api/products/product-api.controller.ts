@@ -1,6 +1,4 @@
-import { Product, ProductResponse } from '@interfaces/product.interface';
 import { httpMiddleware } from '@middlewares/http/http.middleware';
-import { fetch } from '@services/fetch';
 import { productService } from '@services/product/product.service';
 import { queryUtil } from '@utils/query/query.util';
 import express, { NextFunction, Request, Response } from 'express';
@@ -28,7 +26,7 @@ router.get(
 				const htmxRes = (await productService.findAll(
 					limit,
 					count - limit
-				)) as ProductResponse;
+				));
 				if (req.session) {
 					req.session.meta = { total: htmxRes.total, limit, count };
 				}
@@ -49,7 +47,7 @@ router.get(
 					products: htmxRes.products,
 				});
 			}
-			throw "Error: count query is undefined or request doesn't come from htmx";
+			throw new Error("count query is undefined or request doesn't come from htmx");
 		} catch (error) {
 			console.log(`In ${req.originalUrl} route : ${error}`);
 			next(error);
@@ -63,7 +61,7 @@ router.get(
 	async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			const id = Number(req.params.id);
-			const product = (await fetch.get(`/products/${id}?select=thumbnail,title`)) as Product;
+			const product = (await productService.findThumbnail(id));
 			return res.render("partials/image/default", { ...req.ctx, src: product.thumbnail, alt: product.title });
 		} catch (error) {
 			console.log(`In ${req.originalUrl} route : ${error}`);

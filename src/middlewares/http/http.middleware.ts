@@ -17,7 +17,7 @@ const error500Handler = (error: string, req: Request, res: Response, next: NextF
     case 'TokenExpiredError':
       req.session?.destroy(err => {
         if (err) {
-          throw err;
+          throw new Error(err);
         }
       });
       ["session_user", "session_token", "session_remember"].forEach((sessionItem) => res.clearCookie(sessionItem));

@@ -17,3 +17,5 @@ export interface Product {
 export interface ProductResponse extends Meta {
 	products: Product[];
 }
+
+export interface ProductThumbnail extends Pick<Product, "thumbnail" | "title"> {};

@@ -1,4 +1,3 @@
-import { FetchError } from '@interfaces/fetch.interface';
 import { PostResponse, PostsBuilderResponse, PostsResponse } from '@interfaces/post.interface';
 import { Author, UserResponse } from '@interfaces/user.interface';
 import { fetch } from '@services/fetch';
@@ -13,19 +12,21 @@ const findOneById = async (id: number, fields: string[] = []): Promise<UserRespo
   return await fetch.get(path);
 }
 
-const findAuthor = async (id: number): Promise<Author> => await findOneById(id, ['username', 'id']) as Author;
+const findAuthor = async (id: number): Promise<Author> => {
+  return await fetch.get(`/users/${id}?select=username`);
+};
 
-const findPosts = async (id: number, limit: number, skip: number): Promise<PostsBuilderResponse | FetchError> => {
+const findPosts = async (id: number, limit: number, skip: number): Promise<PostsBuilderResponse> => {
   const res = await fetch.get(`/users/${id}/posts?limit=${limit}&skip=${skip}`) as PostsResponse;
   const posts = userUtil.constructPosts(res.posts, id);
   return { posts, total: res.total };
 }
 
-const findPostById = async (id: number, postId: number): Promise<PostResponse | FetchError> => {
+const findPostById = async (id: number, postId: number): Promise<PostResponse> => {
   const { posts } = await fetch.get(`/users/${id}/posts`) as PostsResponse;
   const post = posts.find((p) => p.id === postId);
   if (!post) {
-    return { message: `Post ${postId} not found`};
+    throw new Error(`Post ${postId} not found`);
   }
   const postIndex = posts.findIndex((p) => p.id === post?.id);
   const prevPost = posts[postIndex - 1];
