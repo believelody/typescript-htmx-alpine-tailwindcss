@@ -23,7 +23,10 @@ const error500Handler = (error: string, req: Request, res: Response, next: NextF
       ["session_user", "session_token", "session_remember"].forEach((sessionItem) => res.clearCookie(sessionItem));
       return res.redirect('/login');
     default:
-      return res.status(500).send({ '500': true });
+      res.setHeader('HX-Target', 'body');
+      res.statusCode = 500;
+      res.statusMessage = error;
+      return res.render('partials/modal/500', { error });
   }
 }
 

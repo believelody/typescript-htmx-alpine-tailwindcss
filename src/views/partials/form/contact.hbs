@@ -1,8 +1,8 @@
 <form class="flex flex-wrap" hx-post="/api/contact/1" hx-trigger="submit" hx-swap="outerHTML" x-init="if ('{{JSONstringify notify }}') { $dispatch('notify', {{JSONstringify notify }}) }">
-    <div class="w-full md:w-1/2 p-2">
+    <div class="w-full p-2 md:w-1/2">
         {{> field/text label="Name" id="name" name="name" class="relative" placeholder="Your name" color="primary" required=true }}
     </div>
-    <div class="w-full md:w-1/2 p-2">
+    <div class="w-full p-2 md:w-1/2">
         {{> field/email label="Email" id="contact-email" name="contact-email" class="relative" placeholder="Your email" color="primary" required=true }}
     </div>
     <div class="w-full p-2">

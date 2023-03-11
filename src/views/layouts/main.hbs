@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,26 +16,15 @@
     <script src="/public/js/app.js" type="module"></script>
 </head>
 
-<body hx-ext="loading-states"
-    x-data="{ currentRoute : window.location.pathname, errorMap: new Map() }"
-    x-effect="
-        $el.addEventListener('htmx:responseError', ({ detail }) => {
-            if (detail.xhr.status) {
-                const { response } = detail.xhr;
-                $dispatch('error', response);
-            }
-        });
+<body hx-ext="loading-states" x-data="{ currentRoute : window.location.pathname }" x-effect="
         navigation.addEventListener('navigate', ({ destination }) => {
             $dispatch('route', new URL(destination.url).pathname);
-        });"
-    @route="currentRoute = $event.detail"
-    @error="Object.entries(JSON.parse($event.detail)).forEach(([key, value]) => errorMap.set(key, value));"
-    @modal-closer="if (errorMap.size) { errorMap.clear() }"
->
+        });" @route="currentRoute = $event.detail">
     {{> element/header }}
     <div class="relative flex flex-col overflow-y-auto grow">
-        <div x-data="notifier({ timeout: 15000, position: 'bottom-left' })" @notify.window="send($event.detail)" class="flex">
-        {{!-- <div x-data="notifier({ position: 'bottom-right', slideDirection: 'left' })" @notify.window="addFromTop()" class="flex"> --}}
+        <div x-data="notifier({ timeout: 15000, position: 'bottom-left' })" @notify.window="send($event.detail)"
+            class="flex">
+            {{!-- <div x-data="notifier({ position: 'bottom-right', slideDirection: 'left' })" @notify.window="addFromTop()" class="flex"> --}}
             {{> element/notification }}
         </div>
         <main class="relative grow">
@@ -47,7 +37,14 @@
         </main>
         {{> element/footer }}
     </div>
-    {{> 'modal/500' }}
     {{> modal/not-found}}
+    <script>
+        document.body.addEventListener('htmx:responseError', ({ detail }) => {
+            if (detail.xhr.status) {
+                document.body.insertAdjacentHTML('beforeend', detail.xhr.response);
+            }
+        });
+    </script>
 </body>
+
 </html>
