@@ -8,7 +8,7 @@ import { meUsersController } from './me/me.users.controller';
 
 const router = express.Router();
 
-router.use('/me', authMiddleware.checkUnauthenticatedUserAndRedirect, authMiddleware.populateMeInContext, meUsersController);
+router.use('/me', authMiddleware.checkUnauthenticatedUserAndRedirect, authMiddleware.setCheckAuthAsHxTrigger, authMiddleware.populateMeInContext, meUsersController);
 
 router.get('/:id', httpMiddleware.numericParamsValidator, async (req: Request, res: Response, next: NextFunction) => {
 	try {
@@ -21,7 +21,7 @@ router.get('/:id', httpMiddleware.numericParamsValidator, async (req: Request, r
 	}
 });
 
-router.get('/:id/posts', httpMiddleware.numericParamsValidator, httpMiddleware.limitQueryValidator, async (req: Request, res: Response, next: NextFunction) => {
+router.get('/:id/posts', authMiddleware.setCheckAuthAsHxTrigger, httpMiddleware.numericParamsValidator, httpMiddleware.limitQueryValidator, async (req: Request, res: Response, next: NextFunction) => {
 	try {
 		const id = Number(req.params.id);
 		const limit = Number(req.query.limit || queryUtil.limitQueryArray[0]);
@@ -40,7 +40,7 @@ router.get('/:id/posts', httpMiddleware.numericParamsValidator, httpMiddleware.l
 	}
 });
 
-router.get('/:id/posts/:postId', httpMiddleware.numericParamsValidator, async (req: Request, res: Response, next: NextFunction) => {
+router.get('/:id/posts/:postId', authMiddleware.setCheckAuthAsHxTrigger, httpMiddleware.numericParamsValidator, async (req: Request, res: Response, next: NextFunction) => {
 	try {
 		const { id, postId } = req.params;
 		const { author, nextPost, post, prevPost } =
@@ -68,6 +68,17 @@ router.get('/:id/posts/:postId', httpMiddleware.numericParamsValidator, async (r
 		console.log(`In ${req.originalUrl} route : ${error}`);
 		next(error);
 	}
+});
+
+router.get('/:id/author-name', httpMiddleware.numericParamsValidator, async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { id } = req.params;
+    const author = await userService.findAuthor(Number(id));
+    return res.render("partials/element/author", { ...req.ctx, author });
+  } catch (error) {
+    console.log(`In ${req.originalUrl} route : ${error}`);
+		next(error);
+  }
 });
 
 export const usersController = router;

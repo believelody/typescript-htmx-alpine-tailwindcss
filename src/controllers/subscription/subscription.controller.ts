@@ -50,4 +50,4 @@ router.post("/2", async (req: Request, res: Response, next: NextFunction) => {
 	}
 });
 
-export const subscriptionApiController = router;
+export const subscriptionController = router;

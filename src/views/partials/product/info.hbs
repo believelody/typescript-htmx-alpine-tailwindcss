@@ -16,9 +16,9 @@
       <div class="flex items-center gap-x-2">
         {{#if isAuthenticated}}
           {{> button/heart-circle class="flex disabled:cursor-not-allowed disabled:bg-neutral-200"
-                        hx-post=(append "/api/reaction/post/" (numberIntoString product.id)) hx-trigger="click" data-loading-target="#loading-3"
+                        hx-post=(append "/reaction/post/" (numberIntoString product.id)) hx-trigger="click" data-loading-target="#loading-3"
                         data-loading-busy=true data-loading-disable=true data-loading-icon="lottie/loading-1" liked=false
-                        hx-target="#content" bg-icon-color="bg-secondary" hx-vals=(JSONstringify (object reaction=145)) data-loading-path=(append "/api/reaction/post/" (numberIntoString product.id))}}
+                        hx-target="#content" bg-icon-color="bg-secondary" hx-vals=(JSONstringify (object reaction=145)) data-loading-path=(append "/reaction/post/" (numberIntoString product.id))}}
         {{else}}
           <div x-data="drawer">
             {{> button/heart-circle x-bind="trigger" bg-icon-color="bg-secondary" class="flex disabled:cursor-not-allowed disabled:bg-neutral-200"}}

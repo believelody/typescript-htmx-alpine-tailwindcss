@@ -1,9 +1,7 @@
 import { NextFunction, Response, Request } from "express";
 
 const setCheckAuthAsHxTrigger = (req: Request, res: Response, next: NextFunction) => {
-  if (req.method === "GET" && !req.originalUrl.includes("/api")) {
-    res.setHeader('HX-Trigger', 'check-auth');
-  }
+  res.setHeader('HX-Trigger', 'check-auth');
   next();
 }
 

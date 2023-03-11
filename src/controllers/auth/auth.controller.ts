@@ -73,4 +73,4 @@ router.post('/logout', (req: Request, res: Response, next) => {
   }
 });
 
-export const authApiController = router;
+export const authController = router;

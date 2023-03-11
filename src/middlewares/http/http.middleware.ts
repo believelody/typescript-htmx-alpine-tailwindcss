@@ -43,7 +43,7 @@ const popupalteCurrentURLInContext = (req: Request, res: Response, next: NextFun
 
 const limitQueryValidator = (req: Request, res: Response, next: NextFunction) => {
   if (req.query.limit && !queryUtil.limitQueryArray.includes(Number(req.query.limit))) {
-    if (req?.ctx?.fromHTMX) {
+    if (req.ctx?.fromHTMX) {
       throw new Error("There is a problem with limit value");
     }
     if (req.ctx) {
@@ -51,7 +51,7 @@ const limitQueryValidator = (req: Request, res: Response, next: NextFunction) =>
     }
     res.statusCode = 500;
   }
-  next();
+  next(errorUtil.code500);
 }
 
 const sleep = async (req: Request, res: Response, next: NextFunction) => {

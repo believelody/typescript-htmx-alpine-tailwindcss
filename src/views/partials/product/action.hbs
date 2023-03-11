@@ -1,11 +1,11 @@
-<div id="product-action" class="flex flex-col gap-y-4" hx-get="/api/products/update-action" hx-trigger="product-update-action from:body" hx-swap="outerHTML">
+<div id="product-action" class="flex flex-col gap-y-4" hx-get="/products/update-action" hx-trigger="product-update-action from:body" hx-swap="outerHTML">
   <p class="flex items-center justify-center">{{cond (lt meta.count meta.total) meta.count meta.total }} items over {{ meta.total }}</p>
   {{#unless (gte meta.count meta.total)}}
     <div class="flex items-center justify-center">
       {{> button/simple
             hx-boost="false"
             hx-target="#product-list"
-            hx-get=(urlPath (urlFromParams (chain (baseUrl) "/api/products/more") limit=meta.limit count=(add meta.count meta.limit)))
+            hx-get=(urlPath (urlFromParams (chain (baseUrl) "/products/more") limit=meta.limit count=(add meta.count meta.limit)))
             hx-swap="beforeend scroll:bottom"
             label="See more"
       }}

@@ -1,3 +1,4 @@
+import { authMiddleware } from "@middlewares/auth/auth.middleware";
 import { httpMiddleware } from "@middlewares/http/http.middleware";
 import { postService } from "@services/post/post.service";
 import { queryUtil } from "@utils/query/query.util";
@@ -10,6 +11,7 @@ export const postsTitle = "Posts with input pagination";
 
 router.get(
 	"/",
+	authMiddleware.setCheckAuthAsHxTrigger,
 	httpMiddleware.limitQueryValidator,
 	async (req: Request, res: Response, next: NextFunction) => {
 		try {
@@ -35,6 +37,7 @@ router.get(
 
 router.get(
 	"/:id",
+	authMiddleware.setCheckAuthAsHxTrigger,
 	httpMiddleware.numericParamsValidator,
 	async (req: Request, res: Response, next: NextFunction) => {
 		try {

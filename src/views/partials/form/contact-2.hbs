@@ -1,7 +1,7 @@
-<form x-data="{ loading: false }" class="flex flex-wrap" data-loading-path="/api/contact/2" @submit.prevent="
+<form x-data="{ loading: false }" class="flex flex-wrap" data-loading-path="/contact/2" @submit.prevent="
     loading = true;
     form = new FormData($el);
-    res = await fetch('/api/contact/2', {
+    res = await fetch('/contact/2', {
         method: 'post',
         headers: {
             'Content-Type': 'application/json',

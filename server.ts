@@ -34,8 +34,11 @@ import { teamsController } from "@controllers/teams/teams.controller";
 import { productsController } from "@controllers/products/products.controller";
 import { loginController } from "@controllers/login/login.controller";
 import { usersController } from "@controllers/users/users.controller";
-import { apiController } from "@controllers/api/api.controller";
 import { cartController } from "@controllers/cart/cart.controller";
+import { subscriptionController } from '@controllers/subscription/subscription.controller';
+import { reactionController } from "@controllers/reaction/reaction.controller";
+import { commentsController } from "@controllers/comments/comments.controller";
+import { authController } from "@controllers/auth/auth.controller";
 config();
 
 const app = express();
@@ -84,19 +87,22 @@ app.use(sessionMiddleware.populateUserSessionInContext);
 app.use("/", authMiddleware.setCheckAuthAsHxTrigger, homeController);
 app.use("/about", authMiddleware.setCheckAuthAsHxTrigger, aboutController);
 app.use("/cart", cartController);
-app.use("/contact", authMiddleware.setCheckAuthAsHxTrigger, contactController);
-app.use("/posts-1", authMiddleware.setCheckAuthAsHxTrigger, posts1Controller);
-app.use("/posts-2", authMiddleware.setCheckAuthAsHxTrigger, posts2Controller);
+app.use("/contact", contactController);
+app.use("/posts-1", posts1Controller);
+app.use("/posts-2", posts2Controller);
 app.use("/team", authMiddleware.setCheckAuthAsHxTrigger, teamsController);
-app.use("/products", authMiddleware.setCheckAuthAsHxTrigger, productsController);
+app.use("/products", productsController);
 app.use(
 	"/login",
 	authMiddleware.checkAuthenticatedUserAndRedirect,
 	authMiddleware.setCheckAuthAsHxTrigger,
 	loginController
 );
-app.use("/users", authMiddleware.setCheckAuthAsHxTrigger, usersController);
-app.use("/api", apiController);
+app.use("/users", usersController);
+app.use("/subscription", subscriptionController);
+app.use('/reaction', reactionController);
+app.use('/comments', commentsController);
+app.use('/auth', authController);
 app.use(httpMiddleware.error404NotFound);
 // app.use('*', error404Controller);
 app.use(httpMiddleware.error500Handler);

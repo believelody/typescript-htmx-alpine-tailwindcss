@@ -35,4 +35,4 @@ router.post(
 	}
 );
 
-export const reactionApiController = router;
+export const reactionController = router;

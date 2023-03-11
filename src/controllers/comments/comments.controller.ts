@@ -34,4 +34,4 @@ router.post('/post', async (req: Request, res: Response, next: NextFunction) => 
   }
 });
 
-export const commentApiController = router;
+export const commentsController = router;

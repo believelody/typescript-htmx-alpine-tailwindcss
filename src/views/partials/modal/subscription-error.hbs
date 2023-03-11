@@ -1,10 +1,4 @@
-{{!-- <div x-data="drawer" x-effect="open = errorMap.has('subscription')">
-  {{> element/modal
-    modal=(object
-    title=(partial 'title/default'
-      text="Subscription"
-      class="text-lg text-center mb-4")
-    component=(partial 'error/subscription'))
-    class="p-8"
-  }}
-</div> --}}
+{{!< main }}
+{{#> element/modal-2}}
+  {{> 'error/subscription' }}
+{{/element/modal-2}}

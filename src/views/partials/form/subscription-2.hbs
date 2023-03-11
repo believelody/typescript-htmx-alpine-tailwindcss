@@ -2,7 +2,7 @@
         <form x-show="!success" @submit.prevent="
                         loading = true;
                         form = new FormData($el);
-                        res = await fetch('/api/subscription/2', {
+                        res = await fetch('/subscription/2', {
                                 method: 'post',
                                 headers: {
                                         'Content-type': 'application/json',

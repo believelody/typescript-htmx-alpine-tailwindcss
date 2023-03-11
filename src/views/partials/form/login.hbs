@@ -7,7 +7,7 @@
         {{> link/primary href="/register" label="Register now !" text-size="lg" bold="medium" }}
     </p>
 </div>
-<form hx-post="/api/auth/login" data-loading-path="api/auth/login" {{#if fromModal}}@submit.prevent="lock = true;"
+<form hx-post="/auth/login" data-loading-path="api/auth/login" {{#if fromModal}}@submit.prevent="lock = true;"
     hx-vals='{ "stay_on_current_url" : true }'{{/if}} hx-swap="innerHTML" hx-trigger="submit" class="mt-8 space-y-6"
     hx-target="#content">
 

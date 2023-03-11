@@ -1,4 +1,4 @@
-<div class="items-center hidden gap-4 md:flex" hx-get="/api/auth/check?component=header" hx-swap="outerHTML" hx-trigger="check-auth from:body">
+<div class="items-center hidden gap-4 md:flex" hx-get="/auth/check?component=header" hx-swap="outerHTML" hx-trigger="check-auth from:body">
   {{#if isAuthenticated}}
     {{> dropdown/user }}
   {{else}}

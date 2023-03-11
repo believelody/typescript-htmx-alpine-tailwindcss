@@ -1,4 +1,4 @@
-<div class="flex justify-center items-center flex-col border-t gap-y-4 py-4" hx-get="/api/auth/check?component=sidebar" hx-swap="outerHTML" hx-trigger="check-auth from:body">
+<div class="flex justify-center items-center flex-col border-t gap-y-4 py-4" hx-get="/auth/check?component=sidebar" hx-swap="outerHTML" hx-trigger="check-auth from:body">
   {{#if isAuthenticated}}
     <h4 class="text-center">Hi <b>{{ user.username }}</b></h4>
     {{> image/avatar size=22 src=user.image border="border" }}

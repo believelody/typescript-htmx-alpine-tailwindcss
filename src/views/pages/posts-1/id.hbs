@@ -15,9 +15,9 @@
       <div class="flex items-center justify-end grow gap-x-2">
         {{#if isAuthenticated}}
           {{> button/heart-circle class="flex disabled:cursor-not-allowed disabled:bg-neutral-200"
-                hx-post=(append "/api/reaction/post/" (numberIntoString post.id)) hx-trigger="click" data-loading-target="#loading-3"
+                hx-post=(append "/reaction/post/" (numberIntoString post.id)) hx-trigger="click" data-loading-target="#loading-3"
                 data-loading-busy=true data-loading-disable=true data-loading-icon="lottie/loading-1" liked=post.liked
-                hx-target="#content" hx-vals=(JSONstringify (object reaction=post.reactions)) data-loading-path=(append "/api/reaction/post/" (numberIntoString post.id))
+                hx-target="#content" hx-vals=(JSONstringify (object reaction=post.reactions)) data-loading-path=(append "/reaction/post/" (numberIntoString post.id))
                 bg-icon-color="bg-secondary"}}
         {{else}}
           {{> button/heart-circle x-bind="trigger" bg-icon-color="bg-secondary" class="flex disabled:cursor-not-allowed disabled:bg-neutral-200"}}
@@ -44,7 +44,7 @@
       <div class="flex flex-wrap items-end gap-2 text-xl">Please {{> button/link-3 label="log in" class="text-3xl link link-primary" x-bind="trigger" }} before comment.</div>    
     {{/if}}
   </div>
-  <div hx-get="/api/comments/post/{{ post.id }}" hx-swap="innerHTML" hx-push-url="false" hx-trigger="load, add-comment from:body" data-loading-class="hidden" class="px-4 mb-4">
+  <div hx-get="/comments/post/{{ post.id }}" hx-swap="innerHTML" hx-push-url="false" hx-trigger="load, add-comment from:body" data-loading-class="hidden" class="px-4 mb-4">
     <div id="comment-loader" data-loading class="justify-center">{{> lottie/loading-1 size=16 }}</div>
   </div>
   {{> element/modal modal=(object component=(partial 'form/login' fromModal=true)) class="p-8"}}
