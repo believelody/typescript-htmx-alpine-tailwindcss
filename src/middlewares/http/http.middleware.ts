@@ -12,7 +12,6 @@ const numericParamsValidator = (req: Request, res: Response, next: NextFunction)
 }
 
 const error500Handler = (error: string, req: Request, res: Response, next: NextFunction) => {
-  console.log("error 500 : ", error);
   switch (error) {
     case 'TokenExpiredError':
       req.session?.destroy(err => {
@@ -23,10 +22,8 @@ const error500Handler = (error: string, req: Request, res: Response, next: NextF
       ["session_user", "session_token", "session_remember"].forEach((sessionItem) => res.clearCookie(sessionItem));
       return res.redirect('/login');
     default:
-      res.setHeader('HX-Target', 'body');
-      res.statusCode = 500;
       res.statusMessage = error;
-      return res.render('partials/modal/500');
+      return res.status(500).render('partials/modal/500');
   }
 }
 

@@ -37,7 +37,6 @@
         </main>
         {{> element/footer }}
     </div>
-    {{> modal/not-found}}
     <script>
         document.body.addEventListener('htmx:responseError', ({ detail }) => {
             if (detail.xhr.status) {
