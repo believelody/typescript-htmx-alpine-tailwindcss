@@ -26,12 +26,12 @@ const error500Handler = (error: string, req: Request, res: Response, next: NextF
       res.setHeader('HX-Target', 'body');
       res.statusCode = 500;
       res.statusMessage = error;
-      return res.render('partials/modal/500', { error });
+      return res.render('partials/modal/500');
   }
 }
 
 const error404NotFound = (req: Request, res: Response, next: NextFunction) => {
-  return res.status(404).send({ 'not-found': true })
+  return res.status(404).render('partials/modal/not-found');
 }
 
 const popupalteCurrentURLInContext = (req: Request, res: Response, next: NextFunction) => {
