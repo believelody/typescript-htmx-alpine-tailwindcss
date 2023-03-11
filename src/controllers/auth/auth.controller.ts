@@ -8,6 +8,23 @@ import express, { Request, NextFunction, Response } from "express";
 
 const router = express.Router();
 
+export const loginTitle = "Login";
+
+router.get("/login", (req: Request, res: Response, next: NextFunction) => {
+	try {
+    if (!req.ctx.fromHTMX) {
+      return res.redirect('/');
+    }
+		return res.render("partials/modal/login", {
+			...req.ctx,
+			title: loginTitle,
+		});
+	} catch (error) {
+		console.log(`In ${req.originalUrl} route : ${error}`);
+		next(error);
+	}
+});
+
 router.post('/login', async (req: Request, res: Response, next: NextFunction) => {
   try {
       // await new Promise(resolve => setTimeout(resolve, 3000));

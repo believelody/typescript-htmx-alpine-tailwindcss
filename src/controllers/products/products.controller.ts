@@ -12,7 +12,7 @@ export const productsTitle = "Products";
 
 router.get(
 	"/",
-	 authMiddleware.setCheckAuthAsHxTrigger,
+	authMiddleware.setCheckAuthAsHxTrigger,
 	httpMiddleware.limitQueryValidator,
 	async (req: Request, res: Response, next: NextFunction) => {
 		try {
@@ -44,7 +44,6 @@ router.get(
 			const product = (await productService.findOneById(id));
 			const prevProductId = id - 1;
 			const nextProductId = id + 1;
-			throw new Error('error in product id');
 			return res.render("pages/products/id", {
 				...req.ctx,
 				product: {

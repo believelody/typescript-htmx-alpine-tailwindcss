@@ -1,4 +1,7 @@
-<div x-data="drawer">
-    {{ trigger }}
-    {{> element/modal modal=(object component=(partial 'form/login' fromModal=true)) class="p-8"}}
-</div>
+{{!< main }}
+{{> element/seo }}
+{{#> element/modal-2 noCloseButton=true }}
+    <div class="xs:p-2 md:p-12">
+        {{> form/login }}
+    </div>
+{{/element/modal-2}}

@@ -10,8 +10,8 @@ router.post("/1", async (req: Request, res: Response, next: NextFunction) => {
 		if (user?.subscribed) {
 			res
 				.status(400)
-				.send({
-					subscription:
+				.render('partials/modal/subscription-error', {
+					error:
 						"Your email already exists. Try something else or contact us for more help.",
 				});
 		} else if (user) {

@@ -92,12 +92,12 @@ app.use("/posts-1", posts1Controller);
 app.use("/posts-2", posts2Controller);
 app.use("/team", authMiddleware.setCheckAuthAsHxTrigger, teamsController);
 app.use("/products", productsController);
-app.use(
-	"/login",
-	authMiddleware.checkAuthenticatedUserAndRedirect,
-	authMiddleware.setCheckAuthAsHxTrigger,
-	loginController
-);
+// app.use(
+// 	"/login",
+// 	authMiddleware.checkAuthenticatedUserAndRedirect,
+// 	authMiddleware.setCheckAuthAsHxTrigger,
+// 	loginController
+// );
 app.use("/users", usersController);
 app.use("/subscription", subscriptionController);
 app.use('/reaction', reactionController);

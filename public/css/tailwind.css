@@ -63,7 +63,7 @@ input[type=number] {
 }
 
 .modal > .modal-content {
-	@apply relative flex flex-col justify-between w-4/5 max-w-2xl p-2 bg-white rounded-md;
+	@apply relative flex flex-col justify-between w-full max-w-2xl bg-white rounded-md xs:w-4/5;
 
 	/* Animate when opening */
 	animation:zoomIn 250ms ease;

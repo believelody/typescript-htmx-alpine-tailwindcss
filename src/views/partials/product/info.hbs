@@ -20,10 +20,7 @@
                         data-loading-busy=true data-loading-disable=true data-loading-icon="lottie/loading-1" liked=false
                         hx-target="#content" bg-icon-color="bg-secondary" hx-vals=(JSONstringify (object reaction=145)) data-loading-path=(append "/reaction/post/" (numberIntoString product.id))}}
         {{else}}
-          <div x-data="drawer">
-            {{> button/heart-circle x-bind="trigger" bg-icon-color="bg-secondary" class="flex disabled:cursor-not-allowed disabled:bg-neutral-200"}}
-            {{> element/modal modal=(object component=(partial 'form/login' fromModal=true)) class="p-8"}}
-          </div>
+            {{> auth/trigger component=(partial "button/heart-circle" bg-icon-color="bg-secondary" class="flex disabled:cursor-not-allowed disabled:bg-neutral-200") }}
         {{/if}}
         <span>145</span>
       </div>
