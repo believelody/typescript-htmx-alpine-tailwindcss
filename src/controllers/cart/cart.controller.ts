@@ -17,7 +17,7 @@ router.get("/",async (req: Request, res: Response, next: NextFunction) => {
 	}
 });
 
-router.get("/update-cart-btn",async (req: Request, res: Response, next: NextFunction) => {
+router.get("/update-btn",async (req: Request, res: Response, next: NextFunction) => {
 	try {
 		return res.render("partials/button/cart", {
 			...req.ctx,
