@@ -51,7 +51,7 @@ const limitQueryValidator = (req: Request, res: Response, next: NextFunction) =>
     }
     res.statusCode = 500;
   }
-  next(errorUtil.code500);
+  next();
 }
 
 const sleep = async (req: Request, res: Response, next: NextFunction) => {

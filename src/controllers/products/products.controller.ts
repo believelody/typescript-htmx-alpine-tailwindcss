@@ -1,4 +1,3 @@
-import { Product, ProductResponse } from "@interfaces/product.interface";
 import { authMiddleware } from "@middlewares/auth/auth.middleware";
 import { httpMiddleware } from "@middlewares/http/http.middleware";
 import { productService } from "@services/product/product.service";
