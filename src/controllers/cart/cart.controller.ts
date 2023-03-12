@@ -7,7 +7,7 @@ const router = express.Router();
 router.get("/",async (req: Request, res: Response, next: NextFunction) => {
 	try {
 		// req.session.cart = null;
-		return res.render("partials/sidebar/cart-2", {
+		return res.render("partials/sidebar/cart", {
 			...req.ctx,
 			cart: req.session.cart,
 		});
@@ -34,7 +34,7 @@ router.get("/:id", httpMiddleware.numericParamsValidator, async (req: Request, r
 		const id = Number(req.params.id);
     const cart = await cartService.findCartById(id);
     req.session.cart = cart;    
-    return res.render("partials/sidebar/cart-2", {
+    return res.render("partials/sidebar/cart", {
 			...req.ctx,
 			cart: req.session.cart,
 		});

@@ -2,7 +2,7 @@
   <div class="container flex flex-row-reverse items-center justify-between p-5 mx-auto md:flex-row">
     {{> element/brand }}
     {{> nav/menu-list }}
-    {{> sidebar/menu }}
+    {{> button/menu-mobile }}
     <div class="flex gap-x-4">
       <div hx-get="/cart/update-cart-btn" hx-trigger="load, update-cart-btn from:body">
         {{> button/cart }}

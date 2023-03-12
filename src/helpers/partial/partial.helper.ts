@@ -1,14 +1,14 @@
-import hbs from "express-hbs";
+import expHbs from "express-hbs";
 
 export default function (partialName, options) {
     if (!partialName) {
         console.error('No partial name given.');
         return '';
     }
-    const partial = hbs.handlebars.partials[partialName];
+    const partial = expHbs.handlebars.partials[partialName];
     if (!partial) {
         console.error('Couldnt find the compiled partial: ' + partialName);
         return '';
     }
-    return new hbs.SafeString(partial(options.hash));
+    return new expHbs.SafeString(partial(options.hash));
 }

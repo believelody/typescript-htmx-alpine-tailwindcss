@@ -1,5 +1,5 @@
-{{#button x-bind="trigger" type="button"
-    class="inline-flex items-center text-sm text-gray-700 rounded-lg hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"}}
+<button type="button" onclick="sidebar.open({{JSONstringify (partial "sidebar/menu")}})"
+    class="inline-flex items-center text-sm text-gray-700 rounded-lg md:hidden hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
     <span class="sr-only">Open main menu</span>
-    {{> icon/menu-mobile }}
-{{/button}}
+    <span class="flex items-center justify-center border border-secondary">{{> icon/menu-mobile color="text-secondary" stroke="none" size=10 viewBox="0 0 20 20" }}</span>
+</button>
