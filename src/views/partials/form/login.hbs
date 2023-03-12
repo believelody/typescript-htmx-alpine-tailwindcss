@@ -7,8 +7,7 @@
         {{> link/primary href="/register" label="Register now !" text-size="lg" bold="medium" }}
     </p>
 </div>
-<form hx-post="/auth/login" data-loading-path="api/auth/login" {{#if fromModal}}@submit.prevent="lock = true;"
-    hx-vals='{ "stay_on_current_url" : true }'{{/if}} hx-swap="innerHTML" hx-trigger="submit" class="mt-8 space-y-6"
+<form id="auth-login-form" hx-post="/auth/login" data-loading-path="/auth/login" hx-swap="innerHTML" hx-trigger="submit" class="mt-8 space-y-6"
     hx-target="#content">
 
     <div class="rounded-md shadow-sm">
@@ -22,6 +21,8 @@
             {{> link/secondary href="/forgotten-password" label="Forgot your password ?" bold="medium" }}
         </div>
     </div>
+
+    <div id="invalid-credentials" hx-target="this" hx-get="/auth/login/invalid-credentials" hx-trigger="invalid-credentials from:body" hx-swap="outerHTML"></div>
 
     {{> button/info-3 block=true label="Sign In" x-on:click="error = null" icon=(partial 'icon/lock-closed' color="text-info-500" stroke="none" size=6)
         icon-class="absolute inset-y-0 left-0 flex items-center pl-3"

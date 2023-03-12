@@ -11,8 +11,8 @@ const numericParamsValidator = (req: Request, res: Response, next: NextFunction)
   next();
 }
 
-const error500Handler = (error: string, req: Request, res: Response, next: NextFunction) => {
-  switch (error) {
+const errorHandler = (error: Error, req: Request, res: Response, next: NextFunction) => {
+  switch (error.message) {
     case 'TokenExpiredError':
       req.session?.destroy(err => {
         if (err) {
@@ -21,8 +21,12 @@ const error500Handler = (error: string, req: Request, res: Response, next: NextF
       });
       ["session_user", "session_token", "session_remember"].forEach((sessionItem) => res.clearCookie(sessionItem));
       return res.redirect('/login');
+    case 'Invalid credentials':
+      res.setHeader("HX-Trigger", "invalid-credentials");
+      res.setHeader("HX-Swap", "none");
+      return res.status(404).end();
     default:
-      res.statusMessage = error;
+      res.statusMessage = error.message;
       return res.status(500).render('partials/modal/500');
   }
 }
@@ -61,4 +65,4 @@ const sleep = async (req: Request, res: Response, next: NextFunction) => {
   next();
 }
 
-export const httpMiddleware = { numericParamsValidator, error500Handler, error404NotFound, limitQueryValidator, popupalteCurrentURLInContext, sleep };
+export const httpMiddleware = { numericParamsValidator, errorHandler, error404NotFound, limitQueryValidator, popupalteCurrentURLInContext, sleep };

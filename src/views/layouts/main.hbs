@@ -39,7 +39,7 @@
     </div>
     <script>
         document.body.addEventListener('htmx:responseError', ({ detail }) => {
-            if (detail.xhr.status) {
+            if (detail.xhr.status && detail.xhr.response) {
                 console.log(detail.xhr)
                 document.body.insertAdjacentHTML('beforeend', detail.xhr.response);
             }

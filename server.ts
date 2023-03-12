@@ -107,7 +107,7 @@ app.use('/auth', authController);
 app.use('/sidebar', sidebarController);
 app.use(httpMiddleware.error404NotFound);
 // app.use('*', error404Controller);
-app.use(httpMiddleware.error500Handler);
+app.use(httpMiddleware.errorHandler);
 
 app.listen(envConfig.port, () => {
 	console.log("Server running");

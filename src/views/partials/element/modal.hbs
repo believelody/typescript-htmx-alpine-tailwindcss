@@ -1,27 +1,23 @@
-<div {{#if id}}id="{{id}}"{{/if}}
-    x-show="open"
-    class="fixed top-0 left-0 z-40 flex items-center justify-center w-screen h-screen"
->
-    <div x-show="open" x-transition:enter="transition ease-in-out duration-1000 sm:duration-700"
-        x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-1"
-        x-transition:leave="transition ease-in-out duration-1000 sm:duration-700" x-transition:leave-start="opacity-1"
-        x-transition:leave-end="opacity-0" class="fixed top-0 left-0 w-screen h-screen bg-black/60 dark:bg-white/60">
-    </div>
-    <div x-bind="dialogue"
-        x-transition:enter="transition ease-in-out duration-1000 sm:duration-700"
-        x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-1"
-        x-transition:leave="transition ease-in-out duration-1000 sm:duration-700" x-transition:leave-start="opacity-1"
-        x-transition:leave-end="opacity-0"
-        class="relative max-w-lg bg-white shadow z-41 max-h-lg sm:rounded-lg {{ class }}"
-    >
-        <section x-show="!lock" class="absolute p-2 bg-white border rounded-full -top-4 -right-4 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white">
-            {{> button/simple x-bind="closer" icon=(object component=(partial "icon/close" size=6 stroke="none")) sr-only="Close modal" class="inline-flex items-center p-1 text-sm text-gray-700 bg-transparent" }}
-        </section>
-        {{#if modal.title }}
-            {{ modal.title }}
-        {{/if}}
-        <div class="overflow-y-auto">
-            {{ modal.component }}
+{{#let spread=this modal-id=(chain 'modal-' (uuid))}}
+    <div id="{{ modal-id }}" class="modal">
+        <div class="underlay" onclick="modal.close('{{ modal-id }}', true)"></div>
+        <div class="modal-content">
+            {{#unless noCloseButton}}
+                <button
+                    class="absolute p-2 bg-white border rounded-full -top-4 -right-4 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
+                    onclick="modal.close('{{ modal-id }}', false)">
+                    <span sr-only="Close modal"
+                        class="inline-flex items-center p-1 text-sm text-gray-700 bg-transparent">
+                        {{> icon/close size=6 stroke="none"  }}
+                    </span>
+                </button>
+            {{/unless}}
+            {{#if header }}
+                {{ header }}
+            {{/if}}
+            <div class="container overflow-y-auto">
+                {{> @partial-block }}
+            </div>
         </div>
     </div>
-</div>
+{{/let}}

@@ -25,15 +25,21 @@ router.get("/login", (req: Request, res: Response, next: NextFunction) => {
 	}
 });
 
+router.get("/login/invalid-credentials", (req: Request, res: Response, next: NextFunction) => {
+	try {
+		return res.render("partials/error/invalid-credentials");
+	} catch (error) {
+		console.log(`In ${req.originalUrl} route : ${error}`);
+		next(error);
+	}
+});
+
 router.post('/login', async (req: Request, res: Response, next: NextFunction) => {
   try {
       // await new Promise(resolve => setTimeout(resolve, 3000));
       let token = "";
       const { email, password } = req.body;
       const loginRes = await authService.login({ username: email, password });
-      // if (loginRes.message) {
-      //   return res.status(404).send({ login: loginRes.message });
-      // }
       if (loginRes.token) {
         token = loginRes.token;
       }
@@ -51,9 +57,6 @@ router.post('/login', async (req: Request, res: Response, next: NextFunction) =>
         res.cookie("session_remember", req.body.remember, { maxAge: sessionUtil.sessionMaxAge30Days });
       }
       res.setHeader('HX-Trigger', 'check-auth');
-      if (req.body.stay_on_current_url) {
-        return res.redirect(new URL(req.headers['hx-current-url'] as string).pathname);
-      }
       res.setHeader('HX-Push', '/users/me');
       return res.render('pages/user', { ...req.ctx, user, isAuthenticated: true, me: true, title: myProfileTitle });
     } catch (error) {
