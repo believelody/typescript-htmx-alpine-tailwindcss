@@ -35,50 +35,6 @@ router.get(
 );
 
 router.get(
-	"/:id",
-	httpMiddleware.numericParamsValidator,
-	async (req: Request, res: Response, next: NextFunction) => {
-		try {
-			const id = Number(req.params.id);
-			const product = (await productService.findOneById(id));
-			const prevProductId = id - 1;
-			const nextProductId = id + 1;
-			return res.render("pages/products/id", {
-				...req.ctx,
-				product: {
-					...product,
-					url: {
-						back: urlUtil.retrieveAppropriateBackUrl(
-							req.headers["hx-current-url"] as string,
-							"/products"
-						),
-						prev: prevProductId && `/products/${prevProductId}`,
-						next: nextProductId && `/products/${nextProductId}`,
-					},
-				},
-				title: product.title,
-			});
-		} catch (error) {
-			console.log(`In ${req.originalUrl} route : ${error}`);
-			next(error);
-		}
-	}
-);
-
-router.get(
-	"/update-action",
-	(req: Request, res: Response, next: NextFunction) => {
-		try {
-			req.ctx = { ...req.ctx, meta: req.session?.meta };
-			return res.render("partials/product/action", req.ctx);
-		} catch (error) {
-			console.log(`In ${req.originalUrl} route : ${error}`);
-			next(error);
-		}
-	}
-);
-
-router.get(
 	"/more",
 	httpMiddleware.limitQueryValidator,
 	async (req: Request, res: Response, next: NextFunction) => {
@@ -110,6 +66,50 @@ router.get(
 			throw new Error(
 				"count query is undefined or request doesn't come from htmx"
 			);
+		} catch (error) {
+			console.log(`In ${req.originalUrl} route : ${error}`);
+			next(error);
+		}
+	}
+);
+
+router.get(
+	"/update-action",
+	(req: Request, res: Response, next: NextFunction) => {
+		try {
+			req.ctx = { ...req.ctx, meta: req.session?.meta };
+			return res.render("partials/product/action", req.ctx);
+		} catch (error) {
+			console.log(`In ${req.originalUrl} route : ${error}`);
+			next(error);
+		}
+	}
+);
+
+router.get(
+	"/:id",
+	httpMiddleware.numericParamsValidator,
+	async (req: Request, res: Response, next: NextFunction) => {
+		try {
+			const id = Number(req.params.id);
+			const product = (await productService.findOneById(id));
+			const prevProductId = id - 1;
+			const nextProductId = id + 1;
+			return res.render("pages/products/id", {
+				...req.ctx,
+				product: {
+					...product,
+					url: {
+						back: urlUtil.retrieveAppropriateBackUrl(
+							req.headers["hx-current-url"] as string,
+							"/products"
+						),
+						prev: prevProductId && `/products/${prevProductId}`,
+						next: nextProductId && `/products/${nextProductId}`,
+					},
+				},
+				title: product.title,
+			});
 		} catch (error) {
 			console.log(`In ${req.originalUrl} route : ${error}`);
 			next(error);
