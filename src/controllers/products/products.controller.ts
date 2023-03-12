@@ -100,7 +100,7 @@ router.get(
 				url.searchParams.append("count", String(count));
 				url.searchParams.append("limit", String(limit));
 				res.setHeader("HX-Trigger", "product-update-action");
-				res.setHeader("HX-Push", `/products${url.search}`);
+				res.setHeader("HX-Replace-Url", `/products${url.search}`);
 				return res.render("partials/product/list", {
 					...req.ctx,
 					meta: { total: htmxRes.total, limit, count },

@@ -39,6 +39,7 @@ import { subscriptionController } from '@controllers/subscription/subscription.c
 import { reactionController } from "@controllers/reaction/reaction.controller";
 import { commentsController } from "@controllers/comments/comments.controller";
 import { authController } from "@controllers/auth/auth.controller";
+import { sidebarController } from "@controllers/sidebar/sidebar.controller";
 config();
 
 const app = express();
@@ -103,6 +104,7 @@ app.use("/subscription", subscriptionController);
 app.use('/reaction', reactionController);
 app.use('/comments', commentsController);
 app.use('/auth', authController);
+app.use('/sidebar', sidebarController);
 app.use(httpMiddleware.error404NotFound);
 // app.use('*', error404Controller);
 app.use(httpMiddleware.error500Handler);

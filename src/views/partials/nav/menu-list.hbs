@@ -1,5 +1,5 @@
-<div class="hidden md:flex">
-    <nav class="flex-wrap flex justify-center text-base list-none items-center md:ml-auto md:mr-auto">
+<div class="hidden md:block">
+    <nav class="flex flex-wrap items-center justify-center text-base list-none md:ml-auto md:mr-auto">
         {{#each (routes) as |route|}}
             {{> nav/item route=route }}
         {{/each}}

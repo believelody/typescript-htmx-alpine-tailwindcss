@@ -2662,6 +2662,10 @@ input[type=number] {
     margin-right: auto;
   }
 
+  .md\:block {
+    display: block;
+  }
+
   .md\:flex {
     display: flex;
   }

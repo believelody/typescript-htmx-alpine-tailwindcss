@@ -1,6 +1,6 @@
 <li hx-boost="true">
   <a
-    x-bind="closer"
+    onclick="sidebar.close('{{ sidebar-id }}')"
     href="{{ route.url }}"
     hx-push-url="true"
     hx-target="#content"
