@@ -1807,6 +1807,11 @@ h6 {
   padding: 2rem;
 }
 
+.px-1 {
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+
 .px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
@@ -1875,11 +1880,6 @@ h6 {
 .py-6 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
-}
-
-.px-1 {
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
 }
 
 .pb-12 {
@@ -2248,7 +2248,7 @@ input[type=number] {
 
 .modal > .modal-content {
   /* Animate when opening */
-  animation:zoomIn 250ms ease;
+  animation: zoomIn 250ms ease;
 }
 
 .sidebar > .sidebar-content {
@@ -2284,14 +2284,69 @@ input[type=number] {
   animation: zoomOut 250ms ease forwards;
 }
 
-.sidebar.closing > .slide-to-left {
+.sidebar.closing > .slide-to-left, .notification-item.closing.slide-to-left {
   /* Animate when closing */
   animation: slideLeftOut 500ms ease forwards;
 }
 
-.sidebar.closing > .slide-to-right {
+.sidebar.closing > .slide-to-right, .notification-item.closing.slide-to-right {
   /* Animate when closing */
   animation: slideRightOut 500ms ease forwards;
+}
+
+.notification-container {
+  position: absolute;
+  display: flex;
+  max-width: 24rem;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.notification-item {
+  position: relative;
+  z-index: 40;
+  box-sizing: border-box;
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  padding: 0.5rem;
+}
+
+.notification-item.slide-to-left {
+  animation: slideLeftIn 500ms ease forwards;
+}
+
+.notification-item.slide-to-right {
+  animation: slideRightIn 500ms ease forwards;
+}
+
+.absolute-top-left {
+  top: 0px;
+  left: 0px;
+}
+
+.absolute-top-right {
+  top: 0px;
+  right: 0px;
+}
+
+.absolute-bottom-left {
+  bottom: 0px;
+  left: 0px;
+}
+
+.absolute-bottom-right {
+  bottom: 0px;
+  right: 0px;
+}
+
+.absolute-top-center {
+  top: 0px;
+  left: 50%;
+}
+
+.absolute-bottom-center {
+  bottom: 0px;
+  left: 50%;
 }
 
 @keyframes fadeIn {

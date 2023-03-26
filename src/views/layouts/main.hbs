@@ -22,11 +22,6 @@
         });" @route="currentRoute = $event.detail">
     {{> element/header }}
     <div class="relative flex flex-col overflow-y-auto grow">
-        <div x-data="notifier({ timeout: 15000, position: 'bottom-left' })" @notify.window="send($event.detail)"
-            class="flex">
-            {{!-- <div x-data="notifier({ position: 'bottom-right', slideDirection: 'left' })" @notify.window="addFromTop()" class="flex"> --}}
-            {{> element/notification }}
-        </div>
         <main class="relative grow">
             {{!-- {{> loading/base-1 }} --}}
             {{> loading/base-2 size=18 }}
@@ -37,6 +32,7 @@
         </main>
         {{> element/footer }}
     </div>
+    {{> notification/container }}
     <script>
         document.body.addEventListener('htmx:responseError', ({ detail }) => {
             if (detail.xhr.status && detail.xhr.response) {

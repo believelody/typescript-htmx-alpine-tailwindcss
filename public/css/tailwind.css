@@ -66,7 +66,7 @@ input[type=number] {
 	@apply relative flex flex-col justify-between w-full max-w-2xl bg-white rounded-md xs:w-4/5;
 
 	/* Animate when opening */
-	animation:zoomIn 250ms ease;
+	animation: zoomIn 250ms ease;
 }
 
 .sidebar > .sidebar-content {
@@ -93,14 +93,49 @@ input[type=number] {
 	animation: zoomOut 250ms ease forwards;
 }
 
-.sidebar.closing > .slide-to-left {
+.sidebar.closing > .slide-to-left, .notification-item.closing.slide-to-left {
 	/* Animate when closing */
 	animation: slideLeftOut 500ms ease forwards;
 }
 
-.sidebar.closing > .slide-to-right {
+.sidebar.closing > .slide-to-right, .notification-item.closing.slide-to-right {
 	/* Animate when closing */
 	animation: slideRightOut 500ms ease forwards;
+}
+
+.notification-container {
+	@apply absolute flex flex-col max-w-sm overflow-hidden;
+}
+
+.notification-item {
+	@apply box-border relative z-40 p-2 bg-white;
+}
+
+.notification-item.slide-to-left {
+	animation: slideLeftIn 500ms ease forwards;
+}
+
+.notification-item.slide-to-right {
+	animation: slideRightIn 500ms ease forwards;
+}
+
+.absolute-top-left {
+	@apply top-0 left-0;
+}
+.absolute-top-right {
+	@apply top-0 right-0;
+}
+.absolute-bottom-left {
+	@apply bottom-0 left-0;
+}
+.absolute-bottom-right {
+	@apply bottom-0 right-0;
+}
+.absolute-top-center {
+	@apply top-0 left-1/2;
+}
+.absolute-bottom-center {
+	@apply bottom-0 left-1/2;
 }
 
 @keyframes fadeIn {

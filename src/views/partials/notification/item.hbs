@@ -1,0 +1,15 @@
+{{#let spread=this notification-item-id=(chain "notification-item-id-" (uuid))}}
+  <li id="{{ notification-item-id }}" onanimationstart="notification.setBorderFromType('{{ notification-item-id }}', '{{data.type}}')"
+      onanimationend="notification.setTimer('{{ notification-item-id }}')"
+      class="notification-item slide-to-left">
+    <div class="box-border p-2 border-2 rounded">
+      <section class="flex items-start justify-between">
+        <h4>
+          <b>{{ data.title }}</b>
+        </h4>
+        {{> button/close onclick=(chain 'notification.close("' notification-item-id '")') }}
+      </section>
+      <p>{{ data.message }}</p>
+    </div>
+  </li>
+{{/let}}

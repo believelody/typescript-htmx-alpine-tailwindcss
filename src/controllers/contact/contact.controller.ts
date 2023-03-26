@@ -1,3 +1,4 @@
+import { NotificationType } from "@enums/notification-type.enum";
 import { authMiddleware } from "@middlewares/auth/auth.middleware";
 import express, { Request, NextFunction, Response } from "express";
 
@@ -17,14 +18,12 @@ router.get("/", authMiddleware.setCheckAuthAsHxTrigger, (req: Request, res: Resp
 router.post("/1", async (req: Request, res: Response, next: NextFunction) => {
 	try {
 		await new Promise((resolve) => setTimeout(resolve, 3000));
-		res.setHeader("HX-Trigger", "signal");
-		return res.render("partials/form/contact", {
-			...req.ctx,
-			notify: {
-				type: "success",
+		return res.render("partials/notification/contact", {
+			notification: {
+				type: NotificationType.SUCCESS,
 				title: "Contact",
 				message:
-					"Nous avons bien reçu votre demande. Nous reviendrons vers vous dans les plus brefs délai.",
+					"Nous avons bien reçu votre demande. Nous reviendrons vers vous dans les plus brefs délais.",
 			},
 		});
 	} catch (error) {
@@ -38,7 +37,7 @@ router.post("/2", async (req: Request, res: Response, next: NextFunction) => {
 		await new Promise((resolve) => setTimeout(resolve, 3000));
 		return res.json({
 			notify: {
-				type: "success",
+				type: NotificationType.SUCCESS,
 				title: "Contact",
 				message:
 					"Nous avons bien reçu votre demande. Nous reviendrons vers vous dans les plus brefs délai.",

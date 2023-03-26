@@ -1,6 +1,13 @@
-<div class="input flex items-center {{#if color}}input-{{color}}{{/if}} {{#if transition}}color-transition{{/if}}">
+<div class="input flex items-center gap-x-2 {{#if color}}input-{{color}}{{/if}} {{#if transition}}color-transition{{/if}}">
     <input type="text" {{#if id}}id="{{ id }}" {{/if}} name="{{ name }}" {{#if required}}required{{/if}}
-        placeholder="{{ placeholder }}" x-model="value" {{#if data-loading-disable}}data-loading-disable{{/if}} {{#if
-        autocomplete}}autocomplete="{{ autocomplete }}" {{/if}} class="flex-1 w-auto">
-    <button type="button" x-on:click="value = ''" class="w-18 flex items-center justify-center">{{> icon/x-mark size=6 }}</button>
+        placeholder="{{ placeholder }}" {{#if data-loading-disable}}data-loading-disable{{/if}} {{#if
+        autocomplete}}autocomplete="{{ autocomplete }}" {{/if}} class="flex-1 px-1">
+    <button type="button" onclick="resetInputValue('{{ id }}')" class="flex items-center justify-center w-18">{{> icon/x-mark size=6 }}</button>
 </div>
+
+<script>
+    function resetInputValue(id) {
+        const emailInput = document.getElementById(id);
+        emailInput.value = "";
+    }
+</script>

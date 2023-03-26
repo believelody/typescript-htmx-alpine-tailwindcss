@@ -3,5 +3,5 @@ export default function () {
   if (chains.some(chain => chain && typeof chain !== "string")) {
     throw new Error('Arguments must be typed in string');
   }
-  return chains.reduce((acc, cur) => acc += cur, "");
+  return chains.reduce((acc: string, cur: string) => acc.concat(cur), "");
 }
