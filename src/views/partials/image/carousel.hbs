@@ -1,0 +1,22 @@
+<figure class="splide carousel {{ class }}">
+  <div class="splide__track">
+    <ul class="splide__list">
+      {{#each images as |image|}}
+        <li class="splide__slide">
+          <img class="block object-cover object-center h-full" src="{{ image }}" alt="{{../product.title}}" />
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+</figure>
+
+<script>
+  document.querySelectorAll('.carousel').forEach(carousel => new Splide(carousel, {
+      type: 'loop',
+      pagination: false,
+      autoHeight: true,
+      drag: true,
+      heightRatio: .8,
+      cover: true,
+    }).mount());
+</script>
