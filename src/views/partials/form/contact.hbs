@@ -1,4 +1,4 @@
-<form id="contact-form" hx-swap-oob="true" class="flex flex-wrap" hx-post="/contact/1" hx-trigger="submit" hx-swap="beforeend" hx-target="#notifications">
+<form id="contact-form" class="flex flex-wrap" hx-post="/contact/1" hx-trigger="submit" hx-swap="beforeend" hx-target="#notifications">
     <div class="w-full p-2 md:w-1/2">
         {{> field/text label="Name" id="name" name="name" class="relative" placeholder="Your name" color="primary" required=true }}
     </div>
