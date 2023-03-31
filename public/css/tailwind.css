@@ -51,10 +51,18 @@ input[type="number"] {
 
 .modal,
 .sidebar {
-	@apply fixed top-0 bottom-0 left-0 right-0 z-50 flex flex-col items-center justify-center bg-black/50;
+	@apply fixed top-0 bottom-0 left-0 right-0 flex flex-col items-center justify-center bg-black/50;
 
 	/* Animate when opening */
 	animation: fadeIn 150ms ease forwards;
+}
+
+.modal {
+	@apply z-50;
+}
+
+.sidebar {
+	@apply z-40;
 }
 
 .underlay {
