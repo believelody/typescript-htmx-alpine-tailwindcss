@@ -1,10 +1,12 @@
 {{#let spread=this modal-id=(chain 'modal-' (uuid))}}
     <div id="{{ modal-id }}" class="modal">
         <div class="underlay" onclick="modal.close('{{ modal-id }}')"></div>
+        <div class="fixed top-0 bottom-0 left-0 right-0 z-50 bg-transparent" data-loading
+            data-loading-path="{{ data-loading-path }}"></div>
         <div class="modal-content">
             {{#unless noCloseButton}}
-                <button
-                    class="absolute p-2 bg-white border rounded-full -top-4 -right-4 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
+                <button data-loading-disable="true"
+                    class="absolute p-2 bg-white border rounded-full disabled:hidden -top-4 -right-4 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
                     onclick="modal.close('{{ modal-id }}')">
                     <span sr-only="Close modal"
                         class="inline-flex items-center p-1 text-sm text-gray-700 bg-transparent">

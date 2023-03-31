@@ -24,7 +24,7 @@
 
     <div id="invalid-credentials" hx-target="this" hx-get="/auth/login/invalid-credentials" hx-trigger="invalid-credentials from:body" hx-swap="outerHTML"></div>
 
-    {{> button/info-3 block=true label="Sign In" x-on:click="error = null" icon=(partial 'icon/lock-closed' color="text-info-500" stroke="none" size=6)
+    {{> button/info-3 block=true label="Sign In" icon=(partial 'icon/lock-closed' color="text-info-500" stroke="none" size=6)
         icon-class="absolute inset-y-0 left-0 flex items-center pl-3"
         data-loading-disable=true data-loading-text="Authentication..." data-loading-aria-busy=true data-loading-icon="lottie/loading-1"
     }}
