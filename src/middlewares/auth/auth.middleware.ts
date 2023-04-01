@@ -14,13 +14,10 @@ const checkAuthenticatedUserAndRedirect = (req: Request, res: Response, next: Ne
 
 const checkUnauthenticatedUserAndRedirect = (req: Request, res: Response, next: NextFunction) => {
   if (!req.session?.user) {
-    if (req.ctx?.fromHTMX) {
-      res.setHeader('HX-Push', '/login');
-      res.statusCode = 401;
-      return res.render("pages/login", { ...req.ctx, title: "Login" });
-    } else {
-      return res.redirect('/login');
-    }
+    res.setHeader('HX-Reswap', 'beforeend');
+    return res.render("partials/modal/login", {
+			...req.ctx,
+		});
   }
   next();
 }

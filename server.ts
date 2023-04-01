@@ -32,7 +32,6 @@ import { posts1Controller } from "@controllers/posts-1/posts-1.controller";
 import { posts2Controller } from "@controllers/posts-2/posts-2.controller";
 import { teamsController } from "@controllers/teams/teams.controller";
 import { productsController } from "@controllers/products/products.controller";
-import { loginController } from "@controllers/login/login.controller";
 import { usersController } from "@controllers/users/users.controller";
 import { cartController } from "@controllers/cart/cart.controller";
 import { subscriptionController } from '@controllers/subscription/subscription.controller';
@@ -93,15 +92,13 @@ app.use("/posts-1", posts1Controller);
 app.use("/posts-2", posts2Controller);
 app.use("/team", authMiddleware.setCheckAuthAsHxTrigger, teamsController);
 app.use("/products", productsController);
-// app.use(
-// 	"/login",
-// 	authMiddleware.checkAuthenticatedUserAndRedirect,
-// 	authMiddleware.setCheckAuthAsHxTrigger,
-// 	loginController
-// );
 app.use("/users", usersController);
 app.use("/subscription", subscriptionController);
-app.use('/reaction', reactionController);
+app.use(
+	"/reaction",
+	authMiddleware.checkUnauthenticatedUserAndRedirect,
+	reactionController
+);
 app.use('/comments', commentsController);
 app.use('/auth', authController);
 app.use('/sidebar', sidebarController);
