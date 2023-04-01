@@ -1,5 +1,5 @@
 <div class="flex flex-col gap-y-4 max-w-min">
   {{> variant/color label="Color" name="color" items=(toArray "bg-red-500" "bg-green-500" "bg-blue-500") }}
-  {{> variant/quantity label="Quantity" min=1 max=5 }}
+  {{> variant/quantity label="Quantity" value=1 min=1 max=5 }}
   {{> variant/select label="Size" name="size" items=(toArray "S" "M" "L" "XL") }}
 </div>
