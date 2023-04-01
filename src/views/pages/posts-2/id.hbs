@@ -13,15 +13,11 @@
         <div>by {{> link/primary href=(chain "/users/" (numberIntoString author.id)) label=author.username }}</div>
       {{/if}}
       <div class="flex items-center justify-end grow gap-x-2">
-        {{#if isAuthenticated}}
-          {{> button/heart-circle class="flex disabled:cursor-not-allowed disabled:bg-neutral-200"
-                hx-post=(append "/reaction/post/" (numberIntoString post.id)) hx-trigger="click" data-loading-target="#loading-3"
-                data-loading-busy=true data-loading-disable=true data-loading-icon="lottie/loading-1" liked=post.liked
-                hx-target="#content" hx-vals=(JSONstringify (object reaction=post.reactions)) data-loading-path=(append "/reaction/post/" (numberIntoString post.id))
-                bg-icon-color="bg-secondary"}}
-        {{else}}
-          {{> auth/trigger component=(partial "button/heart-circle" bg-icon-color="bg-secondary" class="flex disabled:cursor-not-allowed disabled:bg-neutral-200") }}
-        {{/if}}
+        {{> button/heart-circle class="flex disabled:cursor-not-allowed disabled:bg-neutral-200"
+                        hx-post=(append "/reaction/post/" (numberIntoString post.id)) hx-trigger="click" data-loading-target="#loading-3"
+                        data-loading-busy=true data-loading-disable=true data-loading-icon="lottie/loading-1" liked=post.liked
+                        hx-target="#content" hx-vals=(JSONstringify (object reaction=post.reactions)) data-loading-path=(append "/reaction/post/" (numberIntoString post.id))
+                        bg-icon-color="bg-secondary"}}
         <span>{{ post.reactions }}</span>
       </div>
     </h3>
@@ -41,10 +37,14 @@
     {{#if isAuthenticated}}
       {{> form/comment }}
     {{else}}
-      <div class="flex flex-wrap items-end gap-2 text-xl">Please {{> auth/trigger component=(partial 'button/link-3' label="log in" class="text-3xl link link-primary") }} before comment.</div>
+      <div class="flex flex-wrap items-end gap-2 text-xl">Please
+        {{> auth/trigger component=(partial 'button/link-3' label="log in" class="text-3xl link link-primary") }} before
+        comment.
+      </div>
     {{/if}}
   </div>
-  <div hx-get="/comments/post/{{ post.id }}" hx-swap="innerHTML" hx-push-url="false" hx-trigger="load, add-comment from:body" data-loading-class="hidden" class="px-4 mb-4">
+  <div hx-get="/comments/post/{{ post.id }}" hx-swap="innerHTML" hx-push-url="false"
+      hx-trigger="load, add-comment from:body" data-loading-class="hidden" class="px-4 mb-4">
     <div id="comment-loader" data-loading class="justify-center">{{> lottie/loading-1 size=16 }}</div>
   </div>
 </section>

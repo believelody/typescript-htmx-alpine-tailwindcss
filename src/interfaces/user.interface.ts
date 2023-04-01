@@ -32,6 +32,7 @@ export interface User {
 	ssn: string;
 	userAgent: string;
 	likedPosts?: number[];
+	likedProducts?: number[];
 	subscribed: boolean;
 }
 

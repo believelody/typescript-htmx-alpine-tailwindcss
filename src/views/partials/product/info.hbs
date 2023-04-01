@@ -13,17 +13,13 @@
         {{> element/rating icon="star" apply-defs="linear-gradient" nb=nb value=(divide (multiply product.rating 100) 5) id=product.id fill="none" stroke="none" size=8 }}
         <span class="text-lg">{{ product.rating }}</span>
       </div>
-      <div class="flex items-center gap-x-2">
-        {{#if isAuthenticated}}
-          {{> button/heart-circle class="flex disabled:cursor-not-allowed disabled:bg-neutral-200"
-                        hx-post=(append "/reaction/post/" (numberIntoString product.id)) hx-trigger="click" data-loading-target="#loading-3"
-                        data-loading-busy=true data-loading-disable=true data-loading-icon="lottie/loading-1" liked=false
+      {{!-- <div class="flex items-center gap-x-2">
+          {{> button/heart-circle class="flex disabled:cursor-not-allowed disabled:bg-neutral-200" hx-swap="innerHTML"
+                        hx-post=(append "/reaction/product/" (numberIntoString product.id)) hx-trigger="click" data-loading-target="#loading-3"
+                        data-loading-busy=true data-loading-disable=true data-loading-icon="lottie/loading-1" liked=product.liked
                         hx-target="#content" bg-icon-color="bg-secondary" hx-vals=(JSONstringify (object reaction=145)) data-loading-path=(append "/reaction/post/" (numberIntoString product.id))}}
-        {{else}}
-            {{> auth/trigger component=(partial "button/heart-circle" bg-icon-color="bg-secondary" class="flex disabled:cursor-not-allowed disabled:bg-neutral-200") }}
-        {{/if}}
         <span>145</span>
-      </div>
+      </div> --}}
     </div>
     <p class="py-2 leading-relaxed border-gray-100 grow border-y-2">{{ product.description }}</p>
     {{> form/product-add-to-cart }}

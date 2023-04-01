@@ -1253,10 +1253,6 @@ h6 {
   height: 100%;
 }
 
-.h-screen {
-  height: 100vh;
-}
-
 .max-h-\[32rem\] {
   max-height: 32rem;
 }
@@ -1308,10 +1304,6 @@ h6 {
 
 .w-px {
   width: 1px;
-}
-
-.w-screen {
-  width: 100vw;
 }
 
 .max-w-\[6rem\] {
