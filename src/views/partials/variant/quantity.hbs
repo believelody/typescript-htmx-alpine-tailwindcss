@@ -19,24 +19,28 @@
 </div>
 
 <script>
-  const decrementButton = document.getElementById('decrement-quantity');
-  const incrementButton = document.getElementById('increment-quantity');
-  const inputField = document.getElementById('input-quantity');
+  document.addEventListener('htmx:load', function() {
+    const decrementButton = document.getElementById('decrement-quantity');
+    const incrementButton = document.getElementById('increment-quantity');
+    const inputField = document.getElementById('input-quantity');
 
-  decrementButton.onclick = function () {
-    inputField.value = `${+inputField.value - 1}`;
-    decrementButton.disabled = inputField.value === inputField.min;
-    incrementButton.disabled = inputField.value === inputField.max;
-  }
+    if (decrementButton && incrementButton && inputField) {
+      decrementButton.onclick = function () {
+        inputField.value = `${+inputField.value - 1}`;
+        decrementButton.disabled = inputField.value === inputField.min;
+        incrementButton.disabled = inputField.value === inputField.max;
+      }
 
-  incrementButton.onclick = function () {
-    inputField.value = `${+inputField.value + 1}`;
-    incrementButton.disabled = inputField.value === inputField.max;
-    decrementButton.disabled = inputField.value === inputField.min;
-  }
+      incrementButton.onclick = function () {
+        inputField.value = `${+inputField.value + 1}`;
+        incrementButton.disabled = inputField.value === inputField.max;
+        decrementButton.disabled = inputField.value === inputField.min;
+      }
 
-  inputField.onchange = function() {
-    incrementButton.disabled = inputField.value === inputField.max;
-    decrementButton.disabled = inputField.value === inputField.min;
-  }
+      inputField.onchange = function () {
+        incrementButton.disabled = inputField.value === inputField.max;
+        decrementButton.disabled = inputField.value === inputField.min;
+      }
+    }
+  })
 </script>

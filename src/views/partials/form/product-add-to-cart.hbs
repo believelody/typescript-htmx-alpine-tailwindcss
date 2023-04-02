@@ -1,4 +1,4 @@
-<form class="flex flex-col gap-y-4" hx-post="/cart/add-item" data-loading-path="/cart/add-item" hx-target="#content" hx-vals='{ "id" : {{ product.id }} }' hx-trigger="submit" hx-swap="beforeend">
+<form class="flex flex-col gap-y-4" hx-post="/cart/add-item" data-loading-path="/cart/add-item" hx-target="#content" hx-vals='{{JSONstringify (object product=product) }}' hx-trigger="submit" hx-swap="beforeend">
   {{> product/variants }}
   <div class="flex items-center justify-between">
     {{> button/primary-3 type="submit" block=true label="Add to Cart" data-loading-disable=true data-loading-text="Adding in cart..." data-loading-aria-busy=true
