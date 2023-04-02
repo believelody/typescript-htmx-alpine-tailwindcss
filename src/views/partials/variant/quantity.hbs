@@ -3,14 +3,14 @@
     <span>{{ label }}</span>
   {{/if}}
   <div class="flex items-center gap-x-2">
-    <button type='button' id="decrement-quantity" onclick="decrement('input-quantity')" {{#if (eq value
+    <button type='button' id="decrement-quantity" {{#if (eq value
         min)}}disabled{{/if}}
         class='p-2 bg-white border rounded border-secondary disabled:bg-gray-100 disabled:border-none disabled:cursor-not-allowed'>
       {{> icon/minus class="text-secondary" }}
     </button>
     <input id="input-quantity" class="w-12 text-center input out-of-range:bg-danger-500" type="number" min="{{ min }}"
         max="{{ max }}" value="{{ value }}" name="quantity" pattern="/\d/g" />
-    <button type='button' id="increment-quantity" onclick="increment('input-quantity')" {{#if (eq value
+    <button type='button' id="increment-quantity" {{#if (eq value
         max)}}disabled{{/if}}
         class='p-2 bg-white border rounded border-secondary disabled:bg-gray-100 disabled:border-none disabled:cursor-not-allowed'>
       {{> icon/plus class="text-secondary" }}
@@ -31,6 +31,11 @@
 
   incrementButton.onclick = function () {
     inputField.value = `${+inputField.value + 1}`;
+    incrementButton.disabled = inputField.value === inputField.max;
+    decrementButton.disabled = inputField.value === inputField.min;
+  }
+
+  inputField.onchange = function() {
     incrementButton.disabled = inputField.value === inputField.max;
     decrementButton.disabled = inputField.value === inputField.min;
   }
