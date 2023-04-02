@@ -4,11 +4,11 @@
     <div class="flex flex-col justify-between w-full p-2">
       <div class="flex items-center justify-between">
         {{> link/base class="text-md" onclick=(chain "sidebar.close('" sidebar-id "')") href=(chain "/products/" (numberIntoString id)) label=title }}
-        {{> button/trash class="h-10 p-2 border rounded border-danger-500 text-danger-500" size=6 }}
+        {{> button/trash hx-delete=(chain "/cart/item/" (numberIntoString id)) hx-target="#sidebar-block" class="h-10 p-2 border rounded border-danger-500 text-danger-500" size=6 }}
       </div>
       <div class="flex items-center justify-between">
         <span>Quantity :</span>
-        {{> variant/quantity value=quantity min=1 max=5 }}
+        {{> form/quantity product-id=id value=quantity min=1 max=5 }}
       </div>
       <div class="flex items-center justify-between">
         <span class="shrink-0">price: ${{ price }}</span>
