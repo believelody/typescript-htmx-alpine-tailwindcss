@@ -1,14 +1,10 @@
 {{#> element/modal noCloseButton=true header=(partial 'title/success' class='text-center underline underline-offset-2' tag='h2' text='Cart')}}
    <div class="p-2 mx-auto lg:max-w-md xs:p-8">
       <h4>You successfully added this item to your cart :</h4>
-      <ul class="pl-4 mb-8 border-l-2">
-         {{#each cart.products as |item|}}
-            <li>
-               <h4>{{ item.title }}</h4>
-               <p>- Total price: ${{ item.price }} x {{ item.quantity }} = ${{item.total }}</p>
-            </li>
-         {{/each}}
-      </ul>
-      {{> button/primary-3 block=true onclick=(chain 'modal.close("' modal-id '")') label='See cart' hx-push-url="true" hx-get='/cart' hx-target='body' hx-swap='beforeend' hx-trigger='click' }}
+      <section class="pl-4 mb-8 border-l-2">
+         <h4>{{ item.title }}</h4>
+         <p>- Total price: ${{ item.price }} x {{ item.quantity }} = ${{item.total }}</p>
+      </section>
+      {{> button/primary-3 block=true onclick=(chain 'modal.close("' modal-id '")') label='See cart' hx-push-url="true" hx-get='/cart' hx-target='#content' hx-swap='beforeend' hx-trigger='click' }}
    </div>
 {{/element/modal}}

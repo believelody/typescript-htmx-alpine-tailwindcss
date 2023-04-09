@@ -1,4 +1,4 @@
-import { Cart, CartItemRequestBody } from "@interfaces/cart.interface";
+import { Cart, CartItem, CartItemRequestBody } from "@interfaces/cart.interface";
 import { fetch } from "@services/fetch";
 
 const create = async (data: CartItemRequestBody): Promise<Cart> => {
@@ -61,8 +61,8 @@ const updateItemQuantity = async (
 const getItemIndex = (cart: Cart, id: number) =>
 	cart.products.findIndex((product) => product.id === id);
 
-const getItem = (cart: Cart, id: number) =>
-	cart.products.findIndex((product) => product.id === id);
+const getItem = (cart: Cart, id: number): CartItem =>
+	cart.products.find((product) => product.id === id);
 
 const deleteItem = async (
 	cart: Cart,

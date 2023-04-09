@@ -82,10 +82,14 @@ router.post(
 					quantity,
 				});
 			}
+			const item = await cartService.getItem(req.session.cart, id);
+			if (!item) {
+				throw new Error("Item not found in cart");
+			}
 			res.setHeader("HX-Trigger", "update-cart-btn");
 			return res.render("partials/modal/add-to-cart-success", {
 				...req.ctx,
-				cart: req.session.cart,
+				item,
 			});
 		} catch (error) {
 			console.error(`In ${req.originalUrl} route : ${error}`);
