@@ -124,7 +124,7 @@ router.get(
 		try {
 			const id = Number(req.params.id);
 			const product = await productService.findThumbnail(id);
-			return res.render("partials/image/default", {
+			return res.render("partials/image/contain", {
 				...req.ctx,
 				src: product.thumbnail,
 				alt: product.title,
