@@ -41,7 +41,7 @@ const updateItemQuantity = async (
 	itemIndex: number,
 	quantity: number
 ): Promise<Cart> => {
-	cart.products[itemIndex].quantity += quantity;
+	cart.products[itemIndex].quantity = quantity;
 	cart.products[itemIndex].total = Number(
 		(
 			cart.products[itemIndex].price * cart.products[itemIndex].quantity
@@ -51,7 +51,10 @@ const updateItemQuantity = async (
 		(acc, cur) => acc + Number((cur.price * cur.quantity).toFixed(2)),
 		0
 	);
-	cart.totalQuantity += quantity;
+	cart.totalQuantity = cart.products.reduce(
+		(acc, cur) => acc + cur.quantity,
+		0
+	);
 	return Promise.resolve(cart);
 };
 
@@ -67,8 +70,15 @@ const deleteItem = async (
 ): Promise<Cart> => {
 	const item = cart.products[itemIndex];
 	cart.products = cart.products.filter(product => product.id !== item.id);
-	cart.total = cart.products.length;
-	cart.totalQuantity -= item.quantity;
+	cart.total = cart.products.reduce(
+		(acc, cur) => acc + Number((cur.price * cur.quantity).toFixed(2)),
+		0
+	);
+	cart.totalProducts = cart.products.length;
+	cart.totalQuantity = cart.products.reduce(
+		(acc, cur) => acc + cur.quantity,
+		0
+	);
 	return Promise.resolve(cart.total > 0 ? cart : null);
 };
 

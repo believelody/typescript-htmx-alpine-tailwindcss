@@ -99,7 +99,6 @@ router.put(
 	httpMiddleware.sleep,
 	async (req: Request, res: Response, next: NextFunction) => {
 		try {
-			console.log(req.body);
 			const id = Number(req.params.id);
 			const quantity = Number(req.body.quantity);
 			const itemIndex = cartService.getItemIndex(req.session.cart, id);
@@ -114,7 +113,7 @@ router.put(
 			res.setHeader("HX-Trigger", "update-cart-btn");
 			return res.render("partials/cart/container", {
 				...req.ctx,
-				cart: req.session.cart,
+				cart: req.session.cart
 			});
 		} catch (error) {
 			console.log(`In ${req.originalUrl} route : ${error}`);
@@ -128,7 +127,6 @@ router.delete(
 	httpMiddleware.sleep,
 	async (req: Request, res: Response, next: NextFunction) => {
 		try {
-			console.log(req.body);
 			const id = Number(req.params.id);
 			const itemIndex = cartService.getItemIndex(req.session.cart, id);
 			if (itemIndex === -1) {
