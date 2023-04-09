@@ -12,7 +12,7 @@ router.get("/", async (req: Request, res: Response, next: NextFunction) => {
 			cart: req.session.cart,
 		});
 	} catch (error) {
-		console.log(`In ${req.originalUrl} route : ${error}`);
+		console.error(`In ${req.originalUrl} route : ${error}`);
 		next(error);
 	}
 });
@@ -26,7 +26,7 @@ router.get(
 				cart: req.session.cart,
 			});
 		} catch (error) {
-			console.log(`In ${req.originalUrl} route : ${error}`);
+			console.error(`In ${req.originalUrl} route : ${error}`);
 			next(error);
 		}
 	}
@@ -45,7 +45,7 @@ router.get(
 				cart: req.session.cart,
 			});
 		} catch (error) {
-			console.log(`In ${req.originalUrl} route : ${error}`);
+			console.error(`In ${req.originalUrl} route : ${error}`);
 			next(error);
 		}
 	}
@@ -88,7 +88,7 @@ router.post(
 				cart: req.session.cart,
 			});
 		} catch (error) {
-			console.log(`In ${req.originalUrl} route : ${error}`);
+			console.error(`In ${req.originalUrl} route : ${error}`);
 			next(error);
 		}
 	}
@@ -116,7 +116,7 @@ router.put(
 				cart: req.session.cart
 			});
 		} catch (error) {
-			console.log(`In ${req.originalUrl} route : ${error}`);
+			console.error(`In ${req.originalUrl} route : ${error}`);
 			next(error);
 		}
 	}
@@ -142,7 +142,7 @@ router.delete(
 				cart: req.session.cart,
 			});
 		} catch (error) {
-			console.log(`In ${req.originalUrl} route : ${error}`);
+			console.error(`In ${req.originalUrl} route : ${error}`);
 			next(error);
 		}
 	}

@@ -19,7 +19,7 @@ router.get("/login", (req: Request, res: Response, next: NextFunction) => {
 			...req.ctx,
 		});
 	} catch (error) {
-		console.log(`In ${req.originalUrl} route : ${error}`);
+		console.error(`In ${req.originalUrl} route : ${error}`);
 		next(error);
 	}
 });
@@ -30,7 +30,7 @@ router.get(
 		try {
 			return res.render("partials/error/invalid-credentials");
 		} catch (error) {
-			console.log(`In ${req.originalUrl} route : ${error}`);
+			console.error(`In ${req.originalUrl} route : ${error}`);
 			next(error);
 		}
 	}
@@ -76,7 +76,7 @@ router.post(
 			return res.redirect(`${returnURL.pathname}${returnURL.search}`);
 			// return res.render('pages/user', { ...req.ctx, user, isAuthenticated: true, me: true, title: myProfileTitle });
 		} catch (error) {
-			console.log(`In ${req.originalUrl} route : ${error}`);
+			console.error(`In ${req.originalUrl} route : ${error}`);
 			next(error);
 		}
 	}
@@ -89,7 +89,7 @@ router.get("/check", (req: Request, res: Response, next) => {
 			currentURLPathname: req.session?.currentURLPathname,
 		});
 	} catch (error) {
-		console.log(`In ${req.originalUrl} route : ${error}`);
+		console.error(`In ${req.originalUrl} route : ${error}`);
 		next(error);
 	}
 });
@@ -109,7 +109,7 @@ router.post("/logout", (req: Request, res: Response, next) => {
 		// return res.render('pages/home', { ...req.ctx, isAuthenticated: false, title: homeTitle });
 		return res.redirect("/");
 	} catch (error) {
-		console.log(`In ${req.originalUrl} route : ${error}`);
+		console.error(`In ${req.originalUrl} route : ${error}`);
 		next(error);
 	}
 });

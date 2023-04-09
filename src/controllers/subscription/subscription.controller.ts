@@ -22,7 +22,7 @@ router.post("/1", async (req: Request, res: Response, next: NextFunction) => {
 		}
 		return res.render("partials/success/subscription", { ...req.ctx, user });
 	} catch (error) {
-		console.log(`In ${req.originalUrl} route : ${error}`);
+		console.error(`In ${req.originalUrl} route : ${error}`);
 		next(error);
 	}
 });
@@ -45,7 +45,7 @@ router.post("/2", async (req: Request, res: Response, next: NextFunction) => {
 		}
 		return res.json({ success: true });
 	} catch (error) {
-		console.log(`In ${req.originalUrl} route : ${error}`);
+		console.error(`In ${req.originalUrl} route : ${error}`);
 		next(error);
 	}
 });

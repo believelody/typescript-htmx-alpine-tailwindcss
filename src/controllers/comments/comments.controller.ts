@@ -11,7 +11,7 @@ router.get('/post/:id', httpMiddleware.numericParamsValidator, async (req: Reque
     const { comments, total, limit } = await postService.findPostComments(Number(req.params.id));
     return res.render("partials/comment/list", { ...req.ctx, postId: req.params.id, comments, meta: { total, limit } });
   } catch (error) {
-    console.log(`In ${req.originalUrl} route : ${error}`);
+    console.error(`In ${req.originalUrl} route : ${error}`);
 		next(error);
   }
 });
@@ -29,7 +29,7 @@ router.post('/post', async (req: Request, res: Response, next: NextFunction) => 
     res.setHeader('HX-Trigger', 'add-comment');
     return res.render("partials/form/comment", { ...req.ctx, post });
   } catch (error) {
-    console.log(`In ${req.originalUrl} route : ${error}`);
+    console.error(`In ${req.originalUrl} route : ${error}`);
 		next(error);
   }
 });

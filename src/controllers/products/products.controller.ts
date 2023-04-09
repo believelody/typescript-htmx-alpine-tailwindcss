@@ -28,7 +28,7 @@ router.get(
 				title: productsTitle,
 			});
 		} catch (error) {
-			console.log(`In ${req.originalUrl} route : ${error}`);
+			console.error(`In ${req.originalUrl} route : ${error}`);
 			next(error);
 		}
 	}
@@ -67,7 +67,7 @@ router.get(
 				"count query is undefined or request doesn't come from htmx"
 			);
 		} catch (error) {
-			console.log(`In ${req.originalUrl} route : ${error}`);
+			console.error(`In ${req.originalUrl} route : ${error}`);
 			next(error);
 		}
 	}
@@ -80,7 +80,7 @@ router.get(
 			req.ctx = { ...req.ctx, meta: req.session?.meta };
 			return res.render("partials/product/action", req.ctx);
 		} catch (error) {
-			console.log(`In ${req.originalUrl} route : ${error}`);
+			console.error(`In ${req.originalUrl} route : ${error}`);
 			next(error);
 		}
 	}
@@ -111,7 +111,7 @@ router.get(
 				title: product.title,
 			});
 		} catch (error) {
-			console.log(`In ${req.originalUrl} route : ${error}`);
+			console.error(`In ${req.originalUrl} route : ${error}`);
 			next(error);
 		}
 	}
@@ -130,7 +130,7 @@ router.get(
 				alt: product.title,
 			});
 		} catch (error) {
-			console.log(`In ${req.originalUrl} route : ${error}`);
+			console.error(`In ${req.originalUrl} route : ${error}`);
 			next(error);
 		}
 	}

@@ -14,7 +14,7 @@ router.get("/", (req: Request, res: Response, next: NextFunction) => {
 	try {
 		return res.render("pages/user", { ...req.ctx, title: myProfileTitle });
 	} catch (error) {
-		console.log(`In ${req.originalUrl} route : ${error}`);
+		console.error(`In ${req.originalUrl} route : ${error}`);
 		next(error);
 	}
 });
@@ -42,7 +42,7 @@ router.get(
 				title: myProfilePostsTitle,
 			});
 		} catch (error) {
-			console.log(`In ${req.originalUrl} route : ${error}`);
+			console.error(`In ${req.originalUrl} route : ${error}`);
 			next(error);
 		}
 	}
@@ -77,7 +77,7 @@ router.get(
 				title: post.title,
 			});
 		} catch (error) {
-			console.log(`In ${req.originalUrl} route : ${error}`);
+			console.error(`In ${req.originalUrl} route : ${error}`);
 			next(error);
 		}
 	}

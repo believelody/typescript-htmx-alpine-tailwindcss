@@ -29,7 +29,7 @@ router.post(
 				new URL(req.headers["hx-current-url"] as string).pathname
 			);
 		} catch (error) {
-			console.log(`In ${req.originalUrl} route : ${error}`);
+			console.error(`In ${req.originalUrl} route : ${error}`);
 			next(error);
 		}
 	}
@@ -61,7 +61,7 @@ router.post(
 				new URL(req.headers["hx-current-url"] as string).pathname
 			);
 		} catch (error) {
-			console.log(`In ${req.originalUrl} route : ${error}`);
+			console.error(`In ${req.originalUrl} route : ${error}`);
 			next(error);
 		}
 	}

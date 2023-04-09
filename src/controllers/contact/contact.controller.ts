@@ -10,7 +10,7 @@ router.get("/", authMiddleware.setCheckAuthAsHxTrigger, (req: Request, res: Resp
 	try {
 		return res.render("pages/contact", { ...req.ctx, title: contactTitle });
 	} catch (error) {
-		console.log(`In ${req.originalUrl} route : ${error}`);
+		console.error(`In ${req.originalUrl} route : ${error}`);
 		next(error);
 	}
 });
@@ -27,7 +27,7 @@ router.post("/1", async (req: Request, res: Response, next: NextFunction) => {
 			},
 		});
 	} catch (error) {
-		console.log(`In ${req.originalUrl} route : ${error}`);
+		console.error(`In ${req.originalUrl} route : ${error}`);
 		next(error);
 	}
 });
@@ -44,7 +44,7 @@ router.post("/2", async (req: Request, res: Response, next: NextFunction) => {
 			},
 		});
 	} catch (error) {
-		console.log(`In ${req.originalUrl} route : ${error}`);
+		console.error(`In ${req.originalUrl} route : ${error}`);
 		next(error);
 	}
 });

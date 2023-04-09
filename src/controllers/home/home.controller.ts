@@ -7,7 +7,7 @@ router.get("/", (req: Request, res: Response, next: NextFunction) => {
 	try {
 		return res.render("pages/home", { ...req.ctx, title: homeTitle });
 	} catch (error) {
-		console.log(`In ${req.originalUrl} route : ${error}`);
+		console.error(`In ${req.originalUrl} route : ${error}`);
 		next(error);
 	}
 });

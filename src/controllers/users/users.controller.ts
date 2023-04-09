@@ -16,7 +16,7 @@ router.get('/:id', httpMiddleware.numericParamsValidator, async (req: Request, r
 		const user = await userService.findOneById(Number(id));
 		return res.render("pages/user", { ...req.ctx, user, title: user.username });
 	} catch (error) {
-		console.log(`In ${req.originalUrl} route : ${error}`);
+		console.error(`In ${req.originalUrl} route : ${error}`);
 		next(error);
 	}
 });
@@ -35,7 +35,7 @@ router.get('/:id/posts', authMiddleware.setCheckAuthAsHxTrigger, httpMiddleware.
 			title: `${author.username}'s posts`,
 		});
 	} catch (error) {
-		console.log(`In ${req.originalUrl} route : ${error}`);
+		console.error(`In ${req.originalUrl} route : ${error}`);
 		next(error);
 	}
 });
@@ -65,7 +65,7 @@ router.get('/:id/posts/:postId', authMiddleware.setCheckAuthAsHxTrigger, httpMid
 			title: post.title,
 		});
 	} catch (error) {
-		console.log(`In ${req.originalUrl} route : ${error}`);
+		console.error(`In ${req.originalUrl} route : ${error}`);
 		next(error);
 	}
 });
@@ -76,7 +76,7 @@ router.get('/:id/author-name', httpMiddleware.numericParamsValidator, async (req
     const author = await userService.findAuthor(Number(id));
     return res.render("partials/element/author", { ...req.ctx, author });
   } catch (error) {
-    console.log(`In ${req.originalUrl} route : ${error}`);
+    console.error(`In ${req.originalUrl} route : ${error}`);
 		next(error);
   }
 });

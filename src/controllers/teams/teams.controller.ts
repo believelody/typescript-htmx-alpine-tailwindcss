@@ -10,7 +10,7 @@ router.get("/", async (req: Request, res: Response, next: NextFunction) => {
 		const teams = await teamService.findAll();
 		return res.render("pages/team", { ...req.ctx, teams, title: teamsTitle });
 	} catch (error) {
-		console.log(`In ${req.originalUrl} route : ${error}`);
+		console.error(`In ${req.originalUrl} route : ${error}`);
 		next(error);
 	}
 });
