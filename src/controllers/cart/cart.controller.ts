@@ -32,24 +32,24 @@ router.get(
 	}
 );
 
-router.get(
-	"/:id",
-	httpMiddleware.numericParamsValidator,
-	async (req: Request, res: Response, next: NextFunction) => {
-		try {
-			const id = Number(req.params.id);
-			const cart = await cartService.findCartById(id);
-			req.session.cart = cart;
-			return res.render("partials/sidebar/cart", {
-				...req.ctx,
-				cart: req.session.cart,
-			});
-		} catch (error) {
-			console.error(`In ${req.originalUrl} route : ${error}`);
-			next(error);
-		}
-	}
-);
+// router.get(
+// 	"/:id",
+// 	httpMiddleware.numericParamsValidator,
+// 	async (req: Request, res: Response, next: NextFunction) => {
+// 		try {
+// 			const id = Number(req.params.id);
+// 			const cart = await cartService.findCartById(id);
+// 			req.session.cart = cart;
+// 			return res.render("partials/sidebar/cart", {
+// 				...req.ctx,
+// 				cart: req.session.cart,
+// 			});
+// 		} catch (error) {
+// 			console.error(`In ${req.originalUrl} route : ${error}`);
+// 			next(error);
+// 		}
+// 	}
+// );
 
 router.post(
 	"/add-item",
@@ -113,7 +113,30 @@ router.put(
 			res.setHeader("HX-Trigger", "update-cart-btn");
 			return res.render("partials/cart/container", {
 				...req.ctx,
-				cart: req.session.cart
+				cart: req.session.cart,
+			});
+		} catch (error) {
+			console.error(`In ${req.originalUrl} route : ${error}`);
+			next(error);
+		}
+	}
+);
+
+router.get(
+	"/item/:id",
+	httpMiddleware.sleep,
+	async (req: Request, res: Response, next: NextFunction) => {
+		try {
+			const id = Number(req.params.id);
+			const item = req.session.cart.products.find(
+				(product) => product.id === id
+			);
+			if (!item) {
+				throw new Error("Item not found in cart");
+			}
+			return res.render("partials/modal/delete-item-in-cart", {
+				...req.ctx,
+				item,
 			});
 		} catch (error) {
 			console.error(`In ${req.originalUrl} route : ${error}`);
