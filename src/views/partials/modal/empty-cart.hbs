@@ -1,0 +1,11 @@
+{{#> element/modal header=(partial 'title/default' class='text-center underline underline-offset-2' tag='h2' text='Cart')}}
+  <form class="p-2 mx-auto lg:max-w-md xs:p-8" data-loading-path="/cart/empty" hx-delete='/cart/empty' hx-target='#sidebar-block'>
+    <h4>Do you really want to clear your cart ?</h4>
+    <h5>PS: All items will be removed.</h5>
+    <div class="flex items-center justify-between">
+      {{> button/simple type="button" onclick=(chain 'modal.close("' modal-id '")') label='Cancel' data-loading-disable=true }}
+      {{> button/danger-3 label='Delete' data-loading-disable=true data-loading-text="Deleting..." data-loading-aria-busy=true
+          data-loading-icon="lottie/loading-1" }}
+    </div>
+  </form>
+{{/element/modal}}

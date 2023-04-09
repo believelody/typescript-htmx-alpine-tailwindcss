@@ -171,4 +171,36 @@ router.delete(
 	}
 );
 
+router.get(
+	"/empty",
+	async (req: Request, res: Response, next: NextFunction) => {
+		try {
+			return res.render("partials/modal/empty-cart", {
+				...req.ctx,
+			});
+		} catch (error) {
+			console.error(`In ${req.originalUrl} route : ${error}`);
+			next(error);
+		}
+	}
+);
+
+router.delete(
+	"/empty",
+	httpMiddleware.sleep,
+	async (req: Request, res: Response, next: NextFunction) => {
+		try {
+			req.session.cart = null;
+			res.setHeader("HX-Trigger", "update-cart-btn");
+			return res.render("partials/cart/container", {
+				...req.ctx,
+				cart: req.session.cart,
+			});
+		} catch (error) {
+			console.error(`In ${req.originalUrl} route : ${error}`);
+			next(error);
+		}
+	}
+);
+
 export const cartController = router;
