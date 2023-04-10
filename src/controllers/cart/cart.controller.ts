@@ -128,7 +128,6 @@ router.put(
 
 router.get(
 	"/item/:id",
-	httpMiddleware.sleep,
 	async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			const id = Number(req.params.id);
@@ -141,6 +140,7 @@ router.get(
 			return res.render("partials/modal/delete-item-in-cart", {
 				...req.ctx,
 				item,
+				'sidebar-id': req.query['sidebar-id']
 			});
 		} catch (error) {
 			console.error(`In ${req.originalUrl} route : ${error}`);
@@ -167,6 +167,7 @@ router.delete(
 			return res.render("partials/cart/container", {
 				...req.ctx,
 				cart: req.session.cart,
+				"sidebar-id": req.body["sidebar-id"],
 			});
 		} catch (error) {
 			console.error(`In ${req.originalUrl} route : ${error}`);
@@ -181,6 +182,7 @@ router.get(
 		try {
 			return res.render("partials/modal/empty-cart", {
 				...req.ctx,
+				"sidebar-id": req.query["sidebar-id"],
 			});
 		} catch (error) {
 			console.error(`In ${req.originalUrl} route : ${error}`);
@@ -199,6 +201,7 @@ router.delete(
 			return res.render("partials/cart/container", {
 				...req.ctx,
 				cart: req.session.cart,
+				"sidebar-id": req.body["sidebar-id"],
 			});
 		} catch (error) {
 			console.error(`In ${req.originalUrl} route : ${error}`);

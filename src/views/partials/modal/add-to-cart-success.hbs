@@ -5,6 +5,6 @@
          <h4>{{ item.title }}</h4>
          <p>- Total price: ${{ item.price }} x {{ item.quantity }} = ${{item.total }}</p>
       </section>
-      {{> button/primary-3 block=true onclick=(chain 'modal.close("' modal-id '")') label='See cart' hx-push-url="true" hx-get='/cart' hx-target='#content' hx-swap='beforeend' hx-trigger='click' }}
+      {{> button/primary-3 block=true label='See cart' hx-get='/cart' hx-target=(chain "#" modal-id) hx-swap='outerHTML' hx-trigger='click' }}
    </div>
 {{/element/modal}}

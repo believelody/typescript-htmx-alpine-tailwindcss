@@ -25,13 +25,13 @@
           <span class="underline underline-offset-4">Go to checkout</span>
           {{> icon/arrow-right fill='none' }}
         </a>
-        {{> button/simple hx-get="/cart/empty" hx-target='#sidebar-block' hx-swap="beforeend" class="link disabled:bg-gray-100 disabled:border-none disabled:cursor-not-allowed" label="Empty cart" }}
+        {{> button/simple hx-get="/cart/empty" hx-target='#sidebar-block' hx-vals=(JSONstringify (object sidebar-id=sidebar-id)) hx-swap="beforeend" class="link disabled:bg-gray-100 disabled:border-none disabled:cursor-not-allowed" label="Empty cart" }}
       </div>
     </div>
   </div>
 {{else}}
   <div class="flex flex-col items-center justify-center w-full">
     <h3>Nothing to see yet.</h3>
-    {{> button/secondary-3 label="Close and start shopping" onclick=(chain 'sidebar.close("' sidebar-id '", true)') }}
+    {{> button/secondary-3 label="Close and start shopping" onclick=(chain 'sidebar.close("' sidebar-id '")') }}
   </div>
 {{/if}}
