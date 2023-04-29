@@ -1,20 +1,41 @@
-export default (initialState) => ({
-  notifications: initialState.notifications || [],
-  timer: {},
-  timeout: initialState.timeout || 3000,
-  position: initialState.position || "top-left",
-  slideDirection: initialState.slideDirection || "left",
-  send(notification) {
-    this.notifications = [{ id: crypto.randomUUID(), ...notification }, ...this.notifications];
+export default (notificationId, notificationType) => ({
+  notificationElement: document.getElementById(notificationId),
+  close() {
+    this.notificationElement.classList.add('closing');
+    this.notificationElement.onanimationend = () => {
+      const notificationParentElement = this.notificationElement.parentElement;
+      this.notificationElement.remove();
+      if (notificationParentElement.childElementCount === 0) {
+        notificationParentElement.remove();
+      }
+    };
   },
-  addFromBottom() {
-    this.notifications = [...this.notifications, { id: crypto.randomUUID(), type: 'success', title: 'Contact', message: 'Nous avons bien reçu votre demande. Nous reviendrons vers vous dans les plus brefs délai.', timeout: 5000 }];
+  async setTimer(timeout = 7500) {
+    let timer;
+    await new Promise(resolve => {
+      timer = setTimeout(() => {
+        resolve(this.close());
+      }, timeout);
+    });
   },
-  addFromTop() {
-    this.notifications = [{ id: crypto.randomUUID(), type: 'success', title: 'Contact', message: 'Nous avons bien reçu votre demande. Nous reviendrons vers vous dans les plus brefs délai.', timeout: 5000 }, ...this.notifications];
+  setBorderFromType() {
+    switch (notificationType) {
+      case "success":
+        return "border border-success-500 bg-success-50 border-l-[12px]";
+      case "error":
+        return "border border-danger-500 bg-danger-50 border-l-[12px]";
+      case "info":
+        return "border border-info-500 bg-info-50 border-l-[12px]";
+      case "warning":
+        return "border border-warning-500 bg-warning-50 border-l-[12px]";
+      default:
+        return "border border-l-[12px]";
+    }
   },
-  remove(notificationId) {
-    this.notifications = this.notifications.filter(notification => notification.id !== notificationId);
-    clearTimeout(this.timer[notificationId]);
+  closer: {
+    type: 'button',
+    ['@click']() {
+      this.close();
+    },
   },
 });
