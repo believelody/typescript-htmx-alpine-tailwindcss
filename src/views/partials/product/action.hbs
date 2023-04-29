@@ -7,6 +7,8 @@
             hx-target="#product-list"
             hx-get=(urlPath (urlFromParams (chain (baseUrl) "/products/more") limit=meta.limit count=(add meta.count meta.limit)))
             hx-swap="beforeend scroll:bottom"
+            data-loading-disable=true data-loading-text="Adding product..." data-loading-aria-busy=true
+            data-loading-icon="lottie/loading-1"
             label="See more"
       }}
     </div>
