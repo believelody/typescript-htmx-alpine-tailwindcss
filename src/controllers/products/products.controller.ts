@@ -2,6 +2,7 @@ import { authMiddleware } from "@middlewares/auth/auth.middleware";
 import { httpMiddleware } from "@middlewares/http/http.middleware";
 import { productService } from "@services/product/product.service";
 import { queryUtil } from "@utils/query/query.util";
+import { stringUtil } from "@utils/string/string.util";
 import { urlUtil } from "@utils/url/url.util";
 import express, { Request, NextFunction, Response } from "express";
 
@@ -17,10 +18,7 @@ router.get(
 		try {
 			const limit = Number(req.query.limit || queryUtil.limitQueryArray[0]);
 			const count = Number(req.query.count || limit);
-			const { products, total } = (await productService.findAll(
-				count,
-				0
-			));
+			const { products, total } = await productService.findAll(count, 0);
 			return res.render("pages/products", {
 				...req.ctx,
 				products,
@@ -87,12 +85,47 @@ router.get(
 );
 
 router.get(
+	"/categories",
+	async (req: Request, res: Response, next: NextFunction) => {
+		try {
+			const categories = await productService.findAllCategories();
+			return res.render("partials/product/category-filter", {
+				...req.ctx,
+				categories: categories.map((categorie) => ({ value: categorie, label: stringUtil.capitalize(categorie) })),
+			});
+		} catch (error) {
+			console.error(`In ${req.originalUrl} route : ${error}`);
+			next(error);
+		}
+	}
+);
+
+router.get(
+	"/brands",
+	async (req: Request, res: Response, next: NextFunction) => {
+		try {
+			const brands = await productService.findAllBrands();
+			return res.render("partials/product/brand-filter", {
+				...req.ctx,
+				brands: brands.map((brand) => ({
+					value: brand,
+					label: brand,
+				})),
+			});
+		} catch (error) {
+			console.error(`In ${req.originalUrl} route : ${error}`);
+			next(error);
+		}
+	}
+);
+
+router.get(
 	"/:id",
 	httpMiddleware.numericParamsValidator,
 	async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			const id = Number(req.params.id);
-			const product = (await productService.findOneById(id));
+			const product = await productService.findOneById(id);
 			const prevProductId = id - 1;
 			const nextProductId = id + 1;
 			return res.render("pages/products/id", {
