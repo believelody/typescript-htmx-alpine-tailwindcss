@@ -1076,6 +1076,10 @@ h6 {
   top: 50%;
 }
 
+.top-8 {
+  top: 2rem;
+}
+
 .-z-10 {
   z-index: -10;
 }
@@ -1413,10 +1417,6 @@ h6 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.grid-cols-3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
 .flex-row-reverse {
   flex-direction: row-reverse;
 }
@@ -1459,10 +1459,6 @@ h6 {
 
 .justify-around {
   justify-content: space-around;
-}
-
-.justify-evenly {
-  justify-content: space-evenly;
 }
 
 .gap-2 {
@@ -1550,10 +1546,6 @@ h6 {
 
 .overflow-x-hidden {
   overflow-x: hidden;
-}
-
-.overflow-y-hidden {
-  overflow-y: hidden;
 }
 
 .truncate {
@@ -1645,21 +1637,6 @@ h6 {
 .border-secondary {
   --tw-border-opacity: 1;
   border-color: rgb(0 0 0 / var(--tw-border-opacity));
-}
-
-.border-red-500 {
-  --tw-border-opacity: 1;
-  border-color: rgb(239 68 68 / var(--tw-border-opacity));
-}
-
-.border-green-500 {
-  --tw-border-opacity: 1;
-  border-color: rgb(34 197 94 / var(--tw-border-opacity));
-}
-
-.border-warning-500 {
-  --tw-border-opacity: 1;
-  border-color: rgb(234 179 8 / var(--tw-border-opacity));
 }
 
 .border-opacity-60 {
@@ -1946,10 +1923,6 @@ h6 {
 
 .uppercase {
   text-transform: uppercase;
-}
-
-.capitalize {
-  text-transform: capitalize;
 }
 
 .leading-7 {
@@ -2752,10 +2725,6 @@ input[type="number"] {
 }
 
 @media (min-width: 768px) {
-  .md\:col-span-2 {
-    grid-column: span 2 / span 2;
-  }
-
   .md\:mb-0 {
     margin-bottom: 0px;
   }
@@ -2876,16 +2845,8 @@ input[type="number"] {
 }
 
 @media (min-width: 1024px) {
-  .lg\:sticky {
-    position: sticky;
-  }
-
   .lg\:col-span-3 {
     grid-column: span 3 / span 3;
-  }
-
-  .lg\:col-span-2 {
-    grid-column: span 2 / span 2;
   }
 
   .lg\:mb-0 {
@@ -2900,20 +2861,8 @@ input[type="number"] {
     display: inline;
   }
 
-  .lg\:flex {
-    display: flex;
-  }
-
-  .lg\:grid {
-    display: grid;
-  }
-
   .lg\:hidden {
     display: none;
-  }
-
-  .lg\:h-auto {
-    height: auto;
   }
 
   .lg\:w-1\/2 {
@@ -2934,14 +2883,6 @@ input[type="number"] {
 
   .lg\:max-w-none {
     max-width: none;
-  }
-
-  .lg\:flex-grow-0 {
-    flex-grow: 0;
-  }
-
-  .lg\:grow-0 {
-    flex-grow: 0;
   }
 
   .lg\:grid-cols-3 {
