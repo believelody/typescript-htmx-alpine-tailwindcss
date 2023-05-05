@@ -1,20 +1,26 @@
 {{!< main }}
 {{> element/seo }}
-<section class="grid grid-cols-1 text-gray-600 lg:grid-cols-4 body-font">
-  <div class="flex flex-col px-2 py-12 mx-auto lg:col-span-3 gap-y-4">
-    <div class="flex items-center justify-start gap-x-4">
-      {{> limit/default
+<section class="relative grid grid-cols-1 text-gray-600 lg:grid-cols-4 body-font">
+  <div class="flex flex-col px-2 py-4 mx-auto lg:py-12 lg:col-span-3 gap-y-4">
+    <div class="sticky top-0 z-10 flex justify-between w-full bg-white">
+      <div class="flex items-center justify-start gap-x-4">
+        {{> limit/default
             group=(toArray 6 18 30)
             href=(urlFromParams (chain (baseUrl) "/products"))
             meta=meta
-      }}
+        }}
+      </div>
+      {{> button/simple
+            hx-get="/products/filters"
+            hx-target="#content"
+            hx-swap="beforeend"
+            label="Filters"
+            class="p-2 rounded lg:hidden btn" }}
     </div>
     <ul class="grid h-full gap-3 sm:grid-cols-2 lg:grid-cols-3" id="product-list">
       {{> product/list }}
     </ul>
     {{> product/action }}
   </div>
-  <div class="hidden lg:block">
-    {{> product/filters }}
-  </div>
+  {{> product/filters }}
 </section>

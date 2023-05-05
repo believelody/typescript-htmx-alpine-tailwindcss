@@ -1035,6 +1035,10 @@ h6 {
   position: relative;
 }
 
+.sticky {
+  position: sticky;
+}
+
 .inset-y-0 {
   top: 0px;
   bottom: 0px;
@@ -1253,6 +1257,11 @@ h6 {
   height: 100%;
 }
 
+.h-min {
+  height: -moz-min-content;
+  height: min-content;
+}
+
 .max-h-\[32rem\] {
   max-height: 32rem;
 }
@@ -1452,6 +1461,10 @@ h6 {
   justify-content: space-around;
 }
 
+.justify-evenly {
+  justify-content: space-evenly;
+}
+
 .gap-2 {
   gap: 0.5rem;
 }
@@ -1537,6 +1550,10 @@ h6 {
 
 .overflow-x-hidden {
   overflow-x: hidden;
+}
+
+.overflow-y-hidden {
+  overflow-y: hidden;
 }
 
 .truncate {
@@ -1628,6 +1645,21 @@ h6 {
 .border-secondary {
   --tw-border-opacity: 1;
   border-color: rgb(0 0 0 / var(--tw-border-opacity));
+}
+
+.border-red-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(239 68 68 / var(--tw-border-opacity));
+}
+
+.border-green-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(34 197 94 / var(--tw-border-opacity));
+}
+
+.border-warning-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(234 179 8 / var(--tw-border-opacity));
 }
 
 .border-opacity-60 {
@@ -2844,6 +2876,10 @@ input[type="number"] {
 }
 
 @media (min-width: 1024px) {
+  .lg\:sticky {
+    position: sticky;
+  }
+
   .lg\:col-span-3 {
     grid-column: span 3 / span 3;
   }
@@ -2864,6 +2900,22 @@ input[type="number"] {
     display: inline;
   }
 
+  .lg\:flex {
+    display: flex;
+  }
+
+  .lg\:grid {
+    display: grid;
+  }
+
+  .lg\:hidden {
+    display: none;
+  }
+
+  .lg\:h-auto {
+    height: auto;
+  }
+
   .lg\:w-1\/2 {
     width: 50%;
   }
@@ -2882,6 +2934,14 @@ input[type="number"] {
 
   .lg\:max-w-none {
     max-width: none;
+  }
+
+  .lg\:flex-grow-0 {
+    flex-grow: 0;
+  }
+
+  .lg\:grow-0 {
+    flex-grow: 0;
   }
 
   .lg\:grid-cols-3 {
@@ -2930,6 +2990,14 @@ input[type="number"] {
     border-bottom-width: calc(0px * var(--tw-divide-y-reverse));
   }
 
+  .lg\:border-2 {
+    border-width: 2px;
+  }
+
+  .lg\:p-2 {
+    padding: 0.5rem;
+  }
+
   .lg\:px-0 {
     padding-left: 0px;
     padding-right: 0px;
@@ -2938,6 +3006,11 @@ input[type="number"] {
   .lg\:px-8 {
     padding-left: 2rem;
     padding-right: 2rem;
+  }
+
+  .lg\:py-12 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
   }
 }
 

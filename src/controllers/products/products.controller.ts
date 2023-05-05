@@ -91,7 +91,10 @@ router.get(
 			const categories = await productService.findAllCategories();
 			return res.render("partials/product/category-filter", {
 				...req.ctx,
-				categories: categories.map((categorie) => ({ value: categorie, label: stringUtil.capitalize(categorie) })),
+				categories: categories.map((categorie) => ({
+					value: categorie,
+					label: stringUtil.capitalize(categorie),
+				})),
 			});
 		} catch (error) {
 			console.error(`In ${req.originalUrl} route : ${error}`);
@@ -111,6 +114,20 @@ router.get(
 					value: brand,
 					label: brand,
 				})),
+			});
+		} catch (error) {
+			console.error(`In ${req.originalUrl} route : ${error}`);
+			next(error);
+		}
+	}
+);
+
+router.get(
+	"/filters",
+	async (req: Request, res: Response, next: NextFunction) => {
+		try {
+			return res.render("partials/sidebar/product-filters", {
+				...req.ctx,
 			});
 		} catch (error) {
 			console.error(`In ${req.originalUrl} route : ${error}`);
