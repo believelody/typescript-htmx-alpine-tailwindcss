@@ -1,3 +1,4 @@
+import { ProductFilterKeys } from "@enums/product-filter.enum";
 import { authMiddleware } from "@middlewares/auth/auth.middleware";
 import { httpMiddleware } from "@middlewares/http/http.middleware";
 import { productService } from "@services/product/product.service";
@@ -44,15 +45,11 @@ router.get(
 				if (req.session) {
 					req.session.meta = { total: htmxRes.total, limit, count };
 				}
-				const url = new URL(
+				const url = urlUtil.updateURLWithParams(
 					req.headers["hx-current-url"] as string,
-					req.headers.host
+					req.headers.host,
+					req.query
 				);
-				if (url.search) {
-					url.search = "";
-				}
-				url.searchParams.append("count", String(count));
-				url.searchParams.append("limit", String(limit));
 				res.setHeader("HX-Trigger", "product-update-action");
 				res.setHeader("HX-Replace-Url", `/products${url.search}`);
 				return res.render("partials/product/list", {
@@ -91,10 +88,15 @@ router.get(
 			const categories = await productService.findAllCategories();
 			return res.render("partials/product/category-filter", {
 				...req.ctx,
-				categories: categories.map((categorie) => ({
-					value: categorie,
-					label: stringUtil.capitalize(categorie),
-				})),
+				categories: [
+					{
+						label: "All categories",
+					},
+					...categories.map((categorie) => ({
+						value: categorie,
+						label: stringUtil.capitalize(categorie),
+					})),
+				],
 			});
 		} catch (error) {
 			console.error(`In ${req.originalUrl} route : ${error}`);
@@ -110,10 +112,29 @@ router.get(
 			const brands = await productService.findAllBrands();
 			return res.render("partials/product/brand-filter", {
 				...req.ctx,
-				brands: brands.map((brand) => ({
-					value: brand,
-					label: brand,
-				})),
+				brands: [
+					{
+						label: "All brands",
+					},
+					...brands.map((brand) => ({
+						value: brand,
+						label: brand,
+					})),
+				],
+			});
+		} catch (error) {
+			console.error(`In ${req.originalUrl} route : ${error}`);
+			next(error);
+		}
+	}
+);
+
+router.get(
+	"/filters/sidebar",
+	async (req: Request, res: Response, next: NextFunction) => {
+		try {
+			return res.render("partials/sidebar/product-filters", {
+				...req.ctx,
 			});
 		} catch (error) {
 			console.error(`In ${req.originalUrl} route : ${error}`);
@@ -126,8 +147,29 @@ router.get(
 	"/filters",
 	async (req: Request, res: Response, next: NextFunction) => {
 		try {
-			return res.render("partials/sidebar/product-filters", {
+			const limit = Number(req.query.limit || queryUtil.limitQueryArray[0]);
+			const count = Number(req.query.count || limit);
+			const filterKeys = Object.entries(req.query).reduce((acc, [key, value]) => {
+				if (Object.values(ProductFilterKeys).includes(key as ProductFilterKeys) && value) {
+					return acc.set(key as ProductFilterKeys, value as string);
+				}
+				return acc;
+			}, new Map<ProductFilterKeys, string>());
+			const filteredProducts = await productService.filterByKeys(filterKeys);
+			// const url = urlUtil.updateURLWithParams(
+			// 	req.headers["hx-current-url"] as string,
+			// 	req.headers.host,
+			// 	req.query
+			// );
+			// res.setHeader("HX-Push-Url", `/products${url.search}`);
+			return res.render("partials/product/content", {
 				...req.ctx,
+				products: count >= filteredProducts.length ? filteredProducts : filteredProducts.slice(0, count),
+				meta: {
+					total: filteredProducts.length,
+					limit,
+					count: count >= filteredProducts.length ? filteredProducts : count,
+				},
 			});
 		} catch (error) {
 			console.error(`In ${req.originalUrl} route : ${error}`);

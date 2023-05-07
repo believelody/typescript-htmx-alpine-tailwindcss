@@ -1,17 +1,17 @@
-<form class="relative flex flex-col items-center justify-center w-full p-4 gap-y-4 lg:p-2">
+<form hx-get="/products/filters" hx-target="#product-content" hx-trigger="submit" class="relative flex flex-col items-center justify-center w-full p-4 gap-y-4 lg:p-2">
   {{#if title}}
     <h2 class="text-center">{{ title }}</h2>
   {{/if}}
   <div class="flex flex-col items-start justify-start w-full gap-y-4 grow">
-    <div hx-get="/products/categories" hx-trigger="load" hx-indicator="#categories-filter-indicator" class="w-full">
+    <div hx-get="/products/categories" hx-trigger="load" hx-target="this" hx-indicator="#categories-filter-indicator" class="w-full">
       <span id="categories-filter-indicator" class="htmx-indicator">Loading categories...</span>
     </div>
-    <div hx-get="/products/brands" hx-trigger="load" hx-indicator="#brands-filter-indicator" class="w-full">
+    <div hx-get="/products/brands" hx-trigger="load" hx-target="this" hx-indicator="#brands-filter-indicator" class="w-full">
       <span id="brands-filter-indicator" class="htmx-indicator">Loading brands...</span>
     </div>
   </div>
   <div class="relative bottom-0 flex flex-col justify-center w-full gap-y-2">
-    {{> button/primary type="button" label="Apply filters" }}
-    {{> button/simple type="button" label="Restore default parameters" }}
+    {{> button/primary-3 data-loading-disable=true label="Apply filters" }}
+    {{> button/simple type="button" data-loading-disable=true label="Restore default parameters" }}
   </div>
 </form>

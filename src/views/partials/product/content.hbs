@@ -1,0 +1,21 @@
+<div id="product-content" class="flex flex-col px-2 mx-auto lg:col-span-3 gap-y-4">
+  <div class="sticky top-0 z-10 flex justify-between w-full bg-white">
+    <div class="flex items-center justify-start gap-x-4">
+      {{> limit/default
+            group=(toArray 6 18 30)
+            href=(urlFromParams (chain (baseUrl) "/products"))
+            meta=meta
+        }}
+    </div>
+    {{> button/simple
+            hx-get="/products/filters/sidebar"
+            hx-target="#content"
+            hx-swap="beforeend"
+            label="Filters"
+            class="p-2 rounded lg:hidden btn" }}
+  </div>
+  <ul class="grid h-full gap-3 sm:grid-cols-2 lg:grid-cols-3" id="product-list">
+    {{> product/list }}
+  </ul>
+  {{> product/action }}
+</div>
