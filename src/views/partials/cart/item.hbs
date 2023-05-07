@@ -1,11 +1,10 @@
 {{#let spread=this item-id-image=(chain "item-" (numberIntoString id) "-image")}}
   <li hx-boost="true" hx-get="/products/{{ id }}/image" hx-trigger="load" hx-target="#{{ item-id-image }}"
-      class="flex border rounded h-[10rem]">
-    <a id="{{ item-id-image }}" href="/products/{{ id }}" hx-target="#content"
-        onclick="sidebar.close('{{ sidebar-id }}')" class="hidden max-w-[25%] md:max-w-[33%] xs:block"></a>
-    <div class="flex flex-col justify-between w-3/4 p-2 md:w-2/3">
+      class="border rounded min-h-[10rem] grid grid-cols-4 md:grid-cols-3">
+    <a id="{{ item-id-image }}" href="/products/{{ id }}" x-bind="closer" hx-target="#content" class="items-center justify-center hidden xs:flex"></a>
+    <div class="flex flex-col justify-between col-span-3 p-2 md:col-span-2">
       <div class="flex items-center justify-between">
-        {{> link/base class="underline truncate text-md underline-offset-4" onclick=(chain "sidebar.close('" sidebar-id "')") href=(chain "/products/" (numberIntoString id)) label=title }}
+        {{> link/base class="underline truncate text-md underline-offset-4" x-bind="closer" href=(chain "/products/" (numberIntoString id)) label=title }}
         {{> button/simple hx-get=(chain "/cart/item/" (numberIntoString id))
                           hx-swap="beforeend"
                           hx-target="#sidebar-block"

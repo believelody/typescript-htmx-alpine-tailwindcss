@@ -1088,6 +1088,18 @@ h6 {
   z-index: 50;
 }
 
+.col-span-3 {
+  grid-column: span 3 / span 3;
+}
+
+.col-span-1 {
+  grid-column: span 1 / span 1;
+}
+
+.col-span-4 {
+  grid-column: span 4 / span 4;
+}
+
 .mx-3 {
   margin-left: 0.75rem;
   margin-right: 0.75rem;
@@ -1262,6 +1274,10 @@ h6 {
   height: min-content;
 }
 
+.h-\[10\.5rem\] {
+  height: 10.5rem;
+}
+
 .max-h-\[32rem\] {
   max-height: 32rem;
 }
@@ -1271,8 +1287,16 @@ h6 {
   max-height: max-content;
 }
 
+.max-h-\[10rem\] {
+  max-height: 10rem;
+}
+
 .min-h-full {
   min-height: 100%;
+}
+
+.min-h-\[10rem\] {
+  min-height: 10rem;
 }
 
 .w-10 {
@@ -1411,6 +1435,10 @@ h6 {
 
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .flex-row-reverse {
@@ -2620,6 +2648,14 @@ input[type="number"] {
     display: block;
   }
 
+  .xs\:inline {
+    display: inline;
+  }
+
+  .xs\:flex {
+    display: flex;
+  }
+
   .xs\:p-2 {
     padding: 0.5rem;
   }
@@ -2721,6 +2757,14 @@ input[type="number"] {
 }
 
 @media (min-width: 768px) {
+  .md\:col-span-3 {
+    grid-column: span 3 / span 3;
+  }
+
+  .md\:col-span-2 {
+    grid-column: span 2 / span 2;
+  }
+
   .md\:mb-0 {
     margin-bottom: 0px;
   }
@@ -2763,6 +2807,10 @@ input[type="number"] {
 
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .md\:flex-row {

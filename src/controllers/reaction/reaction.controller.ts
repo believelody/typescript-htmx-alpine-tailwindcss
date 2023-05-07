@@ -52,7 +52,6 @@ router.post(
 					: isProductLiked
 					? req.session.user.likedProducts?.filter((l) => l !== id)
 					: [id, ...req.session.user.likedProducts];
-				console.log(req.session.user.likedProducts);
 				if (req.cookies.session_remember) {
 					res.cookie("session_user", req.session.user);
 				}
