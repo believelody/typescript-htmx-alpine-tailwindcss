@@ -1092,14 +1092,6 @@ h6 {
   grid-column: span 3 / span 3;
 }
 
-.col-span-1 {
-  grid-column: span 1 / span 1;
-}
-
-.col-span-4 {
-  grid-column: span 4 / span 4;
-}
-
 .mx-3 {
   margin-left: 0.75rem;
   margin-right: 0.75rem;
@@ -1201,6 +1193,10 @@ h6 {
   margin-top: 2rem;
 }
 
+.mb-5 {
+  margin-bottom: 1.25rem;
+}
+
 .box-border {
   box-sizing: border-box;
 }
@@ -1257,10 +1253,6 @@ h6 {
   height: 1.5rem;
 }
 
-.h-\[10rem\] {
-  height: 10rem;
-}
-
 .h-auto {
   height: auto;
 }
@@ -1274,15 +1266,6 @@ h6 {
   height: min-content;
 }
 
-.h-\[10\.5rem\] {
-  height: 10.5rem;
-}
-
-.h-fit {
-  height: -moz-fit-content;
-  height: fit-content;
-}
-
 .max-h-\[32rem\] {
   max-height: 32rem;
 }
@@ -1292,21 +1275,12 @@ h6 {
   max-height: max-content;
 }
 
-.max-h-\[10rem\] {
-  max-height: 10rem;
-}
-
-.min-h-full {
-  min-height: 100%;
-}
-
 .min-h-\[10rem\] {
   min-height: 10rem;
 }
 
-.min-h-fit {
-  min-height: -moz-fit-content;
-  min-height: fit-content;
+.min-h-full {
+  min-height: 100%;
 }
 
 .w-10 {
@@ -1329,10 +1303,6 @@ h6 {
   width: 5rem;
 }
 
-.w-3\/4 {
-  width: 75%;
-}
-
 .w-48 {
   width: 12rem;
 }
@@ -1351,10 +1321,6 @@ h6 {
 
 .w-px {
   width: 1px;
-}
-
-.max-w-\[25\%\] {
-  max-width: 25%;
 }
 
 .max-w-lg {
@@ -1449,6 +1415,14 @@ h6 {
 
 .grid-cols-4 {
   grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.grid-rows-4 {
+  grid-template-rows: repeat(4, minmax(0, 1fr));
+}
+
+.grid-rows-5 {
+  grid-template-rows: repeat(5, minmax(0, 1fr));
 }
 
 .flex-row-reverse {
@@ -2659,14 +2633,6 @@ input[type="number"] {
 }
 
 @media (min-width: 375px) {
-  .xs\:block {
-    display: block;
-  }
-
-  .xs\:inline {
-    display: inline;
-  }
-
   .xs\:flex {
     display: flex;
   }
@@ -2772,10 +2738,6 @@ input[type="number"] {
 }
 
 @media (min-width: 768px) {
-  .md\:col-span-3 {
-    grid-column: span 3 / span 3;
-  }
-
   .md\:col-span-2 {
     grid-column: span 2 / span 2;
   }
@@ -2808,16 +2770,8 @@ input[type="number"] {
     width: 50%;
   }
 
-  .md\:w-2\/3 {
-    width: 66.666667%;
-  }
-
   .md\:w-full {
     width: 100%;
-  }
-
-  .md\:max-w-\[33\%\] {
-    max-width: 33%;
   }
 
   .md\:grid-cols-2 {
@@ -2846,6 +2800,10 @@ input[type="number"] {
 
   .md\:justify-start {
     justify-content: flex-start;
+  }
+
+  .md\:justify-between {
+    justify-content: space-between;
   }
 
   .md\:gap-4 {

@@ -1,5 +1,5 @@
-<div class="md:hidden">
-    <ul class="px-3 py-4 space-y-2 overflow-y-auto text-lg rounded bg-gray-50">
+<div class="flex flex-col w-full grow md:hidden">
+    <ul class="flex flex-col items-center justify-center px-3 py-4 overflow-y-auto text-xl bg-gray-200 gap-y-2 grow">
         {{#each (routes) as |route|}}
             {{> nav/item-sidebar sidebar-id=../sidebar-id route=route }}
         {{/each}}
