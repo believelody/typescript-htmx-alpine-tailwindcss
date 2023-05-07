@@ -12,7 +12,7 @@
             hx-get=(urlPath (urlFromParams (chain (baseUrl) "/products/more") limit=meta.limit count=(add meta.count meta.limit)))
             hx-swap="beforeend scroll:bottom"
             data-loading-disable=true data-loading-text="Adding product..." data-loading-aria-busy=true
-            data-loading-icon="lottie/loading-1"
+            data-loading-icon="lottie/loading-1" data-loading-path="/products/more"
             label="See more"
       }}
     </div>
