@@ -1,4 +1,7 @@
 <section class="text-neutral-600 body-font">
     {{> element/seo }}
+    {{#if breadcrumb-text}}
+        {{> element/breadcrumb }}
+    {{/if}}
     {{> @partial-block }}
 </section>
