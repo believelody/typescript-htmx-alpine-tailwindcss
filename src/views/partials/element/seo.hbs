@@ -1,6 +1,8 @@
-<div class="hidden" x-init="
+<section class="text-neutral-600 body-font" x-init="
         if ('{{ fromHTMX }}') {
             document.title='{{title}}';
         }
     "
-></div>
+>
+    {{> @partial-block }}
+</section>

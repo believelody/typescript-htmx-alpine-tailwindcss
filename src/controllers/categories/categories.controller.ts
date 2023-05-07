@@ -12,7 +12,8 @@ router.get(
 			const categories = await productService.findAllCategories();
 			return res.render("pages/categories", {
 				...req.ctx,
-				categories
+				categories,
+				title: categoriesTitle,
 			});
 		} catch (error) {
 			console.error(`In ${req.originalUrl} route : ${error}`);
