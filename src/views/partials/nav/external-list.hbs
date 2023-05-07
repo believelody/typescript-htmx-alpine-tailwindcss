@@ -1,79 +1,28 @@
-<div class="flex flex-col pt-4 overflow-x-hidden text-gray-600 border-t border-gray-200 grow md:space-y-2 ">
-    <div class="container h-full px-2 pb-2 mx-auto">
-        <div class="grid justify-center grid-cols-2 text-center gap-x-2 gap-y-8 md:gap-4 md:justify-start md:grid-cols-2 lg:grid-cols-4 md:text-left">
-            <div class="px-4">
-                <h2 class="mb-3 text-sm font-medium tracking-widest text-gray-900 title-font">CATEGORIES</h2>
-                <nav class="list-none">
-                    <li>
-                        <a class="text-gray-600 hover:text-gray-800">First Link</a>
-                    </li>
-                    <li>
-                        <a class="text-gray-600 hover:text-gray-800">Second Link</a>
-                    </li>
-                    <li>
-                        <a class="text-gray-600 hover:text-gray-800">Third Link</a>
-                    </li>
-                    <li>
-                        <a class="text-gray-600 hover:text-gray-800">Fourth Link</a>
-                    </li>
-                </nav>
-            </div>
-            <div class="px-4">
-                <h2 class="mb-3 text-sm font-medium tracking-widest text-gray-900 title-font">CATEGORIES</h2>
-                <nav class="list-none">
+<div class="relative flex flex-col pt-4 text-gray-600 border-2 border-gray-200 grow md:space-y-2 ">
+    <div class="container p-4 mx-auto">
+            <h2 class="mb-3 text-sm font-medium tracking-widest text-center text-gray-900 uppercase title-font">external links</h2>
+            <nav hx-boost="true" class="flex flex-col items-center justify-center list-none md:flex-row md:justify-between">
                 <li>
-                    <a class="text-gray-600 hover:text-gray-800">First Link</a>
+                    <a href="/about" hx-target="#content" :class="currentRoute.startsWith('/about') && 'border-b-2 border-gray-800'" class="text-gray-600 hover:text-gray-800">About</a>
                 </li>
                 <li>
-                    <a class="text-gray-600 hover:text-gray-800">Second Link</a>
+                    <a href="/contact" hx-target="#content" :class="currentRoute.startsWith('/contact') && 'border-b-2 border-gray-800'" class="text-gray-600 hover:text-gray-800">Contact Us</a>
                 </li>
                 <li>
-                    <a class="text-gray-600 hover:text-gray-800">Third Link</a>
+                    <a href="/faq" hx-indicator="#loader, #content" hx-target="#content" :class="currentRoute.startsWith('/faq') && 'border-b-2 border-gray-800'" class="text-gray-600 hover:text-gray-800">F.A.Q</a>
                 </li>
                 <li>
-                    <a class="text-gray-600 hover:text-gray-800">Fourth Link</a>
-                </li>
-                </nav>
-            </div>
-            <div class="px-4">
-                <h2 class="mb-3 text-sm font-medium tracking-widest text-gray-900 title-font">CATEGORIES</h2>
-                <nav class="list-none">
-                <li>
-                    <a class="text-gray-600 hover:text-gray-800">First Link</a>
+                    <a href="/guc" hx-indicator="#loader, #content" hx-target="#content" :class="currentRoute.startsWith('/guc') && 'border-b-2 border-gray-800'" class="text-gray-600 hover:text-gray-800">G.U.C</a>
                 </li>
                 <li>
-                    <a class="text-gray-600 hover:text-gray-800">Second Link</a>
+                    <a href="/categories" hx-indicator="#loader, #content" hx-target="#content" :class="currentRoute.startsWith('/categories') && 'border-b-2 border-gray-800'" class="text-gray-600 hover:text-gray-800">Categories</a>
                 </li>
-                <li>
-                    <a class="text-gray-600 hover:text-gray-800">Third Link</a>
-                </li>
-                <li>
-                    <a class="text-gray-600 hover:text-gray-800">Fourth Link</a>
-                </li>
-                </nav>
-            </div>
-            <div class="px-4">
-                <h2 class="mb-3 text-sm font-medium tracking-widest text-gray-900 title-font">CATEGORIES</h2>
-                <nav class="list-none">
-                <li>
-                    <a class="text-gray-600 hover:text-gray-800">First Link</a>
-                </li>
-                <li>
-                    <a class="text-gray-600 hover:text-gray-800">Second Link</a>
-                </li>
-                <li>
-                    <a class="text-gray-600 hover:text-gray-800">Third Link</a>
-                </li>
-                <li>
-                    <a class="text-gray-600 hover:text-gray-800">Fourth Link</a>
-                </li>
-                </nav>
-            </div>
-        </div>
+            </nav>
     </div>
-    <div class="border-t border-gray-200">
-        <div class="container flex flex-wrap items-center px-2 py-4 gap-y-4 lg:gap-y-0 lg:gap-x-4 mx-auto">
-            <div class="flex flex-wrap items-center gap-y-2 md:gap-y-0 md:gap-x-2 justify-center md:flex-nowrap md:justify-start">
+    <div class="flex border-t border-gray-200 grow">
+        <div class="container flex flex-wrap items-center px-2 py-4 mx-auto gap-y-4 lg:gap-y-0 lg:gap-x-4">
+            <div
+                class="flex flex-wrap items-center justify-center gap-y-2 md:gap-y-0 md:gap-x-2 md:flex-nowrap md:justify-start">
                 {{#unless user.subscribed}}
                     {{> form/subscription }}
                 {{/unless}}
@@ -88,12 +37,14 @@
             </div>
         </div>
     </div>
-    <div class="bg-gray-100">
+    <div class="relative bottom-0 bg-gray-100">
         <div class="container flex flex-col flex-wrap py-3 mx-auto sm:px-5 sm:flex-row">
             <p class="text-sm text-center text-gray-500 sm:text-left">© 2020 Tailblocks —
-                <a href="https://twitter.com/knyttneve" class="ml-1 text-gray-600" target="_blank" rel="noopener noreferrer">@knyttneve</a>
+                <a href="https://twitter.com/knyttneve" class="ml-1 text-gray-600" target="_blank"
+                    rel="noopener noreferrer">@knyttneve</a>
             </p>
-            <span class="w-full mt-2 text-sm text-center text-gray-500 sm:ml-auto sm:mt-0 sm:w-auto sm:text-left">Enamel pin tousled raclette tacos irony</span>
+            <span class="w-full mt-2 text-sm text-center text-gray-500 sm:ml-auto sm:mt-0 sm:w-auto sm:text-left">Enamel
+                pin tousled raclette tacos irony</span>
         </div>
     </div>
 </div>
