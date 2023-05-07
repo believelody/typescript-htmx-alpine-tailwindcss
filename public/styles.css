@@ -1278,6 +1278,11 @@ h6 {
   height: 10.5rem;
 }
 
+.h-fit {
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
 .max-h-\[32rem\] {
   max-height: 32rem;
 }
@@ -1297,6 +1302,11 @@ h6 {
 
 .min-h-\[10rem\] {
   min-height: 10rem;
+}
+
+.min-h-fit {
+  min-height: -moz-fit-content;
+  min-height: fit-content;
 }
 
 .w-10 {
@@ -1743,6 +1753,11 @@ h6 {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.object-contain {
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .object-cover {
