@@ -82,7 +82,7 @@ router.get(
 );
 
 router.get(
-	"/categories",
+	"/filters/categories",
 	async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			const categories = await productService.findAllCategories();
@@ -106,7 +106,7 @@ router.get(
 );
 
 router.get(
-	"/brands",
+	"/filters/brands",
 	async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			const brands = await productService.findAllBrands();
