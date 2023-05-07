@@ -1,5 +1,5 @@
 {{!< main }}
-{{#> element/seo }}
+{{#> element/page }}
   <div class="flex items-center justify-center py-4">
     {{> link/default href=product.url.back label="Back to products" icon=(object component=(partial "icon/arrow-left") position="left") }}
   </div>
@@ -10,4 +10,4 @@
       {{> image/carousel class="w-full h-auto rounded max-h-[32rem] lg:w-1/2 xl:w-2/3" images=product.images }}
       {{> product/info }}
   </div>
-{{/element/seo}}
+{{/element/page}}
