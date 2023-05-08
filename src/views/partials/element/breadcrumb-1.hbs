@@ -1,0 +1,12 @@
+<nav class="w-full mt-4 text-lg text-center">
+  {{#each paths as |path|}}
+    {{#if @last}}
+      <span>{{ path.label }}</span>
+    {{else}}
+      <span>
+        {{> link/info href=path.url label=path.label }}
+      </span>
+      <span>></span>
+    {{/if}}
+  {{/each}}
+</nav>

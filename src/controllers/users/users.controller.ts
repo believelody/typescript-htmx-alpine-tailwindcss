@@ -48,7 +48,7 @@ router.get('/:id/posts/:postId', authMiddleware.setCheckAuthAsHxTrigger, httpMid
 				Number(id),
 				Number(postId)
 			));
-		return res.render("pages/posts-1/id", {
+		return res.render("pages/posts-2/id", {
 			...req.ctx,
 			post: {
 				...post,
