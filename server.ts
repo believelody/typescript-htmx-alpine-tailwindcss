@@ -40,6 +40,7 @@ import { commentsController } from "@controllers/comments/comments.controller";
 import { authController } from "@controllers/auth/auth.controller";
 import { sidebarController } from "@controllers/sidebar/sidebar.controller";
 import { categoriesController } from "@controllers/categories/categories.controller";
+import { brandsController } from "@controllers/brands/brands.controller";
 config();
 
 const app = express();
@@ -94,6 +95,7 @@ app.use("/posts-2", posts2Controller);
 app.use("/team", authMiddleware.setCheckAuthAsHxTrigger, teamsController);
 app.use("/products", productsController);
 app.use("/categories", categoriesController);
+app.use("/brands", brandsController);
 app.use("/users", usersController);
 app.use("/subscription", subscriptionController);
 app.use(
