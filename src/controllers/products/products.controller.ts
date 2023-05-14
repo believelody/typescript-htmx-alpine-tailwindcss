@@ -85,6 +85,7 @@ router.get(
 	"/filters/categories",
 	async (req: Request, res: Response, next: NextFunction) => {
 		try {
+			const url = new URL(req.headers["hx-current-url"] as string);
 			const categories = await productService.findAllCategories();
 			return res.render("partials/product/category-filter", {
 				...req.ctx,
@@ -92,11 +93,14 @@ router.get(
 					{
 						label: "All categories",
 					},
-					...categories.map((categorie) => ({
-						value: categorie,
-						label: stringUtil.capitalize(categorie),
+					...categories.map((category) => ({
+						value: category,
+						label: stringUtil.capitalize(category),
 					})),
 				],
+				category: categories.find(
+					(category) => category === url.searchParams.get("category")
+				),
 			});
 		} catch (error) {
 			console.error(`In ${req.originalUrl} route : ${error}`);
@@ -166,12 +170,12 @@ router.get(
 				);
 			}
 			const filteredProducts = await productService.filterByKeys(filterKeys);
-			// const url = urlUtil.updateURLWithParams(
-			// 	req.headers["hx-current-url"] as string,
-			// 	req.headers.host,
-			// 	req.query
-			// );
-			// res.setHeader("HX-Push-Url", `/products${url.search}`);
+			const url = urlUtil.updateURLWithParams(
+				req.headers["hx-current-url"] as string,
+				req.headers.host,
+				req.query
+			);
+			res.setHeader("HX-Push-Url", `/products${url.search}`);
 			return res.render("partials/product/content", {
 				...req.ctx,
 				products:

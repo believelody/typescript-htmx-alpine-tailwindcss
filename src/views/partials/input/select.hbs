@@ -1,5 +1,7 @@
-  <select name="{{ name }}" class="w-full p-2 text-base border border-gray-300 rounded cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-500">
-    {{#each items as |item|}}
-      <option value="{{ item.value }}">{{ item.label }}</option>
-    {{/each}}
-  </select>
+<select name="{{ name }}"
+    class="w-full p-2 text-base border border-gray-300 rounded cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-500">
+  {{#each items as |item|}}
+    <option value="{{ item.value }}" {{#if (eq item.value ../selected-item)}}selected{{/if}}>{{ item.label }}
+    </option>
+  {{/each}}
+</select>
