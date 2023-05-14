@@ -1,17 +1,24 @@
-<form hx-get="/products/filters" hx-target="#product-content" hx-trigger="submit" class="relative flex flex-col items-center justify-center w-full p-4 gap-y-4 lg:p-2">
-  {{#if title}}
-    <h2 class="text-center">{{ title }}</h2>
-  {{/if}}
-  <div class="flex flex-col items-start justify-start w-full gap-y-4 grow">
-    <div hx-get="/products/filters/categories" hx-trigger="load" hx-target="this" hx-indicator="#categories-filter-indicator" class="w-full">
-      <span id="categories-filter-indicator" class="htmx-indicator">Loading categories...</span>
+{{#let min=0 max=5000 spread=this}}
+  <form hx-get="/products/filters" x-data="{ min: 0, max: 5000, reset: false }"
+      x-effect="if (reset) { min = {{ min }}; max = {{ max }} }" hx-target="#product-content" hx-trigger="submit"
+      class="relative flex flex-col items-center justify-center w-full p-4 gap-y-4 lg:p-2">
+    {{#if title}}
+      <h2 class="text-center">{{ title }}</h2>
+    {{/if}}
+    <div class="flex flex-col items-start justify-start w-full gap-y-4 grow">
+      <div hx-get="/products/filters/categories" hx-trigger="load" hx-target="this"
+          hx-indicator="#categories-filter-indicator" class="w-full">
+        <span id="categories-filter-indicator" class="htmx-indicator">Loading categories...</span>
+      </div>
+      <div hx-get="/products/filters/brands" hx-trigger="load" hx-target="this" hx-indicator="#brands-filter-indicator"
+          class="w-full">
+        <span id="brands-filter-indicator" class="htmx-indicator">Loading brands...</span>
+      </div>
+      {{> product/price-filter }}
     </div>
-    <div hx-get="/products/filters/brands" hx-trigger="load" hx-target="this" hx-indicator="#brands-filter-indicator" class="w-full">
-      <span id="brands-filter-indicator" class="htmx-indicator">Loading brands...</span>
+    <div class="relative bottom-0 flex flex-col justify-center w-full gap-y-2">
+      {{> button/primary-3 :disabled="parseInt(min) > parseInt(max)" data-loading-disable=true label="Apply filters" }}
+      {{> button/simple type="reset" x-on:click="reset = true" data-loading-disable=true label="Restore default parameters" }}
     </div>
-  </div>
-  <div class="relative bottom-0 flex flex-col justify-center w-full gap-y-2">
-    {{> button/primary-3 data-loading-disable=true label="Apply filters" }}
-    {{> button/simple type="reset" data-loading-disable=true label="Restore default parameters" }}
-  </div>
-</form>
+  </form>
+{{/let}}
