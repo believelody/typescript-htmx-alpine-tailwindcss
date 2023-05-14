@@ -22,6 +22,7 @@ import baseUrl from "./baseUrl/baseUrl.helper";
 import urlPath from "./urlPath/urlPath.helper";
 import letHelper from "./let/let.helper";
 import fn from "./fn/fn.helper";
+import getParams from "./getParams/getParams.helper";
 import { HelperDeclareSpec } from "handlebars";
 
 export const customHelpers: HelperDeclareSpec = {
@@ -49,4 +50,5 @@ export const customHelpers: HelperDeclareSpec = {
 	urlPath,
 	let: letHelper,
 	fn,
+	getParams,
 };

@@ -1,6 +1,8 @@
-{{#let min=0 max=5000 spread=this}}
-  <form hx-get="/products/filters" x-data="{ min: {{ min }}, max: {{ max }} }"
-      hx-target="#product-content" hx-trigger="submit"
+{{#let spread=this
+        url-params=(get "searchParams" (urlParse (chain (baseUrl) currentURLPathname)))
+        min=0 max=5000 }}
+  <form hx-get="/products/filters" x-data="{ min: {{withDefault (getParams "min-price" url-params) min }}, max:
+      {{withDefault (getParams "max-price" url-params) max }} }" hx-target="#product-content" hx-trigger="submit"
       class="relative flex flex-col items-center justify-center w-full p-4 gap-y-4 lg:p-2">
     {{#if title}}
       <h2 class="text-center">{{ title }}</h2>

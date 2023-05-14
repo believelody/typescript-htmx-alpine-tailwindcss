@@ -19,6 +19,31 @@ router.get(
 		try {
 			const limit = Number(req.query.limit || queryUtil.limitQueryArray[0]);
 			const count = Number(req.query.count || limit);
+			const filterKeys = new Map<ProductFilterKeys, string>();
+			if (req.query.category) {
+				filterKeys.set(
+					ProductFilterKeys.CATEGORY,
+					req.query.category as string
+				);
+			}
+			if (req.query.brand) {
+				filterKeys.set(ProductFilterKeys.BRAND, req.query.brand as string);
+			}
+			if (req.query["min-price"] && req.query["max-price"]) {
+				filterKeys.set(
+					ProductFilterKeys.PRICES,
+					[req.query["min-price"], req.query["max-price"]].join(", ")
+				);
+			}
+			if (filterKeys.size > 0) {
+				const filteredProducts = await productService.filterByKeys(filterKeys);
+				return res.render("pages/products", {
+					...req.ctx,
+					products: filteredProducts,
+					meta: { total: filteredProducts.length, limit, count },
+					title: productsTitle,
+				});
+			}
 			const { products, total } = await productService.findAll(count, 0);
 			return res.render("pages/products", {
 				...req.ctx,
