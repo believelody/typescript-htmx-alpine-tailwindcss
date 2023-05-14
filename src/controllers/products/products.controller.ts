@@ -113,6 +113,7 @@ router.get(
 	"/filters/brands",
 	async (req: Request, res: Response, next: NextFunction) => {
 		try {
+			const url = new URL(req.headers["hx-current-url"] as string);
 			const brands = await productService.findAllBrands();
 			return res.render("partials/product/brand-filter", {
 				...req.ctx,
@@ -125,6 +126,9 @@ router.get(
 						label: brand,
 					})),
 				],
+				brand: brands.find(
+					(brand) => brand === url.searchParams.get("brand")
+				),
 			});
 		} catch (error) {
 			console.error(`In ${req.originalUrl} route : ${error}`);
@@ -161,7 +165,7 @@ router.get(
 				);
 			}
 			if (req.query.brand) {
-				filterKeys.set(ProductFilterKeys.BRAND, req.query.category as string);
+				filterKeys.set(ProductFilterKeys.BRAND, req.query.brand as string);
 			}
 			if (req.query["min-price"] && req.query["max-price"]) {
 				filterKeys.set(
