@@ -149,12 +149,22 @@ router.get(
 		try {
 			const limit = Number(req.query.limit || queryUtil.limitQueryArray[0]);
 			const count = Number(req.query.count || limit);
-			const filterKeys = Object.entries(req.query).reduce((acc, [key, value]) => {
-				if (Object.values(ProductFilterKeys).includes(key as ProductFilterKeys) && value) {
-					return acc.set(key as ProductFilterKeys, value as string);
-				}
-				return acc;
-			}, new Map<ProductFilterKeys, string>());
+			const filterKeys = new Map<ProductFilterKeys, string>();
+			if (req.query.category) {
+				filterKeys.set(
+					ProductFilterKeys.CATEGORY,
+					req.query.category as string
+				);
+			}
+			if (req.query.brand) {
+				filterKeys.set(ProductFilterKeys.BRAND, req.query.category as string);
+			}
+			if (req.query["min-price"] && req.query["max-price"]) {
+				filterKeys.set(
+					ProductFilterKeys.PRICES,
+					[req.query["min-price"], req.query["max-price"]].join(", ")
+				);
+			}
 			const filteredProducts = await productService.filterByKeys(filterKeys);
 			// const url = urlUtil.updateURLWithParams(
 			// 	req.headers["hx-current-url"] as string,
@@ -164,7 +174,10 @@ router.get(
 			// res.setHeader("HX-Push-Url", `/products${url.search}`);
 			return res.render("partials/product/content", {
 				...req.ctx,
-				products: count >= filteredProducts.length ? filteredProducts : filteredProducts.slice(0, count),
+				products:
+					count >= filteredProducts.length
+						? filteredProducts
+						: filteredProducts.slice(0, count),
 				meta: {
 					total: filteredProducts.length,
 					limit,

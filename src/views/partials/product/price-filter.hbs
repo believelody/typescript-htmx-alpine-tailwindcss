@@ -4,13 +4,13 @@
     <div class="flex items-center gap-x-2">
       <span>min</span>
       <input class="text-center input out-of-range:bg-danger-500" type="number" :min="min" :max="max" x-model="min"
-          name="min-price" value="{{ min }}" id="price-min" pattern="/\d/g" />
+          name="min-price" :value="{{ min }}" id="min-price" pattern="/\d/g" />
       <span>$</span>
     </div>
     <div class="flex items-center gap-x-2">
       <span>max</span>
       <input class="text-center input out-of-range:bg-danger-500" type="number" :min="min" :max="max" x-model="max"
-          name="max-price" value="{{ max }}" id="max-price" pattern="/\d/g" />
+          name="max-price" :value="{{ max }}" id="max-price" pattern="/\d/g" />
       <span>$</span>
     </div>
   </div>

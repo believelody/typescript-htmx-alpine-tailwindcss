@@ -1,6 +1,6 @@
 {{#let min=0 max=5000 spread=this}}
-  <form hx-get="/products/filters" x-data="{ min: 0, max: 5000, reset: false }"
-      x-effect="if (reset) { min = {{ min }}; max = {{ max }} }" hx-target="#product-content" hx-trigger="submit"
+  <form hx-get="/products/filters" x-data="{ min: {{ min }}, max: {{ max }} }"
+      hx-target="#product-content" hx-trigger="submit"
       class="relative flex flex-col items-center justify-center w-full p-4 gap-y-4 lg:p-2">
     {{#if title}}
       <h2 class="text-center">{{ title }}</h2>
@@ -18,7 +18,7 @@
     </div>
     <div class="relative bottom-0 flex flex-col justify-center w-full gap-y-2">
       {{> button/primary-3 :disabled="parseInt(min) > parseInt(max)" data-loading-disable=true label="Apply filters" }}
-      {{> button/simple type="reset" x-on:click="reset = true" data-loading-disable=true label="Restore default parameters" }}
+      {{> button/simple type="reset" data-loading-disable=true label="Restore default parameters" }}
     </div>
   </form>
 {{/let}}

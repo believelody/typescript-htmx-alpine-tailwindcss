@@ -38,16 +38,29 @@ const findAllBrands = async (): Promise<string[]> => {
 	return Array.from(brands);
 };
 
-const filterByKeys = async (filtersMap: Map<ProductFilterKeys, string>): Promise<Product[]> => {
+const filters = {
+	category(products: Product[], categoryValue: string): Product[] {
+		return products.filter((product) => product.category === categoryValue)
+	},
+	brand(products: Product[], brandValue: string): Product[] {
+		return products.filter((product) => product.brand === brandValue)
+	},
+	prices(products: Product[], prices: string): Product[] {
+		const [priceMin, priceMax] = prices.split(",");
+		return products.filter((product) => product.price >= Number(priceMin) && product.price <= Number(priceMax))
+	},
+};
+
+const filterByKeys = async (
+	filtersMap: Map<ProductFilterKeys, string>
+): Promise<Product[]> => {
 	const { products } = await productService.findAll(0, 0);
 	if (filtersMap.size === 0) {
 		return products;
 	}
 	let filteredProducts = products;
 	filtersMap.forEach((filterValue, filterKey) => {
-		filteredProducts = filteredProducts.filter(
-			(product) => product[filterKey] === filterValue
-		);
+		filteredProducts = filters[filterKey](filteredProducts, filterValue);
 	});
 	return filteredProducts;
 };
