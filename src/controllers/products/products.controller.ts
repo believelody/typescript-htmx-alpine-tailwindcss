@@ -151,9 +151,7 @@ router.get(
 						label: brand,
 					})),
 				],
-				brand: brands.find(
-					(brand) => brand === url.searchParams.get("brand")
-				),
+				brand: brands.find((brand) => brand === url.searchParams.get("brand")),
 			});
 		} catch (error) {
 			console.error(`In ${req.originalUrl} route : ${error}`);
@@ -217,6 +215,32 @@ router.get(
 					count: count >= filteredProducts.length ? filteredProducts : count,
 				},
 			});
+		} catch (error) {
+			console.error(`In ${req.originalUrl} route : ${error}`);
+			next(error);
+		}
+	}
+);
+
+router.get(
+	"/filters/reset",
+	async (req: Request, res: Response, next: NextFunction) => {
+		try {
+			const url = new URL(req.headers["hx-current-url"] as string);
+			if (url.searchParams.get("category")) {
+				url.searchParams.delete("category");
+			}
+			if (url.searchParams.get("brand")) {
+				url.searchParams.delete("brand");
+			}
+			if (
+				url.searchParams.get("min-price") &&
+				url.searchParams.get("max-price")
+			) {
+				url.searchParams.delete("min-price");
+				url.searchParams.delete("max-price");
+			}
+			return res.render("partials/form/product-filters", { ...req.ctx });
 		} catch (error) {
 			console.error(`In ${req.originalUrl} route : ${error}`);
 			next(error);

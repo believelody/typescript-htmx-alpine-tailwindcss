@@ -1,18 +1,16 @@
 {{#let spread=this
         url-params=(get "searchParams" (urlParse (chain (baseUrl) currentURLPathname)))
         min=0 max=5000 }}
-  <form hx-get="/products/filters" x-data="{ min: {{withDefault (getParams "min-price" url-params) min }}, max:
-      {{withDefault (getParams "max-price" url-params) max }} }" hx-target="#product-content" hx-trigger="submit"
-      class="relative flex flex-col items-center justify-center w-full p-4 gap-y-4 lg:p-2">
-    {{#if title}}
-      <h2 class="text-center">{{ title }}</h2>
-    {{/if}}
+  <form hx-get="/products/filters" id="form-product-filters" x-data="{ min: {{withDefault (getParams " min-price"
+      url-params) min }}, max: {{withDefault (getParams "max-price" url-params) max }} }" hx-target="#product-content"
+      hx-trigger="submit" class="relative flex flex-col items-center justify-center w-full p-4 gap-y-4 lg:p-2">
+    <h2 class="text-center">Filters</h2>
     <div class="flex flex-col items-start justify-start w-full gap-y-4 grow">
-      <div hx-get="/products/filters/categories" hx-trigger="load" hx-target="this"
+      <div hx-get="/products/filters/categories" hx-trigger="load delay:250" hx-target="this"
           hx-indicator="#categories-filter-indicator" class="w-full">
         <span id="categories-filter-indicator" class="htmx-indicator">Loading categories...</span>
       </div>
-      <div hx-get="/products/filters/brands" hx-trigger="load" hx-target="this" hx-indicator="#brands-filter-indicator"
+      <div hx-get="/products/filters/brands" hx-trigger="load delay:250" hx-target="this" hx-indicator="#brands-filter-indicator"
           class="w-full">
         <span id="brands-filter-indicator" class="htmx-indicator">Loading brands...</span>
       </div>
@@ -20,7 +18,7 @@
     </div>
     <div class="relative bottom-0 flex flex-col justify-center w-full gap-y-2">
       {{> button/primary-3 :disabled="parseInt(min) > parseInt(max)" data-loading-disable=true label="Apply filters" }}
-      {{> button/simple type="reset" data-loading-disable=true label="Restore default parameters" }}
+      {{> button/simple type="button" hx-get="/products" hx-target="#content" hx-push-url="true" data-loading-disable=true label="Restore default parameters" }}
     </div>
   </form>
 {{/let}}
