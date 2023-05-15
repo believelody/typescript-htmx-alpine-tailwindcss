@@ -1,9 +1,5 @@
 {{!< main }}
-{{#> element/page }}
-  {{!-- <div class="flex items-center justify-center py-4">
-    {{> link/default href=product.url.back label="Back to products" icon=(object component=(partial "icon/arrow-left") position="left") }}
-  </div> --}}
-  {{> element/breadcrumb-1 paths=(toArray (object url="/products" label="Products") (object label=product.title)) }}
+{{#> element/page breadcrumbs=(toArray (object url="/products" label="Products") (object label=product.title)) }}
   <div class="flex items-center justify-between my-4">
     {{> link/prev-next prev=(object url=product.url.prev label="Previous product") next=(object url=product.url.next label="Next product")}}
   </div>

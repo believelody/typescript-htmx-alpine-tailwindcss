@@ -1,5 +1,5 @@
 {{!< main }}
-{{#> element/page }}
+{{#> element/page breadcrumbs=(toArray (object url="/categories" label="Categories") (object label=category)) }}
   <div class="container relative block w-full mx-auto lg:py-12">
     <h2 class="mb-4 text-center">{{ title }}</h2>
     {{> product/content }}

@@ -1,4 +1,9 @@
 <section class="text-neutral-600 body-font">
     {{> element/seo }}
+    {{#if breadcrumbs}}
+       <div class="py-4 bg-gray-200">
+        {{> element/breadcrumb-1 paths=breadcrumbs }}
+       </div>
+    {{/if}}
     {{> @partial-block }}
 </section>

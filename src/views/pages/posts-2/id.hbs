@@ -1,10 +1,10 @@
 {{!< main }}
-{{#> element/page }}
+{{#> element/page breadcrumbs=(toArray (object url=post.url.back label=(cond me "My posts" (cond (test currentURLPathname (toRegex "^/users")) (chain
+author.username "'s posts") "Posts"))) (object label=post.title)) }}
   <div class="flex flex-col h-full max-w-xl mx-auto">
     {{!-- <div class="flex items-center justify-center my-4">
       {{> link/default href=post.url.back label=(chain "Back to " (cond me "my posts" (cond (test currentURLPathname (toRegex "^/users")) (chain author.username "'s posts") "posts"))) icon=(object component=(partial "icon/arrow-left") position="left") }}
     </div> --}}
-    {{> element/breadcrumb-2 paths=(toArray (object url=post.url.back label=(cond me "My posts" (cond (test currentURLPathname (toRegex "^/users")) (chain author.username "'s posts") "Posts"))) (object label=post.title)) }}
     <div class="flex items-center justify-between my-4">
       {{> link/prev-next prev=(object url=post.url.prev label="Previous post") next=(object url=post.url.next label="Next post")}}
     </div>

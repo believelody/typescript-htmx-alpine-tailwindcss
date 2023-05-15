@@ -38,6 +38,7 @@ router.get(
 				products,
 				meta: { total, limit, count },
 				title: `${stringUtil.capitalize(req.params.name)} category`,
+				category: stringUtil.capitalize(req.params.name),
 			});
 		} catch (error) {
 			console.error(`In ${req.originalUrl} route : ${error}`);
