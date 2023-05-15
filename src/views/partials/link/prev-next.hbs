@@ -1,10 +1,10 @@
-{{#if prev }}
+{{#if prev.url }}
   <div class="flex items-center grow">
     {{> link/default href=prev.url label=prev.label
           icon=(object component=(partial "icon/chevron-left" size=8 stroke="none") position="left") }}
   </div>
 {{/if}}
-{{#if next }}
+{{#if next.url }}
   <div class="flex items-center justify-end grow">
     {{> link/default href=next.url label=next.label
           icon=(object component=(partial "icon/chevron-right" size=8 stroke="none") position="right") }}

@@ -58,8 +58,8 @@ router.get(
 							req.headers["hx-current-url"] as string,
 							"/posts-2"
 						),
-						prev: prevPost.id && `/posts-2/${prevPost.id}`,
-						next: nextPost.id && `/posts-2/${nextPost.id}`,
+						prev: prevPost?.id && `/posts-2/${prevPost.id}`,
+						next: nextPost?.id && `/posts-2/${nextPost.id}`,
 					},
 				},
 				author,
