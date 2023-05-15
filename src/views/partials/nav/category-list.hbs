@@ -1,7 +1,7 @@
 <nav class="grid grid-cols-4 list-none">
   {{#each categories as |category|}}
     <li>
-      <a hx-indicator="#loader, #content" class="text-lg text-gray-600 cursor-pointer hover:text-gray-800">{{ category }}</a>
+      <a href="/categories/{{ category }}" hx-indicator="#loader, #content" class="text-lg text-gray-600 cursor-pointer hover:text-gray-800">{{ category }}</a>
     </li>
   {{/each}}
 </nav>
