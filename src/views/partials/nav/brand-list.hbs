@@ -1,8 +1,10 @@
-<nav class="grid justify-around grid-flow-row grid-cols-4 list-none" hx-boot="true">
+<nav class="list-none columns-2 md:columns-3 xl:columns-4" hx-boot="true">
   {{#each (sort brands) as |brand|}}
-    <li>
-      <a hx-indicator="#loader, #content" href="/brands/{{ brand }}" hx-push-url="true" hx-target="#content"
-          hx-swap="innerHTML" class="text-lg text-gray-600 cursor-pointer hover:text-gray-800">{{ brand }}</a>
-    </li>
+    {{#if brand}}
+      <li>
+        <a hx-indicator="#loader, #content" href="/brands/{{ brand }}" hx-push-url="true" hx-target="#content"
+            hx-swap="innerHTML" class="text-lg text-gray-600 cursor-pointer hover:text-gray-800">{{ brand }}</a>
+      </li>
+    {{/if}}
   {{/each}}
 </nav>
