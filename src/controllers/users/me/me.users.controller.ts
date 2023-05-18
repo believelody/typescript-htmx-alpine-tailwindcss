@@ -40,6 +40,15 @@ router.get(
 				posts,
 				meta: { pages: Math.round(total / Number(limit)), page, limit, total },
 				title: myProfilePostsTitle,
+				breadcrumbs: [
+					{
+						url: `/users/me`,
+						label: "My Profile",
+					},
+					{
+						label: `My Posts`,
+					},
+				],
 			});
 		} catch (error) {
 			console.error(`In ${req.originalUrl} route : ${error}`);
@@ -60,21 +69,35 @@ router.get(
 			}
 			const { author, nextPost, post, prevPost } =
 				await userService.me.findPostById(user.id, Number(id));
+			const backURL = urlUtil.retrieveAppropriateBackUrl(
+				req.headers["hx-current-url"] as string,
+				`/users/${id}/posts`
+			);
 			return res.render("pages/posts-2/id", {
 				...req.ctx,
 				post: {
 					...post,
 					url: {
-						back: urlUtil.retrieveAppropriateBackUrl(
-							req.headers["hx-current-url"] as string,
-							`/users/${id}/posts`
-						),
+						back: backURL,
 						prev: prevPost && `/users/me/posts/${prevPost.id}`,
 						next: nextPost && `/users/me/posts/${nextPost.id}`,
 					},
 				},
 				author,
 				title: post.title,
+				breadcrumbs: [
+					{
+						url: `/users/me`,
+						label: "My Profile",
+					},
+					{
+						url: backURL,
+						label: `My Posts`,
+					},
+					{
+						label: post.title,
+					},
+				],
 			});
 		} catch (error) {
 			console.error(`In ${req.originalUrl} route : ${error}`);

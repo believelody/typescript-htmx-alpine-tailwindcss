@@ -223,32 +223,6 @@ router.get(
 );
 
 router.get(
-	"/filters/reset",
-	async (req: Request, res: Response, next: NextFunction) => {
-		try {
-			const url = new URL(req.headers["hx-current-url"] as string);
-			if (url.searchParams.get("category")) {
-				url.searchParams.delete("category");
-			}
-			if (url.searchParams.get("brand")) {
-				url.searchParams.delete("brand");
-			}
-			if (
-				url.searchParams.get("min-price") &&
-				url.searchParams.get("max-price")
-			) {
-				url.searchParams.delete("min-price");
-				url.searchParams.delete("max-price");
-			}
-			return res.render("partials/form/product-filters", { ...req.ctx });
-		} catch (error) {
-			console.error(`In ${req.originalUrl} route : ${error}`);
-			next(error);
-		}
-	}
-);
-
-router.get(
 	"/:id",
 	httpMiddleware.numericParamsValidator,
 	async (req: Request, res: Response, next: NextFunction) => {
@@ -257,20 +231,30 @@ router.get(
 			const product = await productService.findOneById(id);
 			const prevProductId = id - 1;
 			const nextProductId = id + 1;
+			const backURL = urlUtil.retrieveAppropriateBackUrl(
+				req.headers["hx-current-url"] as string,
+				"/products"
+			)
 			return res.render("pages/products/id", {
 				...req.ctx,
 				product: {
 					...product,
 					url: {
-						back: urlUtil.retrieveAppropriateBackUrl(
-							req.headers["hx-current-url"] as string,
-							"/products"
-						),
-						prev: prevProductId && `/products/${prevProductId}`,
-						next: nextProductId && `/products/${nextProductId}`,
+						back: backURL,
+						prev: prevProductId > 0 ? `/products/${prevProductId}` : '',
+						next: nextProductId ? `/products/${nextProductId}` : '',
 					},
 				},
 				title: product.title,
+				breadcrumbs: [
+					{
+						url: backURL,
+						label: "Products",
+					},
+					{
+						label: product.title,
+					},
+				],
 			});
 		} catch (error) {
 			console.error(`In ${req.originalUrl} route : ${error}`);

@@ -1,6 +1,5 @@
 {{!< main }}
-{{#> element/page breadcrumbs=(toArray (object url=post.url.back label=(cond me "My posts" (cond (test currentURLPathname (toRegex "^/users")) (chain
-author.username "'s posts") "Posts"))) (object label=post.title)) }}
+{{#> element/page }}
   <div class="flex flex-col h-full max-w-xl mx-auto">
     {{!-- <div class="flex items-center justify-center my-4">
       {{> link/default href=post.url.back label=(chain "Back to " (cond me "my posts" (cond (test currentURLPathname (toRegex "^/users")) (chain author.username "'s posts") "posts"))) icon=(object component=(partial "icon/arrow-left") position="left") }}

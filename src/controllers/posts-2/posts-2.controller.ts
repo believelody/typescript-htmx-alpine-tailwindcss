@@ -47,6 +47,10 @@ router.get(
 			);
 			const user = req.session?.user;
 			const liked = user?.likedPosts?.includes(Number(id));
+			const backURL = urlUtil.retrieveAppropriateBackUrl(
+				req.headers["hx-current-url"] as string,
+				"/posts-2"
+			);
 			return res.render("pages/posts-2/id", {
 				...req.ctx,
 				post: {
@@ -54,16 +58,22 @@ router.get(
 					liked,
 					reactions: liked ? ++post.reactions : post.reactions,
 					url: {
-						back: urlUtil.retrieveAppropriateBackUrl(
-							req.headers["hx-current-url"] as string,
-							"/posts-2"
-						),
+						back: backURL,
 						prev: prevPost?.id && `/posts-2/${prevPost.id}`,
 						next: nextPost?.id && `/posts-2/${nextPost.id}`,
 					},
 				},
 				author,
 				title: post.title,
+				breadcrumbs: [
+					{
+						url: backURL,
+						label: "Posts",
+					},
+					{
+						label: post.title,
+					},
+				],
 			});
 		} catch (error) {
 			console.error(`In ${req.originalUrl} route : ${error}`);

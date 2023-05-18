@@ -42,11 +42,14 @@ router.get(
 	async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			const { id } = req.params;
-			const { post, prevPost, nextPost, author } = await postService.findOneById(
-				Number(id)
-			);
+			const { post, prevPost, nextPost, author } =
+				await postService.findOneById(Number(id));
 			const user = req.session?.user;
 			const liked = user?.likedPosts?.includes(Number(id));
+			const backURL = urlUtil.retrieveAppropriateBackUrl(
+				req.headers["hx-current-url"] as string,
+				"/posts-1"
+			);
 			return res.render("pages/posts-1/id", {
 				...req.ctx,
 				post: {
@@ -54,16 +57,22 @@ router.get(
 					liked,
 					reactions: liked ? ++post.reactions : post.reactions,
 					url: {
-						back: urlUtil.retrieveAppropriateBackUrl(
-							req.headers["hx-current-url"] as string,
-							"/posts-1"
-						),
+						back: backURL,
 						prev: prevPost?.id && `/posts-1/${prevPost.id}`,
 						next: nextPost?.id && `/posts-1/${nextPost.id}`,
 					},
 				},
 				author,
 				title: post.title,
+				breadcrumbs: [
+					{
+						url: backURL,
+						label: "Posts",
+					},
+					{
+						label: post.title,
+					},
+				],
 			});
 		} catch (error) {
 			console.error(`In ${req.originalUrl} route : ${error}`);
