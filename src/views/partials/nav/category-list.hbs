@@ -1,5 +1,5 @@
-<nav class="grid grid-cols-4 list-none" hx-boost="true">
-  {{#each categories as |category|}}
+<nav class="grid justify-around grid-flow-col grid-rows-5 list-none" hx-boost="true">
+  {{#each (sort categories) as |category|}}
     <li>
       <a href="/categories/{{ category }}" hx-push-url="true" hx-target="#content" hx-swap="innerHTML"
           hx-indicator="#loader, #content"
