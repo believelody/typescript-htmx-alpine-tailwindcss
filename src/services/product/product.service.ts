@@ -69,6 +69,12 @@ const findByCategory = async (name: string): Promise<ProductResponse> => {
 	return await fetch.get(`/products/category/${name}`);
 };
 
+const findByBrand = async (name: string): Promise<ProductResponse> => {
+	const { products } = await fetch.get('/products?limit=100') as ProductResponse;
+	const productsFromBrand = products.filter(product => product.brand === name);
+	return { products: productsFromBrand, total: productsFromBrand.length };
+}
+
 export const productService = {
 	findAll,
 	findOneById,
@@ -77,4 +83,5 @@ export const productService = {
 	findAllBrands,
 	filterByKeys,
 	findByCategory,
+	findByBrand,
 };
