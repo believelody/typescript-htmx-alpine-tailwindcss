@@ -85,10 +85,10 @@ router.get(
 						back: backURL,
 						prev:
 							prevProductId > 0
-								? `/categories/${name}/products/${prevProductId}`
+								? `/categories/${name}/${prevProductId}`
 								: "",
 						next: nextProductId
-							? `/categories/${name}/products/${nextProductId}`
+							? `/categories/${name}/${nextProductId}`
 							: "",
 					},
 				},
