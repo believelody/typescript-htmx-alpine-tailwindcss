@@ -2,6 +2,7 @@ import { ProductFilterKeys } from "@enums/product-filter.enum";
 import { authMiddleware } from "@middlewares/auth/auth.middleware";
 import { httpMiddleware } from "@middlewares/http/http.middleware";
 import { productService } from "@services/product/product.service";
+import { productUtil } from "@utils/product/product.util";
 import { queryUtil } from "@utils/query/query.util";
 import { stringUtil } from "@utils/string/string.util";
 import { urlUtil } from "@utils/url/url.util";
@@ -47,7 +48,10 @@ router.get(
 			const { products, total } = await productService.findAll(count, 0);
 			return res.render("pages/products", {
 				...req.ctx,
-				products,
+				products: productUtil.addURLToProductItem(
+					products,
+					`/products`
+				),
 				meta: { total, limit, count },
 				title: productsTitle,
 			});
@@ -241,8 +245,8 @@ router.get(
 					...product,
 					url: {
 						back: backURL,
-						prev: prevProductId > 0 ? `/products/${prevProductId}` : '',
-						next: nextProductId ? `/products/${nextProductId}` : '',
+						prev: prevProductId > 0 ? `/products/${prevProductId}` : "",
+						next: nextProductId ? `/products/${nextProductId}` : "",
 					},
 				},
 				title: product.title,

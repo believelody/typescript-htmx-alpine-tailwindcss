@@ -1,5 +1,5 @@
 {{#let spread=this nb=5}}
-  {{> link/base href=(chain "/products/" (numberIntoString id)) class="relative flex items-center justify-center h-48 xl:h-64" image=(object alt=title src=thumbnail) }}
+  {{> link/base href=url class="relative flex items-center justify-center h-48 xl:h-64" image=(object alt=title src=thumbnail) }}
   <div class="flex flex-col px-2 mt-4 gap-y-1">
     <h4 class="flex items-center tracking-widest gap-x-2">
       <span class="text-xs text-gray-500 ">Category:</span>
