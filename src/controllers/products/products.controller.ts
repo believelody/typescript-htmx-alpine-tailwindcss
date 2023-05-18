@@ -234,7 +234,7 @@ router.get(
 			const backURL = urlUtil.retrieveAppropriateBackUrl(
 				req.headers["hx-current-url"] as string,
 				"/products"
-			)
+			);
 			return res.render("pages/products/id", {
 				...req.ctx,
 				product: {

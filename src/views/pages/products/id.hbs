@@ -1,5 +1,5 @@
 {{!< main }}
-{{#> element/page breadcrumbs=(toArray (object url="/products" label="Products") (object label=product.title)) }}
+{{#> element/page }}
   <div class="flex items-center justify-between my-4">
     {{> link/prev-next prev=(object url=product.url.prev label="Previous product") next=(object url=product.url.next label="Next product")}}
   </div>
