@@ -1,0 +1,10 @@
+<div x-data="{ expanded: false }">
+   <div @click="expanded = !expanded" class="flex items-center gap-x-4">
+      <span class="w-auto transition duration-500"
+          :class="expanded ? 'rotate-[450deg]' : 'rotate-0'">{{> icon/chevron-right }}</span>
+      {{ summary }}
+   </div>
+   <div x-show="expanded" x-collapse.500ms>
+      {{> @partial-block }}
+   </div>
+</div>

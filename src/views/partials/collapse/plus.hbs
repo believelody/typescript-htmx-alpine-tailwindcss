@@ -1,7 +1,7 @@
 <div x-data="{ expanded: false }">
   <div @click="expanded = !expanded" class="flex items-center gap-x-4">
     <span class="w-auto transition duration-500"
-        :class="expanded ? 'rotate-90' : 'rotate-0'">{{> icon/chevron-right }}</span>
+        :class="expanded ? 'rotate-[405deg]' : 'rotate-0'">{{> icon/plus }}</span>
     {{ summary }}
   </div>
   <div x-show="expanded" x-collapse.500ms>
