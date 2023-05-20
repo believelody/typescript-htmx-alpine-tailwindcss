@@ -1,3 +1,3 @@
-{{#> element/sidebar slide="right"}}
-  {{> (chain 'faq/' name) }}
+{{#> element/sidebar slide="right" header=(partial 'title/default' tag='h3' text=(capitalize name) class="text-center grow")}}
+  {{> faq/content (object questions=questions) }}
 {{/element/sidebar}}

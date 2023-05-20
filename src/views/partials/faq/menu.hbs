@@ -1,8 +1,5 @@
 <nav x-effect="console.log(currentRoute)" class="sticky top-0 w-1/4 max-h-full text-xl text-white list-none border divide-y-2 bg-primary-500">
-  <li class="p-4" :class="currentRoute.includes('#basics') && 'border-l-2 border-white'"><a href="#basics">Basics</a></li>
-  <li class="p-4" :class="currentRoute.includes('#mobile') && 'border-l-2 border-white'"><a href="#mobile">Mobile</a></li>
-  <li class="p-4" :class="currentRoute.includes('#account') && 'border-l-2 border-white'"><a href="#account">Account</a></li>
-  <li class="p-4" :class="currentRoute.includes('#payments') && 'border-l-2 border-white'"><a href="#payments">Payments</a></li>
-  <li class="p-4" :class="currentRoute.includes('#privacy') && 'border-l-2 border-white'"><a href="#privacy">Privacy</a></li>
-  <li class="p-4" :class="currentRoute.includes('#delivery') && 'border-l-2 border-white'"><a href="#delivery">Delivery</a></li>
+  {{#each menu as |item|}}
+    <li class="p-4" :class="currentRoute.includes('#{{ item }}') && 'border-l-2 border-white'"><a href="#{{ item }}">{{capitalize item}}</a></li>
+  {{/each}}
 </nav>

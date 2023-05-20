@@ -1,5 +1,5 @@
-<div x-data="{ expanded: false }">
-  <div @click="expanded = !expanded" class="flex items-start gap-x-4">
+<div x-data="{ expanded: false }" class="{{ class }}">
+  <div @click="expanded = !expanded" class="flex items-start gap-x-4 cursor-pointer">
     <span class="items-start w-auto transition duration-500"
         :class="expanded ? 'rotate-[405deg]' : 'rotate-0'">{{> icon/plus }}</span>
     {{ summary }}

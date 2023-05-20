@@ -1,8 +1,12 @@
-<div class="flex flex-col w-full max-w-xl gap-y-4">
-  {{> faq/basics }}
-  {{> faq/mobile }}
-  {{> faq/account }}
-  {{> faq/payments }}
-  {{> faq/privacy }}
-  {{> faq/delivery }}
+<div id="{{ name }}" class="w-full">
+  {{#if name}}
+    <h4 class="text-center uppercase border-b md:text-left">{{capitalize name}}</h4>
+  {{/if}}
+  {{#each questions }}
+    {{#> collapse/chevron-right class="border rounded bg-slate-100" summary=(partial 'title/default' tag='h3' text=question)}}
+      <p class="p-4">
+        {{ answer }}
+      </p>
+    {{/collapse/chevron-right}}
+  {{/each}}
 </div>

@@ -3,7 +3,7 @@
         <div class="underlay">
         </div>
         <div x-bind="dialogue" class="sidebar-content slide-to-{{withDefault slide "left"}}">
-            <div class="flex items-center justify-between w-full p-2">
+            <div class="{{cond (eq slide "right") 'flex-row-reverse' ''}} flex items-center justify-between p-2">
                 {{#if header }}
                     {{ header }}
                 {{/if}}
