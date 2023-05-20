@@ -8,11 +8,14 @@
 @import "./utilities/layout.css";
 @import "./utilities/transition.css";
 
+* {
+	scroll-behavior: smooth;
+}
+
 body {
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
-	scroll-behavior: smooth;
 	overflow-y: hidden;
 	position: relative;
 }

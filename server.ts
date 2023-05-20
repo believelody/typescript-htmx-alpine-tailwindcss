@@ -41,6 +41,7 @@ import { authController } from "@controllers/auth/auth.controller";
 import { sidebarController } from "@controllers/sidebar/sidebar.controller";
 import { categoriesController } from "@controllers/categories/categories.controller";
 import { brandsController } from "@controllers/brands/brands.controller";
+import { faqController } from "@controllers/faq/faq.controller";
 config();
 
 const app = express();
@@ -98,6 +99,7 @@ app.use("/categories", categoriesController);
 app.use("/brands", brandsController);
 app.use("/users", usersController);
 app.use("/subscription", subscriptionController);
+app.use("/faq", faqController);
 app.use(
 	"/reaction",
 	authMiddleware.checkUnauthenticatedUserAndRedirect,
